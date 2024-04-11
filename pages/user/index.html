@@ -1,0 +1,72 @@
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/svg+xml" href="https://static.proxyxai.com/openai/favicon.svg"/>
+		<link rel="icon" type="image/png" href="https://static.proxyxai.com/openai/favicon.png"/>
+		<link rel="mask-icon" href="https://static.proxyxai.com/openai/mask-icon.svg" color="#000000"/>
+		<link rel="stylesheet" href="//static.proxyxai.com/tailwind.min.css">
+		<link rel="stylesheet" href="./style.css">
+		<title>𝑶𝒑𝒆𝒏𝑨𝑰</title>
+	</head>
+	<body class="bg-white">
+		<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+			<div class="max-w-md w-full space-y-8 absolute" style="top: 5%; width: 80%; margin-left: auto; margin-right: auto;">
+				<div>
+					<h1 class="mt-0 text-center text-3xl font-extrabold text-gray-600">𝑂𝑝𝑒𝑛𝐴𝐼</h1>
+				</div>
+				<form id="userForm" class="mt-8 space-y-6">
+					<div class="rounded-md shadow-sm -space-y-px">
+						<div>
+							<input id="key" name="key" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="父账号 𝑷𝒂𝒓𝒆𝒏𝒕 𝑨𝑷𝑰 𝑲𝒆𝒚">
+						</div>
+						<div>
+							<input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="子账号名称(唯一标识) / 𝑵𝒂𝒎𝒆">
+						</div>
+						<div>
+							<input id="email" name="email" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="子账号邮箱(唯一标识) / 𝑬𝒎𝒂𝒊𝒍">
+						</div>
+						<div>
+							<input id="credit" name="credit" type="number" min="2" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="额度(初始额度最小为2) / 𝑪𝒓𝒆𝒅𝒊𝒕">
+						</div>
+						<div>
+							<input id="rates" name="rates" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="费率(可选) / 𝑹𝒂𝒕𝒆𝒔">
+						</div>
+					</div>
+					<div>
+						<button id="submitButton" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">生成子账号 / 𝑪𝒓𝒆𝒂𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+						<button type="button" id="creditButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mt-4">充值 / 𝑹𝒆𝒄𝒉𝒂𝒓𝒈𝒆</button>
+						<button type="button" id="viewButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4">查看子账号 / 𝑽𝒊𝒆𝒘 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝒔</button>
+						<button type="button" id="deleteButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mt-4">删除子账号 / 𝑫𝒆𝒍𝒆𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+					</div>
+				</form>
+				<div class="text-left mb-4 text-gray-600 text-sm">
+					<p class="mb-2 font-bold">操作说明:</p>
+					<ul class="list-disc list-inside">
+						<li>生成: 𝑵𝒂𝒎𝒆 / 𝑬𝒎𝒂𝒊𝒍 / 𝑪𝒓𝒆𝒅𝒊𝒕 必选, 𝑹𝒂𝒕𝒆𝒔 可选 (𝑵𝒂𝒎𝒆 字段至少4个字符而且至少有2个字母且不能有标点符号等特殊字符)</li>
+						<li>充值: 𝑵𝒂𝒎𝒆 / 𝑪𝒓𝒆𝒅𝒊𝒕 必选, 𝑹𝒂𝒕𝒆𝒔 可选</li>
+						<li>查看: 𝑵𝒂𝒎𝒆 可选 (留空点击查看子账号,将查看所有后代账号)</li>
+						<li>删除: 𝑵𝒂𝒎𝒆 必选</li>
+						<br>当充值/查看/删除的时候,其中 𝑵𝒂𝒎𝒆 字段也可以输入账号 𝑰𝑫,而账号 𝑰𝑫 可以在点击生成子账号的返回页面得到,也可以点击查看目标子账号再次获知
+						<br><br><b>当账号余额低于 <span class="dollar-sign">$20</span> 时,将无法获得调用子账号 API 的权限,请确保余额充足</b>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<footer class="fixed inset-x-0 bottom-0 text-center w-full text-gray-600 mb-4 sm:mb-5">
+			<small> © 2022-2023 <a href="https://proxyxai.com">proxyxai.com</a></small>
+		</footer>
+		<div id="myModal" class="modal">
+			<div id="modalContent" class="modal-content">
+				<div id="secretKeyContainer">
+					<span>SecretKey:</span>
+					<span id="secretKeyValue"></span>
+					<button id="copySecretKeyButton" class="copy-btn">𝑪𝑶𝑷𝒀 / 复制</button>
+				</div>
+				<pre id="jsonPre"></pre>
+			</div>
+		</div>
+		<div id="notificationContainer"></div>
+		<script src="./script.js"></script>
+	</body>
+</html>
