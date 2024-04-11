@@ -1,4 +1,4 @@
-[proxyxai-xai-中文](https://github.com/proxyxai/openai#proxyxai-xai-中文)
+[proxyxai-xai-中文](https://github.com/proxyxai/xai#proxyxai-xai-中文)
 
 # ProxyXAI
 
