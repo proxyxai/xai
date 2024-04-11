@@ -1,4 +1,4 @@
-[proxyxai-openai-中文](https://github.com/proxyxai/openai#proxyxai-openai-中文)
+[proxyxai-xai-中文](https://github.com/proxyxai/openai#proxyxai-xai-中文)
 
 # ProxyXAI
 
@@ -39,7 +39,7 @@ Depends on the docker environment and docker-compose container management tool.
 1. yum -y install docker
 2. curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 3. chmod +x /usr/local/bin/docker-compose
-4. curl -L https://github.com/proxyxai/openai/blob/main/docker-compose.yml -o docker-compose.yml
+4. curl -L https://raw.githubusercontent.com/proxyxai/xai/main/docker-compose.yml -o docker-compose.yml
 5. docker-compose -f docker-compose.yml up -d
 ```
 
