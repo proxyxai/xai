@@ -31,4 +31,5 @@ top = false
 
 - [BotGem](https://botgem.com)
 - [ChatBox](https://chatboxai.app)
+- [OpenCat](https://opencat.app)
 - [ChatGPT Box Chrome 浏览器插件](https://chrome.google.com/webstore/detail/chatgptbox/eobbhoofkanlmddnplfhnmkfbnlhpbbo)
