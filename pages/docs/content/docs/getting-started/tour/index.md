@@ -21,7 +21,7 @@ top = false
 
 ### OpenAI
 
-> **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦, aligns with the XAI API <br> providing a robust foundational support for pioneers in the AI industry**
+> **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦<br>Providing a robust foundational support for pioneers in the AI industry**
 
 - [Developer Guide](https://proxyxai.com/docs/getting-started/guide/)
 - [User Help](https://proxyxai.com/docs/getting-started/config/)
