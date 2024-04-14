@@ -1,5 +1,5 @@
 +++
-title = "API 文档"
+title = "API"
 date = 2023-08-01T08:00:00+00:00
 updated = 2023-12-26T08:00:00+00:00
 draft = false
@@ -12,22 +12,22 @@ toc = true
 top = false
 +++
 
-# 愚公系统子账号 API 使用说明
+# XAI Subaccount API Usage Guide
 
-欢迎使用本系统的子账号 API,我们为开发者提供了一套完整的 API，以便您能够在自己的应用程序中方便地管理和操作子账号。本文档将为您详细介绍如何使用这些 API，包括接口的功能、调用方式、参数说明以及示例代码等,通过我们的 API 系统，您可以轻松创建和管理子账号，将功能和资源自由分配给您的团队成员或分享给您的好友。无论是为了业务合作、项目管理还是简单的分享，我们的子账号管理功能都能为您提供最大的灵活性和便捷性。立即使用我们的 API，开启智能分配的旅程，同时享受由此带来的潜在收益和增值服务！
+Welcome to the Subaccount API of Yugong system. We provide developers with a comprehensive set of APIs to help you easily manage and operate subaccounts in your application. This document will provide you with detailed instructions on how to use these APIs, including interface functions, call methods, parameter descriptions, and sample code. Through our API system, you can easily create and manage subaccounts, allocate features and resources to your team members or share them with your friends. Whether it's for business collaboration, project management, or simple sharing, our subaccount management features offer maximum flexibility and convenience. Start using our APIs now, embark on an intelligent allocation journey, and enjoy the potential benefits and value-added services that come with it!
 
-## 1. 创建子账号
+## 1. Create Subaccount
 
-### 请求
+### Request
 
 ```bash
 curl -X POST -H "Authorization: Bearer $key" -d '{"Name": "child-1", "Email": "child-1@proxyxai.com", "CreditGranted": 100}' https://api.proxyxai.com/x-users
-curl -X POST -H "Authorization: Bearer $key" -d '{"Name": "child-1", "Email": "child-1@proxyxai.com", "CreditGranted": 100, "Alias": "昵称"}' https://api.proxyxai.com/x-users
+curl -X POST -H "Authorization: Bearer $key" -d '{"Name": "child-1", "Email": "child-1@proxyxai.com", "CreditGranted": 100, "Alias": "Nickname"}' https://api.proxyxai.com/x-users
 ```
 
-### 响应
+### Response
 
-响应数据包含了父账号的数据
+Response data contains the parent account information
 
 ```json
 {
@@ -53,7 +53,7 @@ curl -X POST -H "Authorization: Bearer $key" -d '{"Name": "child-1", "Email": "c
   },
   "User": {
     "ID": 7,
-	"Alias": "昵称",
+	"Alias": "Nickname",
     "Name": "child-1",
     "SecretKey": "sk-Xvszkap0gCd0mA8QlqgARLzutOHq0Pi7OZZnbfhTmxJ3zJsa",
     "Updates": {
@@ -79,38 +79,38 @@ curl -X POST -H "Authorization: Bearer $key" -d '{"Name": "child-1", "Email": "c
 }
 ```
 
-字段说明:
+Field description:
 
 ```
-预付卡是一个名为 CreditBalance 的结构包含以下字段:
-amount:充值卡额
-balance:卡额剩余
-reference:交易备注
-granted_at:充值时间
-expires_at:过期时间
-CreditGranted 预付卡充值额度 (如上默认创建并给予充值额度,所以是$100,这个字段只是记录最新一次充值额度大小)
+The prepaid card is a structure called CreditBalance that includes the following fields:
+amount: Recharge card amount
+balance: Remaining card balance
+reference: Transaction remarks
+granted_at: Recharge time
+expires_at: Expiration time
+CreditGranted Prepaid card recharge amount (As shown above, the default creation and recharge amount are given, so it is $100, this field is only a record of the latest recharge amount size)
 ```
 
 ```
-Name  账号名,唯一标识,不能重复,可以修改(必须字段)
-Email 账号邮箱,唯一标识,不能重复,可以修改(必须字段)
-CreditGranted 预付卡充值额度(必须字段)
-Alias 账号昵称,默认与Name一致(可选字段)
-Level 账号等级,继承自父账号,不可更改
-Rates 账号费率,继承自父账号,可以调大
-SecretKey 子账号的API Key,系统生成唯一账号Key,只在账号创建之时显示一次,请妥善保管,不提供二次找回,丢失只能废弃重建
-HardLimit 月度用量硬限制,默认取自充值额度向上取整100,可以调小 (系统硬限制,使用超过该额度将禁止调用,可以根据业务需要调大)
-SoftLimit 月度用量软限制,默认取自充值额度向上取整100的80%,可以调小 (系统软限制,使用超过该额度将收到邮件提醒)
-RateLimit 最大请求次/分钟,默认继承自父账号,可以调小
+Name  Account name, unique identifier, cannot be repeated, can be modified (Required field)
+Email Account email, unique identifier, cannot be repeated, can be modified (Required field)
+CreditGranted Prepaid card recharge amount (Required field)
+Alias Account nickname, default is the same as Name (Optional field)
+Level Account level, inherited from parent account, cannot be modified
+Rates Account rate, inherited from parent account, can be adjusted larger
+SecretKey Subaccount API Key, system-generated unique account key, only displayed once at the time of account creation, please keep it safe, no secondary recovery is provided, it can only be discarded and rebuilt if lost
+HardLimit Monthly usage hard limit, defaulting to the rounded up integer of the recharge amount, can be reduced (System hard limit, usage beyond this limit will be blocked, can be adjusted upwards according to business needs)
+SoftLimit Monthly usage soft limit, defaulting to 80% of the rounded up integer of the recharge amount, can be reduced (System soft limit, usage beyond this limit will receive email reminders)
+RateLimit Maximum requests per minute, default inherited from parent account, can be reduced
 ```
 
 <div class="infobox">
-"CreditGranted" 请求传递的是 float64 类型的数字,而不是字符串; "CreditBalance" 充值卡片,系统采用自动合并策略对充值卡片进行合并,对于拥有超过10张卡片的账号,系统会自动将其合并至10张以内,同时保证总卡额不变,在两张小卡片合并为一张大卡片的过程中,新卡片的过期时间将以原始小卡片中最长的过期时间为准。
+"CreditGranted" passes a float64 type number in the request, not a string; "CreditBalance" recharge card, the system uses an automatic merge strategy to merge recharge cards, for accounts with more than 10 cards, the system will automatically merge them to less than 10 while maintaining the total card balance unchanged, during the process of merging two small cards into a larger one, the expiration time of the new card will be based on the longest expiration time among the original small cards.
 </div>
 
-## 2. 获取指定子账号
+## 2. Get the specified subaccount
 
-### 请求
+### Request
 
 ```bash
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users/7"
@@ -121,7 +121,7 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?na
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?email=xxx"
 ```
 
-### 响应
+### Response
 
 ```json
 [
@@ -156,22 +156,22 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?em
 ]
 ```
 
-字段说明:
+Field description:
 
 ```
 "SecretKey": "***",
-这个字段不同于上面创建时候的明文信息,而是加密存储
+This field is different from the plaintext information when created, as it is encrypted storage
 ```
 
-## 3. 获取所有子账号
+## 3. Get all subaccounts
 
-### 请求
+### Request
 ```
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users"
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?page=1&size=10"
 ```
 
-### 响应
+### Response
 ```
 [
   {
@@ -234,12 +234,12 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?pa
 ```
 
 <div class="infobox">
-仅能获取直接子账号,参数可以传递账号ID,也可以传递账号Name,一页最多返回1000条数据记录,如果子账号数量超过1000条,则需要分页查询,比如 /x-users?page=2&size=1000 分两页,每页1000条;请注意 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users" 全部子账号查询的时候,要调用核心API,每次需要系统手续费$0.002
+This API can only obtain direct subaccounts. Parameters can be passed for the account ID or account Name. A maximum of 1,000 data records can be returned on a single page. If the number of subaccounts exceeds 1,000, pagination is required for querying, such as /x-users ?page=2&size=1000, divided into two pages, each with 1,000 records. Please note, when querying all subaccounts, the core API should be called, and each time the system will consume a $0.002 service fee.
 </div>
 
-## 4. 获取指定后代账号
+## 4. Get specified descendant accounts
 
-### 请求
+### Request
 
 ```bash
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-dna/7"
@@ -250,28 +250,28 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-dna?name
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-dna?email=xxx"
 ```
 
-## 5. 获取所有后代账号
+## 5. Get all descendant accounts
 
-### 请求
+### Request
 ```
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-dna"
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-dna?page=1&size=10"
 ```
 
 <div class="infobox">
-与仅获取直接子账号的接口不同，此接口旨在获取当前账号的所有下级账号，包括子账号的子账号,子账号的子账号...，即获取所有后代账号。
+Different from the interface for obtaining only direct subaccounts, this interface aims to obtain all lower-level accounts of the current account, including subaccount's subaccounts, subaccount's subaccounts..., that is, to obtain all descendant accounts.
 </div>
 
-## 6. 充值(扣减)子账号额度
+## 6. Recharge (deduct) subaccount balance
 
-### 请求
+### Request
 ```
 curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": 100}' "https://api.proxyxai.com/x-users/7"
 curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": 100}' "https://api.proxyxai.com/x-users/child-1"
 curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https://api.proxyxai.com/x-users/child-1"
 ```
 
-### 充值响应
+### Recharge Response
 ```
 {
   "Action": "update",
@@ -317,7 +317,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
       "Balance": 180,
       "CreditGranted": 80,
       "Email": "child-1@proxyxai.com",
-      "HardLimit": 200,
+      "HardLimit": 100,
       "Level": 0,
       "Name": "child-1",
       "RateLimit": 6666666,
@@ -329,7 +329,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
 }
 ```
 
-### 扣减响应
+### Deduct Response
 
 ```
 {
@@ -394,17 +394,17 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
 }
 ```
 
-字段说明:
+Field explanation:
 
 ```
-Balance 账号总余额,其值为 CreditBalance 各个充值卡所剩余额 balance 累加之和
+Balance Total account balance, which is the sum of the remaining balances of each recharge card in CreditBalance
 ```
 
 <div class="infobox">
-如果"CreditGranted"的数值大于零，则表示进行了充值操作；若数值小于零，则意味着发生了退款或扣款。上面例子可以看到子账号扣减$50后,总余额变成了50+80,父账号增加了$50,总余额变成了 50+9719.8,这反映了退款流程的进行。需特别注意的是，$9719.8的余额较之前的$9720有所减少，这是因为系统收取了$0.2的手续费，旨在防止系统核心API被恶意使用。值得一提的是，当子账号被删除时，也会收取$0.2的手续费。此外，这个API不仅支持对直接子账号进行充值和扣款，也能作用于任何下属后代账号。
+If the value of "CreditGranted" is greater than zero, it means a recharge operation has occurred; if the value is less than zero, it means a refund or deduction has occurred. In the example above, you can see that after the subaccount is deducted $50, the total balance becomes 50+80, and the parent account is increased by $50, and the total balance becomes 50+9719.8. This reflects the progress of the refund process. It should be noted that the $9719.8 balance is less than the previous $9720 because the system charged a $0.2 handling fee to prevent the core API from being maliciously used. It is worth mentioning that when a subaccount is deleted, a $0.2 handling fee will also be charged. In addition, this API not only supports recharging and deducting for direct subaccounts but also applies to any subordinate descendant accounts.
 </div>
 
-## 7. 为子账号充值并自定义过期时间
+## 7. Recharge for subaccount with custom expiration time
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": 10, "Days": 30}' https://api.proxyxai.com/x-users/7
@@ -412,18 +412,18 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": 10, "Days": 30
 ```
 
 <div class="infobox">
-可以为子账号充值，并指定这次充值卡的有效期(如果不指定,默认是365天),参数 Days 用于设置充值卡额度的有效时间，其值可以是 0 到 365 之间的任意浮点数。到期未使用的额度会消失, 父账号可以在到期之前主动回收子账号未使用的卡额从而避免资损, 具体可以参考上面的扣减 API 操作
+You can recharge for your subaccount and specify the expiration time for this recharge card (if not specified, the default is 365 days). The "Days" parameter is used to set the validity period of the recharge card balance, the value can be any floating-point number between 0 and 365. The unused balance will disappear after it expires, and the parent account can actively recover the unused card balance of the subaccount before it expires to avoid loss, which can refer to the corresponding deduction API operation mentioned above.
 </div>
 
-## 8. 调整子账号费率
+## 8. Adjust subaccount rate
 
-### 请求
+### Request
 ```
 curl -X PUT -H "Authorization: Bearer $key" -d '{"Rates": 2}' https://api.proxyxai.com/x-users/7
 curl -X PUT -H "Authorization: Bearer $key" -d '{"Rates": 2}' https://api.proxyxai.com/x-users/child-1
 ```
 
-### 响应
+### Response
 
 ```
 {
@@ -489,12 +489,12 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"Rates": 2}' https://api.proxyx
 ```
 
 <div class="infobox">
-请特别注意这个费率调整,可以看到原先该子账号费率是1,总余额是50+80,当新调整费率为2,总余额也随之变化为100+160,而实际使用额度总量并没有变化,因为费率的调整子账号账面余额变大,所以之后费率是1的父账号再向该子账号充值的时候,充值100,实际上父账号扣减的是50,请了解这个计费算法
+Please pay special attention to this rate adjustment. As you can see, the original subaccount rate was 1, and the total balance was 50+80. When the new rate was adjusted to 2, the total balance also changed to 100+160. But the actual total usage amount didn't change, because as the rate increased, the subaccount balance also increased. So the next time the parent account recharges the subaccount with a rate of 1, recharging 100 will actually cost the parent account 50. Please understand this billing algorithm.
 </div>
 
-## 9. 调整子账号速率限制
+## 9. Adjust subaccount rate limit
 
-### 请求
+### Request
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"RateLimit": 5}' https://api.proxyxai.com/x-users/7
@@ -502,12 +502,12 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"RateLimit": 5}' https://api.pr
 ```
 
 <div class="infobox">
-参数可以传递账号ID,也可以传递账号Name,设定目标子账号每分钟最大请求5次
+Parameters can be passed with the account ID or account Name, setting the target subaccount's maximum requests per minute to 5
 </div>
 
-## 10. 调整子账号邮箱和名称
+## 10. Adjust subaccount email and name
 
-### 请求
+### Request
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"Email": "child-x@163.com"}' https://api.proxyxai.com/x-users/7
@@ -516,19 +516,19 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"Name": "child-x", "Email": "ch
 ```
 
 <div class="infobox">
-父账号可以更新其子账号的基本属性，例如在这个例子中，父账号将ID为7的子账号的邮箱（Email）和名称（Name）字段进行更新。可以分别单独更新每个字段，也可以一次性更新两个字段。
+Parent account can update the basic attributes of its subaccounts, such as updating the email (Email) and name (Name) fields of the subaccount with ID 7 in this example. Each field can be updated separately or both fields can be updated at the same time.
 </div>
 
-## 11. 删除子账号
+## 11. Delete subaccount
 
-### 请求
+### Request
 
 ```bash
 curl -X DELETE -H "Authorization: Bearer $key"  https://api.proxyxai.com/x-users/7
 curl -X DELETE -H "Authorization: Bearer $key"  https://api.proxyxai.com/x-users/child-1
 ```
 
-### 响应
+### Response
 
 ```json
 {
@@ -581,29 +581,28 @@ curl -X DELETE -H "Authorization: Bearer $key"  https://api.proxyxai.com/x-users
 ```
 
 <div class="infobox">
-当子账号被删除时,子账号的余额将会退回到父账号.以上面例子来说,子账号有 100+160(账面额度)/2(费率) = 130余额,这些余额将会被退回到父账号,这个API调用消耗0.2系统手续费,最终父账号增加 130-0.2=129.8 额度.需要注意的是,退回的余额默认的有效期为180天.
+When a subaccount is deleted, the subaccount's balance will be refunded to the parent account. In the example above, the subaccount has a balance of 100+160 (account balance)/2 (rate) = 130, which will be refunded to the parent account. This API consumes a $0.2 system handling fee, and the final increase in the parent account balance is 130-0.2=129.8. It should be noted that the refunded balance default validity period is 180 days.
 </div>
 
-## 12. 查询当前 key 所属账号基础属性
+## 12. Query the basic attributes of the account to which the current key belongs
 
-### 请求
+### Request
 
 ```bash
 curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/dashboard/x_user/info"
 ```
 
-## 13. 查询当前 key 一段日期的使用数据(最多查询12个月)
+## 13. Query the current key's usage data for a period of time (up to 12 months)
 
-### 请求
+### Request
 
 ```bash
 curl GET -H "Authorization: Bearer $key"  "https://api.proxyxai.com/v1/dashboard/billing/usage?start_date=2023-08-10&end_date=2023-11-18"
 ```
 
+## 14. Set a dedicated billing notification email address / custom account alias for subaccount (can be self-adjusted)
 
-## 14. 为子账号设置账单通知专属邮箱/自定义账号别名(可以自我调整)
-
-### 请求
+### Request
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"BillingEmail": "child-1@qq.com"}' https://api.proxyxai.com/x-users/child-1
@@ -611,12 +610,12 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"Alias": "bob"}' https://api.pr
 ```
 
 <div class="infobox">
-在创建子账号的过程中，账号名称和邮箱地址的唯一性是系统默认的强制要求，这确保了每个账号的独立性和安全性。简言之，同一邮箱不能被用来注册多个账号。然而，与此相反的是，账单邮箱的设置则灵活得多。系统允许多个账号共用同一账单邮箱地址，这样做的好处是父账号可以将多个子账号的账单和系统通知集中到一个邮箱里，便于用户统一管理和查阅，大大提升了管理效率和用户体验。此外，账号别名的个性化设置允许用户以更具特色的方式标识和区分各个账号。通过这样的设计，用户能够更加方便地掌握各个账号的财务和通知信息，从而实现高效的账号管理。
+By default, the uniqueness of account names and email addresses is a mandatory requirement set by the system, ensuring the independence and security of each account. In other words, the same email address cannot be used to register multiple accounts. However, contrary to this, the setting of billing emails is much more flexible. The system allows multiple accounts to share the same billing email address. In this way, the parent account can consolidate the billing and system notifications of multiple subaccounts into a single email address, making it easier for users to manage and look up, greatly improving management efficiency and user experience. In addition, the personalized setting of account aliases allows users to identify and differentiate accounts in a more distinctive way. With such a design, users can more conveniently grasp the financial and notification information of various accounts, thus achieving efficient account management.
 </div>
 
-## 15. 访问控制: 添加/删除子账号的可信IP白名单
+## 15. Access Control: Add / Remove trusted IP whitelist for subaccount
 
-### 请求
+### Request
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "49.234.158.212"}' https://api.proxyxai.com/x-users/child-1
@@ -628,12 +627,12 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyIPs": "*"}' https://api.pr
 ```
 
 <div class="infobox">
-默认情况下，不限制调用来源IP。如果企业需要对子账号实施访问控制，可以设置子账号仅在可信来源IP集合内进行调用。支持CIDR格式。请注意，AllowIPs: "*" 表示恢复为默认不限制，而 DenyIPs: "*" 表示仅允许 127.0.0.1 调用。
+By default, the source IP is not restricted. If the enterprise needs to implement access control for subaccounts, you can set the subaccount to call only within the trusted source IP collection. CIDR format supported. Please note that AllowIPs: "*" means to restore to the default unrestricted state, while DenyIPs: "*" means to allow only 127.0.0.1 calls.
 </div>
 
-## 16. 访问控制: 添加/删除子账号的Model白名单
+## 16. Access Control: Add / Remove Model whitelist for subaccount
 
-### 请求
+### Request
 
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "gpt-3.5-turbo"}' https://api.proxyxai.com/x-users/child-1
@@ -645,5 +644,5 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyModels": "*"}' https://api
 ```
 
 <div class="infobox">
-默认情况下，不限制调用模型。如果企业需要对子账号实施访问控制，可以设置子账号仅在允许的模型集合内进行调用。请注意，AllowModels: "*" 表示恢复为默认不限制，而 DenyModels: "*" 表示禁止所有模型调用。
+By default, there is no restriction on model calls. If an organization needs to apply access control to subaccounts, you can set up a subaccount to call only the allowed set of models. Please note, AllowModels: "*" means to restore to the default unrestricted state, while DenyModels: "*" means to ban all model calls.
 </div>

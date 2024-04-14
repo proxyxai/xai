@@ -1,5 +1,5 @@
 +++
-title = "联系我们"
+title = "Contact Us"
 description = ""
 draft = false
 weight = 1

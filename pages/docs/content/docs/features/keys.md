@@ -1,5 +1,5 @@
 +++
-title = "特性"
+title = "Features"
 description = ""
 date = 2021-05-01T18:20:00+00:00
 updated = 2021-05-01T18:20:00+00:00
@@ -14,7 +14,7 @@ toc = true
 top = false
 +++
 
-- 与官方 𝑶𝒑𝒆𝒏𝑨𝑰 𝑨𝑷𝑰 一致,完全兼容
-- 超级稳定,独家方案屏蔽大部分 𝑶𝒑𝒆𝒏𝑨𝑰 429/502/503/522 等官方服务不稳定问题
-- 按量计费,与官方各模型费率比例一致
-- 零信任安全设计,即便是我们数据库管理者也无法获取账号 𝒌𝒆𝒚 信息
+- Fully compatible with the official OpenAI API
+- Extremely stable, exclusive solutions to block most OpenAI issues such as errors 429/502/503/522
+- Pay-as-you-go pricing, consistent with the official rates for various models
+- Zero trust security design, ensuring that even our database administrators cannot access account key information

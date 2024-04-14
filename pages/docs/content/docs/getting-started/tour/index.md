@@ -1,5 +1,5 @@
 +++
-title = "上车啦"
+title = "All Aboard"
 date = 2021-05-01T08:00:00+00:00
 updated = 2021-05-01T08:00:00+00:00
 draft = false
@@ -19,60 +19,60 @@ top = false
 
 <img src="https://static.proxyxai.com/openai/openai-logo-horizontal-flat-black.png" width="320"/>
 
-### 𝑶𝒑𝒆𝒏𝑨𝑰
+### OpenAI
 
-> **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦 (又名愚公代理) 与 𝑂𝑝𝑒𝑛𝐴𝐼 平台 𝐴𝑃𝐼 保持一致, 支持与 𝑂𝑝𝑒𝑛𝐴𝐼 兼容的各种生态项目, 为 𝐴𝐼 行业先行者提供坚实的基础服务支撑**
+> **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦, aligns with the OpenAI Platform API <br> providing a robust foundational support for pioneers in the AI industry**
 
-- [开发指南](https://proxyxai.com/docs/getting-started/guide/)
-- [用户帮助](https://proxyxai.com/docs/getting-started/config/)
-- [𝐴𝑃𝐼 文档](https://proxyxai.com/docs/api/api/)
+- [Developer Guide](https://proxyxai.com/docs/getting-started/guide/)
+- [User Help](https://proxyxai.com/docs/getting-started/config/)
+- [API Documentation](https://proxyxai.com/docs/api/api/)
 
-### 实现原理
+### Implementation Principle
 
 ![proxyxai](https://static.proxyxai.com/proxyxai-td.svg ':size=200%')
 
 <div class="infobox">
-Key 池录入了若干个不同高级别账户创建的 OpenAI API Keys，有效解决在超大规模请求下官方单个账号组织的 <b>TOKEN LIMITS</b> 和 <b>REQUEST AND OTHER LIMITS</b> 不足的问题。通常情况下，我们至少保留10个以上独立的 OpenAI 账号组织，以便从容应对大规模业务请求
+The Key Pool incorporates several OpenAI API Keys created by different high-level accounts, effectively solving the problem of insufficient TOKEN LIMITS and REQUEST AND OTHER LIMITS for a single official account organization under large-scale requests. Typically, we maintain at least 10 independent OpenAI account organizations to comfortably handle large-scale business requests.
 </div>
 
-### 近期更新
+### Recent Updates
 
-- 2023-11-12 新增扩展支持 Audio models 系列模型 whisper-1 (音频转文本) 和 tts-1,tts-1-1106,tts-1-hd,tts-1-hd-1106 (文本转音频)
-- 2023-11-07 新增扩展支持 GPT-4-Turbo 系列模型 gpt-4-1106-preview 和 gpt-4-vision-preview,以及 IMAGE 系列模型 dall-e-3
+- 2023-11-12 Added extended support for Audio models series whisper-1 (audio-to-text) and tts-1, tts-1-1106, tts-1-hd, tts-1-hd-1106 (text-to-audio)
+- 2023-11-07 Added extended support for GPT-4-Turbo series models gpt-4-1106-preview and gpt-4-vision-preview, as well as IMAGE series model dall-e-3
 
-### 开发/测试 𝒌𝒆𝒚
+### Development/Test Key
 
-| 接入点   | OPENAI_API_BASE_URL            | OPENAI_API_KEY                                                 |
+| Endpoint   | OPENAI_API_BASE_URL            | OPENAI_API_KEY                                                 |
 | -------- | ------------------------------ | -------------------------------------------------------------- |
 | OpenAI   | api.openai.com                 | [OpenAI API Key](https://platform.openai.com/account/api-keys) |
-| 愚公(主) | api.proxyxai.com               | sk-XvsQOaJBbqNYi0Oli2iyAqSeiL2fet1mPxXa01pA5TeuQoma            |
-| 愚公(备) | api.proxyxai.cn                | sk-XvsQOaJBbqNYi0Oli2iyAqSeiL2fet1mPxXa01pA5TeuQoma            |
+| XAI (Main) | api.proxyxai.com          | sk-XvsQOaJBbqNYi0Oli2iyAqSeiL2fet1mPxXa01pA5TeuQoma            |
+| XAI (Backup) | api.proxyxai.cn         | sk-XvsQOaJBbqNYi0Oli2iyAqSeiL2fet1mPxXa01pA5TeuQoma            |
 
 <div class="infobox">
 
-如果您是开发者,只需将SDK中的API端点 <b>api.openai.com</b> 更改为 <b>api.proxyxai.com</b>,然后将 key 设置愚公提供的 key 即可, 请注意上面开发/测试 key 有模型和速率以及访问控制限制, 仅允许调用 gpt-3.5-turbo, 只可以在 [chat.proxyxai.com](https://chat.proxyxai.com) 测试使用
+If you are a developer, simply change the API endpoint in the SDK from <b>api.openai.com</b> to <b>api.proxyxai.com</b>, and then set the key to the one provided by Yugong. Please note that the above development/test key has model, rate, and access control restrictions, and is only allowed to call gpt-3.5-turbo, and can only be tested on [chat.proxyxai.com](https://chat.proxyxai.com)
 
-特别提醒,随着 𝑨𝑰 技术日新月异的发展和普及,𝑶𝒑𝒆𝒏𝑨𝑰 服务访问量日益激增,官方服务不稳定是常态,遇到长时间调用失败的时候,请先看看官方的服务状态页了解情况 [status.openai.com](https://status.openai.com)
+A special reminder, as AI technology is developing and becoming more widespread day by day, the demand for OpenAI services is increasing, and instability in official services is common. If you encounter long-term call failures, please first check the official service status page [status.openai.com](https://status.openai.com)
 </div>
 
-### 𝑨𝑰 服务
+### AI Services
 
-- [助理-中国](https://chat.proxyxai.com)
-- [助理-全球](https://talk.proxyxai.com)
-- [助理-海外](https://talk-open.vercel.app)
-- [翻译](https://tr.proxyxai.com)
+- [Assistant-China](https://chat.proxyxai.com)
+- [Assistant-Global](https://talk.proxyxai.com)
+- [Assistant-Overseas](https://talk-open.vercel.app)
+- [Translation](https://tr.proxyxai.com)
 
-### 系统服务
+### System Services
 
-- [余额查询1](https://usage.open-assistant.cn)
-- [余额查询2](https://usage.proxyxai.com)
-- [余额查询3](https://usage.proxyxai.cn)
-- [子账号1](https://sub.proxyxai.com)
-- [子账号2](https://sub.proxyxai.cn)
-- [子账号3](https://sub.open-assistant.cn)
+- [Balance Inquiry 1](https://usage.open-assistant.cn)
+- [Balance Inquiry 2](https://usage.proxyxai.com)
+- [Balance Inquiry 3](https://usage.proxyxai.cn)
+- [Sub-account 1](https://sub.proxyxai.com)
+- [Sub-account 2](https://sub.proxyxai.cn)
+- [Sub-account 3](https://sub.open-assistant.cn)
 
-### 概述
+### Overview
 
-在系统设计阶段,我们特别考虑了超大规模服务的需求.我们的关键服务逻辑完全在内存中执行,确保了极速的响应和卓越的效率.我们的系统拥有卓越的稳定性,并通过独家解决方案有效避免了大多数由 𝑶𝒑𝒆𝒏𝑨𝑰 官方服务不稳定引起的问题
+During system design, we specifically considered the needs of large-scale services. Our key service logic is entirely executed in memory, ensuring ultra-fast response and excellent efficiency. Our system boasts exceptional stability and effectively avoids most problems caused by instability in OpenAI's official services through our exclusive solutions.
 
-我们期待您的使用和反馈,让我们共同打造更好的 𝑨𝑰 生态服务体验
+We look forward to your use and feedback, let's work together to create a better AI ecosystem service experience.

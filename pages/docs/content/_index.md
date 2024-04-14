@@ -3,7 +3,7 @@ title = "𝑷𝒓𝒐𝒙𝒚𝑿𝑨𝑰"
 
 # The homepage contents
 [extra]
-lead = '𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦 (又名愚公代理) 与 𝑂𝑝𝑒𝑛𝐴𝐼 平台 𝐴𝑃𝐼 保持一致<br>为 𝐴𝐼 行业先行者提供坚实的基础支撑'
+lead = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦, aligns with the OpenAI Platform API <br> providing a robust foundational support for pioneers in the AI industry"
 url = "/docs/getting-started/tour/"
 url_button = "Get started"
 
@@ -21,26 +21,26 @@ url = "/blog/"
 weight = 20
 
 [[extra.list]]
-title = "🔋 完美接入"
-content = '支持与 OpenAI 兼容的各种生态项目'
+title = "🔋 Seamless Integration"
+content = 'Supports a variety of ecosystem projects compatible with OpenAI'
 
 [[extra.list]]
-title = "🪐 超级稳定"
-content = '屏蔽大部分 OpenAI 官方服务不稳定问题'
+title = "🪐 Super Stable"
+content = 'Shields most of the instability issues with OpenAI's official services'
 
 [[extra.list]]
-title = "⚖️  按量计费"
-content = "与官方各模型费率表一致"
+title = "⚖️  Pay-as-you-go"
+content = "Pricing aligns with the official rate cards for each model"
 
 [[extra.list]]
-title = "⚡️ 超高并发"
-content = "可处理超大规模请求,系统拥有卓越的并发性能"
+title = "⚡️ High Concurrency"
+content = "Capable of handling large-scale requests, the system boasts exceptional concurrent performance"
 
 [[extra.list]]
-title = "🚀️ 极速响应"
-content = "关键服务逻辑全部在内存执行,确保极速的响应"
+title = "🚀️ Rapid Response"
+content = "All key service logic is executed in memory, ensuring ultra-fast response"
 
 [[extra.list]]
-title = "🚦 安全设计"
-content = "零信任安全设计,核心数据加密存储"
+title = "🚦 Secure Design"
+content = "Zero-trust security design, with core data encrypted and stored"
 +++

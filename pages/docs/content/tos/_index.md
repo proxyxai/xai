@@ -9,26 +9,26 @@ draft = false
 class = "page single"
 +++
 
-## 服务条款与内容审查
+## Terms of Service and Content Review
 
-禁止使用平台AI模型服务生成包括但不限于色情、暴力、政治等敏感领域内容。
+Use of the platform's AI model services to generate content in sensitive areas including but not limited to pornography, violence, and politics is prohibited.
 
-- 如发现任何利用平台接入模型能力进行违规、违法内容的生成和使用，将立即封号！
-- 对频繁触发内容审查机制的用户，平台会根据情况对账号进行临时或者长期冻结。
-- 对于违反中国法律，涉嫌泄露国家机密的，平台将全力配合公安部门调查。
+- Any use of the platform to generate and use content that violates regulations or laws will result in immediate account suspension!
+- Users who frequently trigger the content review mechanism may have their accounts temporarily or permanently frozen depending on the circumstances.
+- In cases of violation of Chinese law or suspected disclosure of state secrets, the platform will fully cooperate with public security departments in their investigations.
 
-## 内容审查条款
+## Content Review Terms
 
-- 禁止描述、展示或宣扬儿童性剥削或性虐待的内容，无论法律是否禁止。这包括涉及儿童或使儿童色情的内容。
-- 禁止描述或用于培养儿童的内容。修饰是成年人以剥削，特别是性剥削为目的与儿童建立关系的行为。这包括以性剥削、贩运或其他形式剥削为目的与儿童交流。
-- 服务禁止描述、提供或宣传未经同意的亲密活动的内容。
-- 禁止描述、提供特征或宣传或用于招揽商业性活动和性服务的内容。这包括鼓励和协调真正的性活动。
-- 禁止描述或用于人口贩运目的的内容。这包括招募人员、便利交通、支付和助长对人的剥削，如强迫劳动、家庭奴役、役、强迫婚姻和强迫医疗程序。
-- 自杀和自残，禁止描述、赞美、支持、促进、美化、鼓励和/或指导个人自残或自杀的内容。
-- 禁止描述、展示或宣扬血腥暴力或血腥的内容。
-- 禁止描绘恐怖主义行为的内容;赞扬或支持恐怖组织、恐怖行为者或暴力恐怖意识形态;鼓励恐怖活动;向恐怖组织或恐怖事业提供援助;或协助恐怖组织招募成员。
-- 禁止通过暴力威胁或煽动来鼓吹或宣扬对他人的暴力行为的内容。 仇恨言论和歧视
-- 禁止基于实际或感知的种族、民族、国籍、性别、性别认同、性取向、宗教信仰、年龄、残疾状况、种姓或与系统性偏见或边缘化相关的任何其他特征等特征攻击、诋毁、恐吓、降级、针对或排斥个人或群体的内容。
-- 禁止针对个人或群体进行威胁、恐吓、侮辱、贬低或贬低的语言或图像、宣扬身体伤害或其他虐待行为（如跟踪）的内容。
-- 禁止故意欺骗并可能对公共利益产生不利影响的内容，包括与健康、安全、选举诚信或公民参与相关的欺骗性或不真实内容。OpenAI 服务还禁止不真实的交互，例如虚假帐户、自动不真实的活动、冒充以获取未经授权的信息或特权，以及声称来自任何个人、公司、政>府机构或实体，而无需明确许可进行该表示。
-- 直接支持非法主动攻击或造成技术危害的恶意软件活动的内容，例如提供恶意可执行文件、组织拒绝服务攻击或管理命令和控制服务器。
+- It is prohibited to describe, display, or promote content involving child sexual exploitation or abuse, regardless of legal status. This includes content that involves or sexualizes children.
+- It is prohibited to describe or use content for grooming children. Grooming refers to the actions of adults establishing relationships with children for the purpose of exploitation, particularly sexual exploitation. This includes communication with children for the purposes of sexual exploitation, trafficking, or other forms of exploitation.
+- The service prohibits describing, providing, or promoting content involving non-consensual intimate activities.
+- It is prohibited to describe, provide, feature, or promote content used for soliciting commercial sexual activities and services. This includes encouraging and coordinating actual sexual activities.
+- It is prohibited to describe or use content for the purposes of human trafficking. This includes recruiting individuals, facilitating transportation, making payments, and fostering the exploitation of people, such as forced labor, domestic servitude, bondage, forced marriage, and forced medical procedures.
+- Suicide and self-harm content that describes, praises, supports, promotes, glorifies, encourages, and/or guides individuals in self-harm or suicide is prohibited.
+- It is prohibited to describe, display, or promote content that is excessively violent or gory.
+- Content depicting acts of terrorism is prohibited; praising or supporting terrorist organizations, terrorists, or violent extremist ideologies; encouraging terrorist activities; providing aid to terrorist organizations or causes; or assisting in the recruitment of terrorist members.
+- Content that advocates or promotes violence against others through violent threats or incitement is prohibited. Hate Speech and Discrimination
+- Content that attacks, defames, intimidates, degrades, targets, or excludes individuals or groups based on actual or perceived characteristics such as race, ethnicity, nationality, gender, gender identity, sexual orientation, religious beliefs, age, disability, caste, or any other characteristic associated with systemic bias or marginalization is prohibited.
+- Content that threatens, intimidates, insults, demeans, or belittles individuals or groups, or promotes physical harm or other abusive behavior (such as stalking) is prohibited.
+- Content that intentionally deceives and may adversely affect the public interest, including content related to health, safety, electoral integrity, or civic engagement, is prohibited. OpenAI services also prohibit inauthentic interactions, such as fake accounts, automated inauthentic activity, impersonation to obtain unauthorized information or privileges, and claims to represent any individual, company, government agency, or entity without explicit permission to make such representation.
+- Content that directly supports illegal proactive attacks or causes technical harm through malicious software activities, such as providing malicious executables, organizing denial of service attacks, or managing command and control servers, is prohibited.

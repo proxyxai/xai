@@ -1,5 +1,5 @@
 +++
-title = "关联系统"
+title = "Link System"
 description = ""
 date = 2021-05-01T18:20:00+00:00
 updated = 2021-05-01T18:20:00+00:00
@@ -14,22 +14,22 @@ toc = true
 top = false
 +++
 
-## 内部服务
+## Internal Services
 
-- [余额查询1](https://usage.open-assistant.cn)
-- [余额查询2](https://usage.proxyxai.com)
-- [余额查询3](https://usage.proxyxai.cn)
-- [子账号1](https://sub.proxyxai.com)
-- [子账号2](https://sub.proxyxai.cn)
-- [子账号3](https://sub.open-assistant.cn)
-- [助理-中国](https://chat.proxyxai.com)
-- [助理-全球](https://talk.proxyxai.com)
-- [助理-海外](https://talk-open.vercel.app)
-- [翻译](https://tr.proxyxai.com)
+- [Balance Inquiry 1](https://usage.open-assistant.cn)
+- [Balance Inquiry 2](https://usage.proxyxai.com)
+- [Balance Inquiry 3](https://usage.proxyxai.cn)
+- [Sub-account 1](https://sub.proxyxai.com)
+- [Sub-account 2](https://sub.proxyxai.cn)
+- [Sub-account 3](https://sub.open-assistant.cn)
+- [Assistant - China](https://chat.proxyxai.com)
+- [Assistant - Global](https://talk.proxyxai.com)
+- [Assistant - Overseas](https://talk-open.vercel.app)
+- [Translation](https://tr.proxyxai.com)
 
-## 第三方系统
+## Third-party Systems
 
 - [BotGem](https://botgem.com)
 - [ChatBox](https://chatboxai.app)
 - [OpenCat](https://opencat.app)
-- [ChatGPT Box Chrome 浏览器插件](https://chrome.google.com/webstore/detail/chatgptbox/eobbhoofkanlmddnplfhnmkfbnlhpbbo)
+- [ChatGPT Box Chrome Browser Extension](https://chrome.google.com/webstore/detail/chatgptbox/eobbhoofkanlmddnplfhnmkfbnlhpbbo)

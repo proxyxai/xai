@@ -1,5 +1,5 @@
 +++
-title = "更新说明"
+title = "Update Notes"
 date = 2021-05-01T08:00:00+00:00
 updated = 2021-05-01T08:00:00+00:00
 draft = false
@@ -13,8 +13,8 @@ top = false
 
 ## 2023-11-12
 
-新增扩展支持 Audio models 系列模型 whisper-1 (音频转文本) 和 tts-1,tts-1-1106,tts-1-hd,tts-1-hd-1106 (文本转音频)
+Added support for extended Audio models series: whisper-1 (audio to text) and tts-1, tts-1-1106, tts-1-hd, tts-1-hd-1106 (text to audio).
 
 ## 2023-11-07
 
-新增扩展支持 GPT-4-Turbo 系列模型 gpt-4-1106-preview 和 gpt-4-vision-preview,以及 IMAGE 系列模型 dall-e-3
+Added support for extended GPT-4-Turbo model series: gpt-4-1106-preview and gpt-4-vision-preview, as well as the IMAGE series model dall-e-3.
