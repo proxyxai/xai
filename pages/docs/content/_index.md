@@ -26,7 +26,7 @@ content = 'Supports a variety of ecosystem projects compatible with OpenAI'
 
 [[extra.list]]
 title = "🪐 Super Stable"
-content = 'Shields most of the instability issues with OpenAI's official services'
+content = 'Shields most of the instability issues with OpenAI services'
 
 [[extra.list]]
 title = "⚖️  Pay-as-you-go"
