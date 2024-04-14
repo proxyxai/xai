@@ -56,9 +56,9 @@ A special reminder, as AI technology is developing and becoming more widespread 
 
 ### AI Services
 
+- [Assistant-Global-1](https://talk.proxyxai.com)
+- [Assistant-Global-2](https://talk-open.vercel.app)
 - [Assistant-China](https://chat.proxyxai.com)
-- [Assistant-Global](https://talk.proxyxai.com)
-- [Assistant-Overseas](https://talk-open.vercel.app)
 - [Translation](https://tr.proxyxai.com)
 
 ### System Services
