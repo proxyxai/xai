@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://proxyxai.com"
 title = "𝑷𝒓𝒐𝒙𝒚𝑿𝑨𝑰"
-description = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦, aligns with the OpenAI Platform API, providing a robust foundational support for pioneers in the AI industry"
+description = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦, aligns with the XAI API, providing a robust foundational support for pioneers in the AI industry"
 
 # The site theme to use.
 theme = "adidoks"
