@@ -29,7 +29,7 @@ top = false
 
 ### Implementation Principle
 
-![proxyxai](https://static.proxyxai.com/proxyxai-td.svg ':size=200%')
+![proxyxai](https://static.proxyxai.com/proxyxai-td-en.svg ':size=200%')
 
 <div class="infobox">
 The Key Pool incorporates several OpenAI API Keys created by different high-level accounts, effectively solving the problem of insufficient TOKEN LIMITS and REQUEST AND OTHER LIMITS for a single official account organization under large-scale requests. Typically, we maintain at least 10 independent OpenAI account organizations to comfortably handle large-scale business requests.

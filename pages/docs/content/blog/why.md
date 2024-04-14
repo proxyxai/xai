@@ -1,5 +1,5 @@
 +++
-title = "为什么 ProxyXAI 如此稳定?"
+title = "Why is ProxyXAI So Stable?"
 description = "Introducing ProxyXAI"
 date = 2023-12-17T09:19:42+00:00
 updated = 2023-12-18T09:19:42+00:00
@@ -14,5 +14,5 @@ authors = ["Team ProxyXAI"]
 <center>
 <img width="150" src="/images/logo.png"/>
 
-**因为爱**
+**Because of Love**
 </center>
