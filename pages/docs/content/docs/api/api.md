@@ -14,7 +14,7 @@ top = false
 
 # XAI Subaccount API Usage Guide
 
-Welcome to the Subaccount API of Yugong system. We provide developers with a comprehensive set of APIs to help you easily manage and operate subaccounts in your application. This document will provide you with detailed instructions on how to use these APIs, including interface functions, call methods, parameter descriptions, and sample code. Through our API system, you can easily create and manage subaccounts, allocate features and resources to your team members or share them with your friends. Whether it's for business collaboration, project management, or simple sharing, our subaccount management features offer maximum flexibility and convenience. Start using our APIs now, embark on an intelligent allocation journey, and enjoy the potential benefits and value-added services that come with it!
+Welcome to the Subaccount API of XAI system. We provide developers with a comprehensive set of APIs to help you easily manage and operate subaccounts in your application. This document will provide you with detailed instructions on how to use these APIs, including interface functions, call methods, parameter descriptions, and sample code. Through our API system, you can easily create and manage subaccounts, allocate features and resources to your team members or share them with your friends. Whether it's for business collaboration, project management, or simple sharing, our subaccount management features offer maximum flexibility and convenience. Start using our APIs now, embark on an intelligent allocation journey, and enjoy the potential benefits and value-added services that come with it!
 
 ## 1. Create Subaccount
 

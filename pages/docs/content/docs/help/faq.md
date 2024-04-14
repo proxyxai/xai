@@ -45,7 +45,7 @@ In order to successfully call the system's sub-account API, your account balance
 
 <details>
 <summary>What are the conditions for creating a sub-account?</summary>
-Creating a sub-account requires meeting two main conditions. First, your parent account balance needs to be more than $20, and second, the newly created sub-account needs to make an initial deposit of at least $2. These rules are mainly to prevent the abuse of sub-accounts. It's worth noting that in the Yugong proxy system, each account exists independently. As long as the sub-account balance is more than $20, it can create its own sub-account.
+Creating a sub-account requires meeting two main conditions. First, your parent account balance needs to be more than $20, and second, the newly created sub-account needs to make an initial deposit of at least $2. These rules are mainly to prevent the abuse of sub-accounts. It's worth noting that in the XAI proxy system, each account exists independently. As long as the sub-account balance is more than $20, it can create its own sub-account.
 </details>
 <br/>
 

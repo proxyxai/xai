@@ -55,9 +55,9 @@ Python call
 from openai import OpenAI
 
 client = OpenAI(
-    # Replace this with the key authorized by Yugong Proxy
+    # Replace this with the key authorized by XAI Proxy
     api_key="sk-Xvsxxx",
-    # Replace the official API endpoint address here with the Yugong Proxy API endpoint address
+    # Replace the official API endpoint address here with the XAI Proxy API endpoint address
     base_url="https://api.proxyxai.com/v1"
 )
 
