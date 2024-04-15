@@ -18,25 +18,34 @@ services:
       - POSTGRES_DSN=user=postgres password=pass host=proxyxai-postgres dbname=postgres port=5432 sslmode=disable TimeZone=Asia/Shanghai
       - REDIS_ADDR=proxyxai-redis:6379
       - REDIS_PASS=
+        # 100 requests per account, data saved to Redis, 100*10 requests per account, data saved to PostgreSQL
         # 100次请求/账号,数据落盘Redis,100*10次请求/账号,数据落盘PostgreSQL
       - STATS_INTERVAL=100
-        # 必选设置 初始root用户;格式 root:邮箱地址:管理Key;请注意管理Key为51个字符,开头必须是 sk-Xvs, 初始用户名必须是 root
+        # Mandatory setting: Initial root user; format: root:email:key; note that the key must be 51 characters long, starting with sk-Xvs, and the initial username must be root
+        # 必选设置 初始root用户;格式 root:邮箱:管理Key;请注意管理Key为51个字符,开头必须是 sk-Xvs, 初始用户名必须是 root
       - INIT_USERS=root:root@proxyxai.com:sk-XvsiLNxHImLIn0chuNDdi5wTs5WaoEWNcd87Z62etZZ1bz7z
+        # Optional setting: Enter OpenAI API Keys or AnthropicAI API Keys upon startup (can also be entered after startup via the management API), format: sk-xxx::https://api.openai.com,sk-ant-xxx::https://api.anthropic.com
         # 可选设置 启动即刻录入OpenAI API Keys 或者 AnthropicAI API Keys(也可以启动后,通过管理 API 操作录入),格式 sk-xxx::https://api.openai.com,sk-ant-xxx::https://api.anthropic.com
       - INIT_KEYS=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::https://api.openai.com,sk-ant-api93-7ZHL4aOCJSGuiSPQ0a1Fj7I3RHZkXE_9DD_WS7AgnJ7rW4z6uTAUyI3jCX5oXmK68h3ik7UHcWl5768KH1O_ui-_HlrOuAa::https://api.anthropic.com
+        # Optional setting: Model mapping, redirect requests from model X to model Y
         # 可选设置 模型映射,将请求的模型X转发请求为模型Y
       - MODEL_MAPPER=gpt-4-32k=gpt-4-32k-0314,gpt-4-32k-0613=gpt-4-32k-0314
+        # Minimum balance required for creating a new account
         # 新建账号初始充值需要的最小额度
       - USER_MIN_BALANCE=2.00
+        # Minimum balance required for managing sub-accounts
         # 开通子账号管理权限需要的最小额度
       - USER_API_BALANCE=20.00
+        # Optional setting: Primary domain, change to your main domain, only used for system email template footer display
         # 可选设置 一级域名,请改成自己的主域名,仅作为系统邮件模版页脚显示
       - XAI_SVC=proxyxai.com
       - XAI_API=api.proxyxai.com
       - XAI_CHAT=chat.proxyxai.com
       - XAI_DOCS=docs.proxyxai.com
+        # Optional setting: System exception notification email
         # 可选设置 系统异常通知邮箱
       - XAI_INFO=admin@proxyxai.com
+        # Optional setting: Email service
         # 可选设置 邮件服务
       - EMAIL_SMTP=smtp.gmail.com
       - EMAIL_PORT=465
