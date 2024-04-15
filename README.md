@@ -144,7 +144,7 @@ graph TD
 
 1. 录入 XAI API Keys，操作请求：`curl -X POST -H "Authorization: $key" -d '{"SecretKey": "sk-xxx", "Provider": "https://api.openai.com"}' https://api.proxyxai.com/x-keys`。录入成功后返回 HTTP 状态码 200。
 2. 录入后，因为系统默认每隔2小时自动加载一次 Keys 到内存，如需立即生效，可以重启即刻加载：`curl -X POST -H "Content-Type: application/json" -H "Authorization: $key" -d '{"LoadKeys": true}' https://api.proxyxai.com/x-conf`。
-3. 在子账号系统分配子账号额度，即可下发给用户使用。
+3. 在子账号系统分配子账号额度，即刻下发给用户使用。
 
 这里的 `$key` 是指部署的 docker-compose.yml 里的 root key，用于请求管理 API。录入的 XAI API Keys 如失效，系统将全自动清理，不再需要人工干预。
 
