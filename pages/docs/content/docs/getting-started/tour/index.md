@@ -45,7 +45,7 @@ The Key Pool incorporates several OpenAI API Keys created by different high-leve
 | Endpoint   | OPENAI_API_BASE_URL            | OPENAI_API_KEY                                                 |
 | -------- | ------------------------------ | -------------------------------------------------------------- |
 | OpenAI   | api.openai.com                 | [OpenAI API Key](https://platform.openai.com/account/api-keys) |
-| XAI      | api.proxyxai.com               | sk-XvsQOaJBbqNYi0Oli2iyAqSeiL2fet1mPxXa01pA5TeuQoma            |
+| XAI      | api.proxyxai.com               | sk-XvsVUPgxOwi4pwrcsRgUxIde4kd1W8lHcaazpfbqP3Z8CPwI            |
 
 <div class="infobox">
 
