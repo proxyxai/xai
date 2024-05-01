@@ -44,7 +44,7 @@ services:
       - XAI_DOCS=docs.proxyxai.com
         # Optional setting: System exception notification email
         # 可选设置 系统异常通知邮箱
-      - XAI_INFO=admin@proxyxai.com
+      - XAI_INFO=root@proxyxai.com
         # Optional setting: Email service
         # 可选设置 邮件服务
       - EMAIL_SMTP=smtp.gmail.com
