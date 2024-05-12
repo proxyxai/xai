@@ -22,6 +22,7 @@ async function fetchData(url, method, key, requestData) {
 		showModal(data);
 		document.getElementById('userForm').reset();
 		document.getElementById('key').value = getApiKey();
+		document.getElementById('name').value = getName();
 	} catch (error) {
 		alert(error.message);
 		console.error('Error:', error);
@@ -103,13 +104,24 @@ document.getElementById('key').addEventListener('input', function() {
 	localStorage.setItem('parent-api-key-input', key);
 }, false);
 
+document.getElementById('name').addEventListener('input', function() {
+	let nameInput = this.value;
+	localStorage.setItem('name-input', nameInput);
+}, false);
+
 window.addEventListener('load', function() {
 	var apiKeyInput = localStorage.getItem('parent-api-key-input');
 	if (apiKeyInput !== null) document.getElementById('key').value = apiKeyInput;
+	var nameInput = localStorage.getItem('name-input');
+	if (nameInput !== null) document.getElementById('name').value = nameInput;
 }, false);
 
 function getApiKey() {
 	return localStorage.getItem('parent-api-key-input') || '';
+}
+
+function getName() {
+	return localStorage.getItem('name-input') || '';
 }
 
 function isValidEmail(email) {
@@ -124,7 +136,7 @@ function sanitizeName(name) {
 
 	name = name.replace(/\p{P}|\p{S}|\p{C}|\p{Z}/gu, '');
 
-	if (!/\D/.test(name) || name.length < 4) {
+	if (!/\D/.test(name) || name.length < 2) {
 		const randomChars = Math.random().toString(36).substring(2, 6);
 		name = name + randomChars;
 	}
@@ -215,6 +227,11 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 		return;
 	}
 
+	const confirmDelete = confirm(`确定要删除用户 ${name} 吗?`);
+	if (!confirmDelete) {
+		return;
+	}
+
 	this.disabled = true;
 	fetchData(`${BASE_URL}/x-users/${name}`, 'DELETE', key)
 		.finally(() => {
@@ -238,6 +255,85 @@ document.getElementById('viewButton').addEventListener('click', function() {
 
 	this.disabled = true;
 	fetchData(url, 'GET', key)
+		.finally(() => {
+			this.disabled = false;
+		});
+});
+
+document.getElementById('updateButton').addEventListener('click', function() {
+	const key = getApiKey();
+	const name = document.getElementById('name').value.trim();
+	const credit = Number(document.getElementById('credit').value.trim());
+	const email = document.getElementById('email').value.trim();
+	const level = document.getElementById('level').value.trim() ? Number(document.getElementById('level').value.trim()) : null;
+	const gear = document.getElementById('gear').value.trim() ? Number(document.getElementById('gear').value.trim()) : null;
+	const rates = document.getElementById('rates').value.trim() ? Number(document.getElementById('rates').value.trim()) : null;
+	const factor = document.getElementById('factor').value.trim() ? Number(document.getElementById('factor').value.trim()) : null;
+	const rateLimit = document.getElementById('rateLimit').value.trim() ? Number(document.getElementById('rateLimit').value.trim()) : null;
+	const hardLimit = document.getElementById('hardLimit').value.trim() ? Number(document.getElementById('hardLimit').value.trim()) : null;
+	const childLimit = document.getElementById('childLimit').value.trim() ? Number(document.getElementById('childLimit').value.trim()) : null;
+	const allowIPs = document.getElementById('allowIPs')?.value.trim() || '';
+	const allowModels = document.getElementById('allowModels')?.value.trim() || '';
+	const allowLevels = document.getElementById('allowLevels')?.value.trim() || '';
+	const modelMapper = document.getElementById('modelMapper')?.value.trim() || '';
+	const billingEmail = document.getElementById('billingEmail')?.value.trim() || '';
+	if (!key) {
+		alert('𝑰𝒏𝒗𝒂𝒍𝒊𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚');
+		return;
+	}
+
+	if (!key || !name) {
+		alert('𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆 𝒇𝒊𝒆𝒍𝒅𝒔');
+		return;
+	}
+
+	const requestData = { Name: name };
+
+	if (credit) {
+		requestData.CreditGranted = credit;
+	}
+	if (email) {
+		requestData.Email = email;
+	}
+	if (level !== null) {
+		requestData.Level = level;
+	}
+	if (gear !== null) {
+		requestData.Gear = gear;
+	}
+	if (rates !== null) {
+		requestData.Rates = rates;
+	}
+	if (factor !== null) {
+		requestData.Factor = factor;
+	}
+	if (rateLimit !== null) {
+		requestData.RateLimit = rateLimit;
+	}
+	if (hardLimit !== null) {
+		requestData.HardLimit = hardLimit;
+	}
+	if (childLimit !== null) {
+		requestData.ChildLimit = childLimit;
+	}
+	if (allowIPs) {
+		requestData.AllowIPs = allowIPs;
+	}
+	if (allowModels) {
+		requestData.AllowModels = allowModels;
+	}
+	if (allowLevels) {
+		requestData.AllowLevels = allowLevels;
+	}
+	if (modelMapper) {
+		requestData.ModelMapper = modelMapper;
+	}
+	if (billingEmail) {
+		requestData.BillingEmail = billingEmail;
+	}
+
+	this.disabled = true;
+	fetchData(`${BASE_URL}/x-users/${name}`, 'PUT', key, requestData)
 		.finally(() => {
 			this.disabled = false;
 		});

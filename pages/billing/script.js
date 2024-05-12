@@ -22,11 +22,11 @@ async function checkBilling(apiKey, apiUrl) {
 		"Authorization": "Bearer " + apiKey,
 		"Content-Type": "application/json"
 	};
-	const urlUserInfo = `${apiUrl}/dashboard/x_user/info`;
+	const urlUserInfo = `${apiUrl}/dashboard/x-user-info`;
 	try {
 		let response = await fetch(urlUserInfo, { headers });
 		if (!response.ok) {
-			console.log("未授权或已欠费禁用的 𝑨𝑷𝑰 𝑲𝒆𝒚 / 𝑼𝒏𝒂𝒖𝒕𝒉𝒐𝒓𝒊𝒛𝒆𝒅 𝒐𝒓 𝒔𝒖𝒔𝒑𝒆𝒏𝒅𝒆𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚 𝒅𝒖𝒆 𝒕𝒐 𝒖𝒏𝒑𝒂𝒊𝒅 𝒄𝒉𝒂𝒓𝒈𝒆𝒔");
+			console.log("𝑼𝒏𝒂𝒖𝒕𝒉𝒐𝒓𝒊𝒛𝒆𝒅 𝒐𝒓 𝒔𝒖𝒔𝒑𝒆𝒏𝒅𝒆𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚 𝒅𝒖𝒆 𝒕𝒐 𝒖𝒏𝒑𝒂𝒊𝒅 𝒄𝒉𝒂𝒓𝒈𝒆𝒔");
 			return;
 		}
 		const user = await response.json();
@@ -73,13 +73,13 @@ function createRow(cells) {
 function createTableHeader() {
 	let headerRow = document.createElement("tr");
 	let headers = [
-		{ en: "𝑨𝑷𝑰 𝑲𝒆𝒚", cn: "密钥" },
-		{ en: "𝑵𝒂𝒎𝒆", cn: "账号" },
-		{ en: "𝑪𝒓𝒆𝒅𝒊𝒕 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "预付卡额 卡片余额 失效时间" },
-		{ en: "𝑼𝒔𝒆𝒅 / 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "总已用 / 总余额" },
-		{ en: "𝑼𝒔𝒂𝒈𝒆", cn: "今日 / 本月 / 月限额 (今日/本月)" },
-		{ en: "𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒔", cn: "今日 / 本月 (今日/本月)" },
-		{ en: "𝑹𝑷𝑴", cn: "速率限制" }
+		{ en: "𝑨𝑷𝑰 𝑲𝒆𝒚", cn: "" },
+		{ en: "𝑵𝒂𝒎𝒆", cn: "" },
+		{ en: "𝑪𝒓𝒆𝒅𝒊𝒕 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "Prepaid Card, Balance, Expiry Date" },
+		{ en: "𝑼𝒔𝒆𝒅 / 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "Total Used / Total Balance" },
+		{ en: "𝑼𝒔𝒂𝒈𝒆", cn: "Today / This Month / Monthly Limit(Today/This Month)" },
+		{ en: "𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒔", cn: "Today / This Month (Today/This Month)" },
+		{ en: "𝑹𝑷𝑴", cn: "Rate Limit" }
 	];
 	headers.forEach(header => {
 		let th = document.createElement("th");
@@ -105,7 +105,7 @@ function createInnerTable(data) {
 
 async function sendRequest() {
 	const queryButton = document.getElementById("query-button");
-	queryButton.textContent = "稍等 / 𝑾𝒂𝒊𝒕";
+	queryButton.textContent = "𝑾𝒂𝒊𝒕";
 	queryButton.disabled = true;
 
 	let apiKeyInput = document.getElementById("api-key-input");
@@ -116,7 +116,7 @@ async function sendRequest() {
 
 	let apiKeys = apiKeyInput.value.match(/sk-Xvs\w+/g);
 	if (apiKeys === null || apiKeys.length === 0) {
-		queryButton.textContent = "查询 / 𝑸𝒖𝒆𝒓𝒚";
+		queryButton.textContent = "𝑸𝒖𝒆𝒓𝒚";
 		queryButton.disabled = false;
 		return;
 	}
@@ -139,7 +139,7 @@ async function sendRequest() {
 			cells.push(createCell(apiKey.slice(0, 8) + '***' + apiKey.slice(-4)));
 
 			if (data[0] === "Error") {
-				let errorMessageCell = createCell("未授权或已欠费禁用的 𝑨𝑷𝑰 𝑲𝒆𝒚 / 𝑼𝒏𝒂𝒖𝒕𝒉𝒐𝒓𝒊𝒛𝒆𝒅 𝒐𝒓 𝒔𝒖𝒔𝒑𝒆𝒏𝒅𝒆𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚 𝒅𝒖𝒆 𝒕𝒐 𝒖𝒏𝒑𝒂𝒊𝒅 𝒄𝒉𝒂𝒓𝒈𝒆𝒔");
+				let errorMessageCell = createCell("𝑼𝒏𝒂𝒖𝒕𝒉𝒐𝒓𝒊𝒛𝒆𝒅 𝒐𝒓 𝒔𝒖𝒔𝒑𝒆𝒏𝒅𝒆𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚 𝒅𝒖𝒆 𝒕𝒐 𝒖𝒏𝒑𝒂𝒊𝒅 𝒄𝒉𝒂𝒓𝒈𝒆𝒔");
 				errorMessageCell.colSpan = "7";
 				errorMessageCell.classList.add("status-error");
 				cells.push(errorMessageCell);
@@ -161,7 +161,7 @@ async function sendRequest() {
 
 		queriedApiKeys = [];
 		table.style.display = 'table';
-		queryButton.textContent = "查询 / 𝑸𝒖𝒆𝒓𝒚";
+		queryButton.textContent = "𝑸𝒖𝒆𝒓𝒚";
 		queryButton.disabled = false;
 	}).catch(error => {
 		console.error(error);

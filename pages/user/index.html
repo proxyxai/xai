@@ -7,54 +7,89 @@
 		<link rel="mask-icon" href="https://static.proxyxai.com/openai/mask-icon.svg" color="#000000"/>
 		<link rel="stylesheet" href="//static.proxyxai.com/tailwind.min.css">
 		<link rel="stylesheet" href="./style.css">
-		<title>𝑶𝒑𝒆𝒏𝑨𝑰</title>
+		<title>𝑿𝑨𝑰</title>
 	</head>
 	<body class="bg-white">
 		<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 			<div class="max-w-md w-full space-y-8 absolute" style="top: 5%; width: 80%; margin-left: auto; margin-right: auto;">
 				<div>
-					<h1 class="mt-0 text-center text-3xl font-extrabold text-gray-600">𝑂𝑝𝑒𝑛𝐴𝐼</h1>
+					<h1 class="mt-0 text-center text-3xl font-extrabold text-gray-600">𝑋𝐴𝐼</h1>
 				</div>
 				<form id="userForm" class="mt-8 space-y-6">
 					<div class="rounded-md shadow-sm -space-y-px">
 						<div>
-							<input id="key" name="key" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="父账号 𝑷𝒂𝒓𝒆𝒏𝒕 𝑨𝑷𝑰 𝑲𝒆𝒚">
+							<input id="key" name="key" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑷𝒂𝒓𝒆𝒏𝒕 𝑨𝑷𝑰 𝑲𝒆𝒚">
 						</div>
 						<div>
-							<input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="子账号名称(唯一标识) / 𝑵𝒂𝒎𝒆">
+							<input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑵𝒂𝒎𝒆">
 						</div>
 						<div>
-							<input id="email" name="email" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="子账号邮箱(唯一标识) / 𝑬𝒎𝒂𝒊𝒍">
+							<input id="email" name="email" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑬𝒎𝒂𝒊𝒍">
 						</div>
 						<div>
-							<input id="credit" name="credit" type="number" min="2" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="额度(初始额度最小为2) / 𝑪𝒓𝒆𝒅𝒊𝒕">
+							<input id="credit" name="credit" type="number" min="2" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑪𝒓𝒆𝒅𝒊𝒕">
 						</div>
 						<div>
-							<input id="rates" name="rates" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="费率(可选) / 𝑹𝒂𝒕𝒆𝒔">
+							<input id="level" name="level" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑳𝒆𝒗𝒆𝒍 (optional)">
+						</div>
+						<div>
+							<input id="gear" name="gear" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑮𝒆𝒂𝒓 (optional)">
+						</div>
+						<div>
+							<input id="rates" name="rates" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑹𝒂𝒕𝒆𝒔 (optional)">
+						</div>
+						<div>
+							<input id="factor" name="factor" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑭𝒂𝒄𝒕𝒐𝒓 (optional)">
+						</div>
+						<div>
+							<input id="rateLimit" name="rateLimit" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑹𝒂𝒕𝒆𝑳𝒊𝒎𝒊𝒕 (optional)">
+						</div>
+						<div>
+							<input id="hardLimit" name="hardLimit" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑯𝒂𝒓𝒅𝑳𝒊𝒎𝒊𝒕 (optional)">
+						</div>
+						<div>
+							<input id="childLimit" name="childLimit" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑪𝒉𝒊𝒍𝒅𝑳𝒊𝒎𝒊𝒕 (optional)">
+						</div>
+						<div>
+							<input id="allowIPs" name="allowIPs" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑨𝒍𝒍𝒐𝒘𝑰𝑷𝒔 (optional)">
+						</div>
+						<div>
+							<input id="allowModels" name="allowModels" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑨𝒍𝒍𝒐𝒘𝑴𝒐𝒅𝒆𝒍𝒔 (optional)">
+						</div>
+						<div>
+							<input id="allowLevels" name="allowLevels" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑨𝒍𝒍𝒐𝒘𝑳𝒆𝒗𝒆𝒍𝒔 (optional)">
+						</div>
+						<div>
+							<input id="modelMapper" name="modelMapper" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑴𝒐𝒅𝒆𝒍𝑴𝒂𝒑𝒑𝒆𝒓 (optional)">
+						</div>
+						<div>
+							<input id="billingEmail" name="billingEmail" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑩𝒊𝒍𝒍𝒊𝒏𝒈𝑬𝒎𝒂𝒊𝒍 (optional)">
 						</div>
 					</div>
 					<div>
-						<button id="submitButton" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">生成子账号 / 𝑪𝒓𝒆𝒂𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
-						<button type="button" id="creditButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mt-4">充值 / 𝑹𝒆𝒄𝒉𝒂𝒓𝒈𝒆</button>
-						<button type="button" id="viewButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4">查看子账号 / 𝑽𝒊𝒆𝒘 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝒔</button>
-						<button type="button" id="deleteButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mt-4">删除子账号 / 𝑫𝒆𝒍𝒆𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+						<button id="submitButton" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">𝑪𝒓𝒆𝒂𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+						<button type="button" id="creditButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mt-4">𝑹𝒆𝒄𝒉𝒂𝒓𝒈𝒆</button>
+						<button type="button" id="viewButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4">𝑽𝒊𝒆𝒘 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝒔</button>
+						<button type="button" id="updateButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black mt-4">𝑼𝒑𝒅𝒂𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+						<button type="button" id="deleteButton" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mt-4">𝑫𝒆𝒍𝒆𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕</button>
+
 					</div>
 				</form>
 				<div class="text-left mb-4 text-gray-600 text-sm">
-					<p class="mb-2 font-bold">操作说明:</p>
+					<p class="mb-2 font-bold">Operation Instructions:</p>
 					<ul class="list-disc list-inside">
-						<li>生成: 𝑵𝒂𝒎𝒆 / 𝑬𝒎𝒂𝒊𝒍 / 𝑪𝒓𝒆𝒅𝒊𝒕 必选, 𝑹𝒂𝒕𝒆𝒔 可选 (𝑵𝒂𝒎𝒆 字段至少4个字符而且至少有2个字母且不能有标点符号等特殊字符)</li>
-						<li>充值: 𝑵𝒂𝒎𝒆 / 𝑪𝒓𝒆𝒅𝒊𝒕 必选, 𝑹𝒂𝒕𝒆𝒔 可选</li>
-						<li>查看: 𝑵𝒂𝒎𝒆 可选 (留空点击查看子账号,将查看所有后代账号)</li>
-						<li>删除: 𝑵𝒂𝒎𝒆 必选</li>
-						<br>当充值/查看/删除的时候,其中 𝑵𝒂𝒎𝒆 字段也可以输入账号 𝑰𝑫,而账号 𝑰𝑫 可以在点击生成子账号的返回页面得到,也可以点击查看目标子账号再次获知
-						<br><br><b>当账号余额低于 <span class="dollar-sign">$20</span> 时,将无法获得调用子账号 API 的权限,请确保余额充足</b>
+						<li>Create: 𝑵𝒂𝒎𝒆 / 𝑬𝒎𝒂𝒊𝒍 / 𝑪𝒓𝒆𝒅𝒊𝒕 mandatory, 𝑹𝒂𝒕𝒆𝒔 optional (𝑵𝒂𝒎𝒆 field must be at least 4 characters long, contain at least 2 letters, and must not include punctuation or other special characters)</li>
+						<li>Recharge: 𝑵𝒂𝒎𝒆 / 𝑪𝒓𝒆𝒅𝒊𝒕 mandatory, 𝑹𝒂𝒕𝒆𝒔 optional</li>
+						<li>View: 𝑵𝒂𝒎𝒆 optional (leave blank and click to view sub-accounts, which will display all descendant accounts)</li>
+						<li>Delete: 𝑵𝒂𝒎𝒆 mandatory</li>
+						<br>When recharging/viewing/deleting, the 𝑵𝒂𝒎𝒆 field can also be entered as the account 𝑰𝑫, which can be obtained from the return page after clicking to create a sub-account, or by clicking to view the target sub-account again
+						<br><br><b>When the account balance falls below <span class="dollar-sign">$20</span>, access to call the sub-account API will be disabled. Please ensure sufficient balance</b>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<footer class="fixed inset-x-0 bottom-0 text-center w-full text-gray-600 mb-4 sm:mb-5">
-			<small> © 2022-2023 <a href="https://proxyxai.com">proxyxai.com</a></small>
+			<small> © 2022-2024 <a href="https://proxyxai.com">proxyxai.com</a></small>
 		</footer>
 		<div id="myModal" class="modal">
 			<div id="modalContent" class="modal-content">
