@@ -32,6 +32,9 @@ services:
       - MODEL_MAPPER=gpt-4-32k=gpt-4-32k-0314,gpt-4-32k-0613=gpt-4-32k-0314
         # Minimum balance required for creating a new account
         # 新建账号初始充值需要的最小额度
+      - LOCK_USER_MAPPER=true
+        # Lock user model mapping
+        # 锁定用户模型映射
       - USER_MIN_BALANCE=2.00
         # Minimum balance required for managing sub-accounts
         # 开通子账号管理权限需要的最小额度
