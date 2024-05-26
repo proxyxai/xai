@@ -29,12 +29,12 @@ services:
       - INIT_KEYS=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::https://api.openai.com,sk-ant-api93-7ZHL4aOCJSGuiSPQ0a1Fj7I3RHZkXE_9DD_WS7AgnJ7rW4z6uTAUyI3jCX5oXmK68h3ik7UHcWl5768KH1O_ui-_HlrOuAa::https://api.anthropic.com,sk-XvsVUPgxOwi4pwrcsRgUxIde4kd1W8lHcaazpfbqP3Z8CPwI::https://api.open-assistant.cn
         # Optional setting: Model mapping, redirect requests from model X to model Y
         # 可选设置 模型映射,将请求的模型X转发请求为模型Y
-      - MODEL_MAPPER=gpt-4-32k=gpt-4-32k-0314,gpt-4-32k-0613=gpt-4-32k-0314
-        # Minimum balance required for creating a new account
-        # 新建账号初始充值需要的最小额度
-      - LOCK_USER_MAPPER=true
+      - MODEL_MAPPER=gpt-4-32k=gpt-4-32k-0314,gpt-4-32k-0613=gpt-4-32k-0314,gpt-4-*-preview=gpt-4-turbo
         # Lock user model mapping
         # 锁定用户模型映射
+      - LOCK_USER_MAPPER=true
+        # Minimum balance required for creating a new account
+        # 新建账号初始充值需要的最小额度
       - USER_MIN_BALANCE=2.00
         # Minimum balance required for managing sub-accounts
         # 开通子账号管理权限需要的最小额度
@@ -82,7 +82,7 @@ services:
           "-U",
           "postgres"
         ]
-      interval: 10s
+      interval: 60s
       timeout: 5s
       retries: 3
     networks:
