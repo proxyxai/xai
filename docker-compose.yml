@@ -82,7 +82,7 @@ services:
           "-U",
           "postgres"
         ]
-      interval: 60s
+      interval: 10s
       timeout: 5s
       retries: 3
     networks:
