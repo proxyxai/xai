@@ -52,13 +52,13 @@ function copySecretKeyToClipboard() {
 	if (navigator.clipboard) {
 		navigator.clipboard.writeText(secretKey)
 			.then(() => {
-				showNotification('𝑺𝒆𝒄𝒓𝒆𝒕𝑲𝒆𝒚 𝒉𝒂𝒔 𝒃𝒆𝒆𝒏 𝒄𝒐𝒑𝒊𝒆𝒅 𝒕𝒐 𝒄𝒍𝒊𝒑𝒃𝒐𝒂𝒓𝒅 / 已复制');
+				showNotification('𝑺𝒆𝒄𝒓𝒆𝒕𝑲𝒆𝒚 𝒉𝒂𝒔 𝒃𝒆𝒆𝒏 𝒄𝒐𝒑𝒊𝒆𝒅 𝒕𝒐 𝒄𝒍𝒊𝒑𝒃𝒐𝒂𝒓𝒅');
 			})
 			.catch(err => {
-				showNotification('复制失败: 没有权限 / 𝑪𝒐𝒑𝒚 𝒇𝒂𝒊𝒍𝒆𝒅: 𝑵𝒐 𝒑𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏', 5000);
+				showNotification('𝑪𝒐𝒑𝒚 𝒇𝒂𝒊𝒍𝒆𝒅: 𝑵𝒐 𝒑𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏', 5000);
 			});
 	} else {
-		showNotification('复制失败: 浏览器不支持 / 𝑪𝒐𝒑𝒚 𝒇𝒂𝒊𝒍𝒆𝒅: 𝑩𝒓𝒐𝒘𝒔𝒆𝒓 𝒏𝒐𝒕 𝒔𝒖𝒑𝒑𝒐𝒓𝒕𝒆𝒅', 5000);
+		showNotification('𝑪𝒐𝒑𝒚 𝒇𝒂𝒊𝒍𝒆𝒅: 𝑩𝒓𝒐𝒘𝒔𝒆𝒓 𝒏𝒐𝒕 𝒔𝒖𝒑𝒑𝒐𝒓𝒕𝒆𝒅', 5000);
 	}
 }
 
@@ -68,19 +68,14 @@ function showNotification(message, duration = 3000) {
 	notification.classList.add('notification');
 	notification.innerText = message;
 
-	// 将通知添加到容器中
 	notificationContainer.appendChild(notification);
 
-	// 触发显示动画
 	setTimeout(() => {
 		notification.classList.add('show');
-	}, 10); // 延迟确保元素已经渲染
+	}, 10);
 
-	// 设置定时器来隐藏通知
 	setTimeout(() => {
 		notification.classList.add('hide');
-
-		// 动画结束后移除通知元素
 		notification.addEventListener('transitionend', () => {
 			notification.remove();
 		}, { once: true });
@@ -158,12 +153,12 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
 	}
 
 	if (!isValidEmail(email)) {
-		alert('请输入有效的邮箱地址 / 𝑷𝒍𝒆𝒂𝒔𝒆 𝒆𝒏𝒕𝒆𝒓 𝒂 𝒗𝒂𝒍𝒊𝒅 𝒆𝒎𝒂𝒊𝒍 𝒂𝒅𝒅𝒓𝒆𝒔𝒔');
+		alert('𝑷𝒍𝒆𝒂𝒔𝒆 𝒆𝒏𝒕𝒆𝒓 𝒂 𝒗𝒂𝒍𝒊𝒅 𝒆𝒎𝒂𝒊𝒍 𝒂𝒅𝒅𝒓𝒆𝒔𝒔');
 		return;
 	}
 
 	if (!key || !name || !email || !credit) {
-		alert('请填写所有字段 / 𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒂𝒍𝒍 𝒇𝒊𝒆𝒍𝒅𝒔');
+		alert('𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒂𝒍𝒍 𝒇𝒊𝒆𝒍𝒅𝒔');
 		return;
 	}
 
@@ -173,7 +168,10 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
 		requestData.Rates = rates;
 	}
 
-	document.getElementById('submitButton').disabled = true;
+	const submitButton = document.getElementById('submitButton');
+	submitButton.disabled = true;
+	submitButton.innerText = '𝑺𝒖𝒃𝒎𝒊𝒕𝒕𝒊𝒏𝒈...';
+
 	fetchData(`${BASE_URL}/x-users`, 'POST', key, requestData)
 		.finally(() => {
 			document.getElementById('submitButton').disabled = false;
@@ -193,7 +191,7 @@ document.getElementById('creditButton').addEventListener('click', function() {
 	}
 
 	if (!key || !name || !credit) {
-		alert('请填写名称和额度字段 / 𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆 𝒂𝒏𝒅 𝒄𝒓𝒆𝒅𝒊𝒕 𝒇𝒊𝒆𝒍𝒅𝒔');
+		alert('𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆 𝒂𝒏𝒅 𝒄𝒓𝒆𝒅𝒊𝒕 𝒇𝒊𝒆𝒍𝒅𝒔');
 		return;
 	}
 
@@ -207,9 +205,11 @@ document.getElementById('creditButton').addEventListener('click', function() {
 	}
 
 	this.disabled = true;
+	this.innerText = '𝑹𝒆𝒄𝒉𝒂𝒓𝒈𝒊𝒏𝒈...';
 	fetchData(`${BASE_URL}/x-users/${name}`, 'PUT', key, requestData)
 		.finally(() => {
 			this.disabled = false;
+			this.innerText = '𝑹𝒆𝒄𝒉𝒂𝒓𝒈𝒆';
 		});
 });
 
@@ -223,19 +223,21 @@ document.getElementById('deleteButton').addEventListener('click', function() {
 	}
 
 	if (!key || !name) {
-		alert('请填写所有字段 / 𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒂𝒍𝒍 𝒇𝒊𝒆𝒍𝒅𝒔');
+		alert('𝑷𝒍𝒆𝒂𝒔𝒆 𝒇𝒊𝒍𝒍 𝒐𝒖𝒕 𝒂𝒍𝒍 𝒇𝒊𝒆𝒍𝒅𝒔');
 		return;
 	}
 
-	const confirmDelete = confirm(`确定要删除用户 ${name} 吗?`);
+	const confirmDelete = confirm(`Delete user ${name}?`);
 	if (!confirmDelete) {
 		return;
 	}
 
 	this.disabled = true;
+	this.innerText = '𝑫𝒆𝒍𝒆𝒕𝒊𝒏𝒈...';
 	fetchData(`${BASE_URL}/x-users/${name}`, 'DELETE', key)
 		.finally(() => {
 			this.disabled = false;
+			this.innerText = '𝑫𝒆𝒍𝒆𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕';
 		});
 });
 
@@ -254,9 +256,11 @@ document.getElementById('viewButton').addEventListener('click', function() {
 	}
 
 	this.disabled = true;
+	this.innerText = '𝑽𝒊𝒆𝒘𝒊𝒏𝒈...';
 	fetchData(url, 'GET', key)
 		.finally(() => {
 			this.disabled = false;
+			this.innerText = '𝑽𝒊𝒆𝒘 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝒔';
 		});
 });
 
@@ -276,6 +280,7 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	const allowModels = document.getElementById('allowModels')?.value.trim() || '';
 	const allowLevels = document.getElementById('allowLevels')?.value.trim() || '';
 	const modelMapper = document.getElementById('modelMapper')?.value.trim() || '';
+	const levelMapper = document.getElementById('levelMapper')?.value.trim() || '';
 	const billingEmail = document.getElementById('billingEmail')?.value.trim() || '';
 	if (!key) {
 		alert('𝑰𝒏𝒗𝒂𝒍𝒊𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚');
@@ -328,14 +333,19 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	if (modelMapper) {
 		requestData.ModelMapper = modelMapper;
 	}
+	if (levelMapper) {
+		requestData.LevelMapper = levelMapper;
+	}
 	if (billingEmail) {
 		requestData.BillingEmail = billingEmail;
 	}
 
 	this.disabled = true;
+	this.innerText = '𝑼𝒑𝒅𝒂𝒕𝒊𝒏𝒈...';
 	fetchData(`${BASE_URL}/x-users/${name}`, 'PUT', key, requestData)
 		.finally(() => {
 			this.disabled = false;
+			this.innerText = '𝑼𝒑𝒅𝒂𝒕𝒆 𝑺𝒖𝒃-𝒂𝒄𝒄𝒐𝒖𝒏𝒕';
 		});
 });
 
