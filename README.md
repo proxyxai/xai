@@ -80,6 +80,8 @@ By default, the docker-compose.yml file sets XAI_BASE to api.openai.com. Therefo
 
 [openai.com](https://openai.com)
 
+[anthropic.com](https://www.anthropic.com)
+
 ---
 
 # ProxyXAI (中文)
@@ -156,4 +158,5 @@ graph TD
 ## 鸣谢
 
 [openai.com](https://openai.com)
+
 [anthropic.com](https://www.anthropic.com)
