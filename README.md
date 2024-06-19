@@ -1,4 +1,4 @@
-[ProxyXAI-中文](https://github.com/proxyxai/xai?tab=readme-ov-file#proxyxai)
+[ProxyXAI-中文](https://github.com/proxyxai/xai?tab=readme-ov-file#proxyxai-1)
 
 # ProxyXAI
 
