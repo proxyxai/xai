@@ -131,7 +131,7 @@ graph TD
 
 1. API：使用 `docker-compose -f docker-compose.yml up -d` 一键拉起，默认启动端口是 3443。
 2. 余额查询（静态资源）：可将 pages/billing 目录独立部署在 nginx 上或者 Cloudflare Pages。
-3. 子账号（静态资源）：可将 pages/user 目录独立部署在 nginx 上或者 Cloudflare Pages。
+3. 父子账号（静态资源）：可将 pages/user 目录独立部署在 nginx 上或者 Cloudflare Pages。
 
 ## 部署案例
 
