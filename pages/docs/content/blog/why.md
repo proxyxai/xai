@@ -16,6 +16,6 @@ authors = ["Team ProxyXAI"]
 
 **Because of Love**
 
-![love](https://static.proxyxai.com/girl.jpg)
+<img src="https://static.proxyxai.com/girl.jpg" alt="love" style="max-width: 100%; height: auto;">
 
 </center>
