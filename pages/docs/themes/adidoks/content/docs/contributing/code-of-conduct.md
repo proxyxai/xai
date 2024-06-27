@@ -1,7 +1,6 @@
 +++
 title = "Code of Conduct"
 description = "Contributor Covenant Code of Conduct."
-updated = 2021-05-01T18:20:00+00:00
 draft = false
 weight = 420
 sort_by = "weight"

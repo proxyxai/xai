@@ -1,7 +1,6 @@
 +++
 title = "Markdown Syntax Guide"
 description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
-updated = 2021-04-20T09:19:42+00:00
 draft = false
 template = "blog/page.html"
 

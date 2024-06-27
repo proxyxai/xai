@@ -1,7 +1,6 @@
 +++
 title = "Aaran Xu"
 description = "Creator of AdiDoks."
-updated = 2021-04-01T08:50:45+00:00
 draft = false
 +++
 

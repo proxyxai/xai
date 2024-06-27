@@ -1,6 +1,5 @@
 +++
 title = "All Aboard"
-updated = 2021-05-01T08:00:00+00:00
 draft = false
 weight = 1
 sort_by = "weight"

@@ -1,7 +1,6 @@
 +++
 title = "Frequently Asked Questions"
 description = "Answers to frequently asked questions."
-updated = 2021-05-01T19:30:00+00:00
 draft = false
 weight = 30
 sort_by = "weight"

@@ -1,7 +1,6 @@
 +++
 title = "Why is ProxyXAI So Stable?"
 description = "Introducing ProxyXAI"
-updated = 2023-12-18T09:19:42+00:00
 draft = false
 template = "blog/page.html"
 
