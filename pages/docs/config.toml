@@ -47,7 +47,7 @@ highlight_code = true
 # Put all your custom variables here
 author = "xai"
 github = "https://github.com/proxyxai/xai"
-twitter = "https://twitter.com/proxyxai"
+twitter = "https://x.com/proxyxai"
 email = "support@proxyxai.com"
 
 # If running on netlify.app site, set to true
