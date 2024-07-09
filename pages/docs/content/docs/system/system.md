@@ -16,12 +16,6 @@ top = false
 
 ## Internal Services
 
-- [Balance Inquiry 1](https://usage.open-assistant.cn)
-- [Balance Inquiry 2](https://usage.proxyxai.com)
-- [Balance Inquiry 3](https://usage.proxyxai.cn)
-- [Sub-account 1](https://sub.proxyxai.com)
-- [Sub-account 2](https://sub.proxyxai.cn)
-- [Sub-account 3](https://sub.open-assistant.cn)
 - [Assistant - Global-1](https://talk.proxyxai.com)
 - [Assistant - Global-2](https://talk-open.vercel.app)
 - [Assistant - China](https://chat.proxyxai.com)

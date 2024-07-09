@@ -61,15 +61,6 @@ A special reminder, as AI technology is developing and becoming more widespread 
 - [Assistant-China](https://chat.proxyxai.com)
 - [Translation](https://tr.proxyxai.com)
 
-### System Services
-
-- [Balance Inquiry 1](https://usage.open-assistant.cn)
-- [Balance Inquiry 2](https://usage.proxyxai.com)
-- [Balance Inquiry 3](https://usage.proxyxai.cn)
-- [Sub-account 1](https://sub.proxyxai.com)
-- [Sub-account 2](https://sub.proxyxai.cn)
-- [Sub-account 3](https://sub.open-assistant.cn)
-
 ### Overview
 
 During system design, we specifically considered the needs of large-scale services. Our key service logic is entirely executed in memory, ensuring ultra-fast response and excellent efficiency. Our system boasts exceptional stability and effectively avoids most problems caused by instability in OpenAI's official services through our exclusive solutions.

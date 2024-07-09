@@ -25,9 +25,7 @@ With the rapid development and popularization of AI technology, the demand for O
 3. Comprehensive cost analysis tools, with all consumption details from overall overview to itemized details
 4. Supports sub-account capabilities for self-determined pricing rates/rates/limit/recharge etc.
 5. Developer API calls and [https://platform.openai.com/docs/api-reference](https://platform.openai.com/docs/api-reference) are consistent
-6. [Balance Inquiry](https://usage.proxyxai.com)
-7. [Sub Account](https://sub.proxyxai.com)
-8. [API](https://api.proxyxai.com)
+6. [API](https://api.proxyxai.com)
 
 ## Common Open Source SDK Usage
 

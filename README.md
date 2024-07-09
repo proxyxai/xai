@@ -46,16 +46,12 @@ Depends on the docker environment and docker-compose container management tool.
 ## Deployment Instructions
 
 1. API: Use `docker-compose -f docker-compose.yml up -d` to start the service with one click. The default startup port is 3443.
-2. Balance query (static resources): Deploy the pages/billing directory independently in nginx.
-3. Sub-account (static resources): Deploy the pages/user directory independently in nginx.
 
 ## Deployment Example
 
 We will use [proxyxai.com](https://proxyxai.com) as an example to illustrate the deployment and domain resource allocation structure.
 
 - Deploy api.proxyxai.com, configure an nginx service to associate api.proxyxai.com 80/443 with the API service's 3443 port.
-- Deploy usage.proxyxai.com, configure nginx to associate usage.proxyxai.com requests with the pages/billing static file directory.
-- Deploy sub.proxyxai.com, configure nginx to associate sub.proxyxai.com requests with the pages/user static file directory.
 - Deploy proxyxai.com, configure nginx to associate proxyxai.com requests with the pages/docs static file directory.
 
 ## Initial Setup
@@ -130,16 +126,12 @@ graph TD
 ## 部署说明
 
 1. API：使用 `docker-compose -f docker-compose.yml up -d` 一键拉起，默认启动端口是 3443。
-2. 余额查询（静态资源）：可将 pages/billing 目录独立部署在 nginx 上或者 Cloudflare Pages。
-3. 父子账号（静态资源）：可将 pages/user 目录独立部署在 nginx 上或者 Cloudflare Pages。
 
 ## 部署案例
 
 我们以 [proxyxai.com](https://proxyxai.com) 为例说明部署和域名资源分配结构。
 
 - 部署 api.proxyxai.com，nginx 配置一个服务将 api.proxyxai.com 80/443 关联到 API 服务的 3443 端口。
-- 部署 usage.proxyxai.com，nginx 配置 usage.proxyxai.com 请求关联到 pages/billing 静态文件目录。
-- 部署 sub.proxyxai.com，nginx 配置 sub.proxyxai.com 请求关联到 pages/user 静态文件目录。
 - 部署 proxyxai.com，nginx 配置 proxyxai.com 请求关联到 pages/docs 静态文件目录。
 
 ## 初始设置

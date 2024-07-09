@@ -32,12 +32,6 @@ Find the project source code and change the API connection address from api.open
 <br/>
 
 <details>
-<summary>Is there a limit?</summary>
-You can get RPM data at [usage.proxyxai.com](https://usage.proxyxai.com)
-</details>
-<br/>
-
-<details>
 <summary>Why does calling the sub-account API prompt a 401 error?</summary>
 In order to successfully call the system's sub-account API, your account balance needs to be more than $20. You will only get the corresponding call permissions when your account balance meets this minimum requirement. Please ensure that your account funds are sufficient to avoid such authorization problems.
 </details>
