@@ -47,7 +47,7 @@ Response data contains the parent account information
     "ID": 4,
     "Level": 0,
     "Name": "beta",
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "Rates": 1,
     "SoftLimit": 1000000
   },
@@ -71,7 +71,7 @@ Response data contains the parent account information
       "HardLimit": 100,
       "Level": 0,
       "Name": "child-1",
-      "RateLimit": 6666666,
+      "RPM": 6666666,
       "Rates": 1,
       "SoftLimit": 80
     }
@@ -101,7 +101,7 @@ Rates Account rate, inherited from parent account, can be adjusted larger
 SecretKey Subaccount API Key, system-generated unique account key, only displayed once at the time of account creation, please keep it safe, no secondary recovery is provided, it can only be discarded and rebuilt if lost
 HardLimit Monthly usage hard limit, defaulting to the rounded up integer of the recharge amount, can be reduced (System hard limit, usage beyond this limit will be blocked, can be adjusted upwards according to business needs)
 SoftLimit Monthly usage soft limit, defaulting to 80% of the rounded up integer of the recharge amount, can be reduced (System soft limit, usage beyond this limit will receive email reminders)
-RateLimit Maximum requests per minute, default inherited from parent account, can be reduced
+RPM Maximum requests per minute, default inherited from parent account, can be reduced
 ```
 
 <div class="infobox">
@@ -142,7 +142,7 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?em
     "CreditGranted": 100,
     "HardLimit": 100,
     "SoftLimit": 80,
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "ChildLimit": 88888888,
     "Child": 0,
     "Requests": 0,
@@ -191,7 +191,7 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?pa
     "CreditGranted": 100,
     "HardLimit": 100,
     "SoftLimit": 80,
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "ChildLimit": 88888888,
     "Child": 0,
     "Requests": 0,
@@ -219,7 +219,7 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/x-users?pa
     "CreditGranted": 100,
     "HardLimit": 100,
     "SoftLimit": 80,
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "ChildLimit": 88888888,
     "Child": 0,
     "Requests": 0,
@@ -291,7 +291,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
     "ID": 4,
     "Level": 0,
     "Name": "beta",
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "Rates": 1,
     "SoftLimit": 1000000
   },
@@ -320,7 +320,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
       "HardLimit": 100,
       "Level": 0,
       "Name": "child-1",
-      "RateLimit": 6666666,
+      "RPM": 6666666,
       "Rates": 1,
       "SoftLimit": 80,
       "Status": true
@@ -356,7 +356,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
     "ID": 4,
     "Level": 0,
     "Name": "beta",
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "Rates": 1,
     "SoftLimit": 1000000
   },
@@ -385,7 +385,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"CreditGranted": -10}' "https:/
       "HardLimit": 200,
       "Level": 0,
       "Name": "child-1",
-      "RateLimit": 6666666,
+      "RPM": 6666666,
       "Rates": 1,
       "SoftLimit": 80,
       "Status": true
@@ -450,7 +450,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"Rates": 2}' https://api.proxyx
     "ID": 4,
     "Level": 0,
     "Name": "beta",
-    "RateLimit": 6666666,
+    "RPM": 6666666,
     "Rates": 1,
     "SoftLimit": 1000000
   },
@@ -479,7 +479,7 @@ curl -X PUT -H "Authorization: Bearer $key" -d '{"Rates": 2}' https://api.proxyx
       "HardLimit": 300,
       "Level": 0,
       "Name": "child-1",
-      "RateLimit": 6666666,
+      "RPM": 6666666,
       "Rates": 2,
       "SoftLimit": 80,
       "Status": true
@@ -497,8 +497,8 @@ Please pay special attention to this rate adjustment. As you can see, the origin
 ### Request
 
 ```bash
-curl -X PUT -H "Authorization: Bearer $key" -d '{"RateLimit": 5}' https://api.proxyxai.com/x-users/7
-curl -X PUT -H "Authorization: Bearer $key" -d '{"RateLimit": 5}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"RPM": 5}' https://api.proxyxai.com/x-users/7
+curl -X PUT -H "Authorization: Bearer $key" -d '{"RPM": 5}' https://api.proxyxai.com/x-users/child-1
 ```
 
 <div class="infobox">

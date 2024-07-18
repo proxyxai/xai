@@ -273,7 +273,11 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	const gear = document.getElementById('gear').value.trim() ? Number(document.getElementById('gear').value.trim()) : null;
 	const rates = document.getElementById('rates').value.trim() ? Number(document.getElementById('rates').value.trim()) : null;
 	const factor = document.getElementById('factor').value.trim() ? Number(document.getElementById('factor').value.trim()) : null;
-	const rateLimit = document.getElementById('rateLimit').value.trim() ? Number(document.getElementById('rateLimit').value.trim()) : null;
+	const rpm = document.getElementById('rpm').value.trim() ? Number(document.getElementById('rpm').value.trim()) : null;
+	const rph = document.getElementById('rph').value.trim() ? Number(document.getElementById('rph').value.trim()) : null;
+	const rpd = document.getElementById('rpd').value.trim() ? Number(document.getElementById('rpd').value.trim()) : null;
+	const tpm = document.getElementById('tpm').value.trim() ? Number(document.getElementById('tpm').value.trim()) : null;
+	const tpd = document.getElementById('tpd').value.trim() ? Number(document.getElementById('tpd').value.trim()) : null;
 	const hardLimit = document.getElementById('hardLimit').value.trim() ? Number(document.getElementById('hardLimit').value.trim()) : null;
 	const childLimit = document.getElementById('childLimit').value.trim() ? Number(document.getElementById('childLimit').value.trim()) : null;
 	const allowIPs = document.getElementById('allowIPs')?.value.trim() || '';
@@ -312,8 +316,20 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	if (factor !== null) {
 		requestData.Factor = factor;
 	}
-	if (rateLimit !== null) {
-		requestData.RateLimit = rateLimit;
+	if (rpm !== null) {
+		requestData.RPM = rpm;
+	}
+	if (rph !== null) {
+		requestData.RPH = rph;
+	}
+	if (rpd !== null) {
+		requestData.RPD = rpd;
+	}
+	if (tpm !== null) {
+		requestData.TPM = tpm;
+	}
+	if (tpd !== null) {
+		requestData.TPD = tpd;
 	}
 	if (hardLimit !== null) {
 		requestData.HardLimit = hardLimit;

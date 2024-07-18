@@ -45,8 +45,8 @@ async function checkBilling(apiKey, apiUrl) {
 		const usage = "$"+user.daily_usage.CreditUsed.toFixed(2)+"<br>$"+user.monthly_usage.CreditUsed.toFixed(2)+"<br>$"+user.hard_limit.toFixed(2)+"<br>(" + usageRatio + "%)";
 		const requestsRatio = (user.daily_usage.Requests / user.monthly_usage.Requests * 100).toFixed(2);
 		const requests = user.daily_usage.Requests+"<br>"+user.monthly_usage.Requests+"<br>(" + requestsRatio + "%)";
-		const rateLimit = user.rate_limit;
-		return [name, creditBalance, creditUsed, usage, requests, rateLimit];
+		const rpm = user.rpm;
+		return [name, creditBalance, creditUsed, usage, requests, rpm];
 	} catch (error) {
 		return ["Error", null, null, null, null, null, null, null];
 	}
