@@ -620,14 +620,14 @@ By default, the uniqueness of account names and email addresses is a mandatory r
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "49.234.158.212"}' https://api.proxyxai.com/x-users/child-1
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "118.23.21.0/24 119.24.12.11"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyIPs": "49.234.158.212"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyIPs": "118.23.21.0/24 119.24.12.11"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "-49.234.158.212"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "-118.23.21.0/24,119.24.12.11"}' https://api.proxyxai.com/x-users/child-1
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "*"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyIPs": "*"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowIPs": "-*"}' https://api.proxyxai.com/x-users/child-1
 ```
 
 <div class="infobox">
-By default, the source IP is not restricted. If the enterprise needs to implement access control for subaccounts, you can set the subaccount to call only within the trusted source IP collection. CIDR format supported. Please note that AllowIPs: "*" means to restore to the default unrestricted state, while DenyIPs: "*" means to allow only 127.0.0.1 calls.
+By default, the source IP is not restricted. If the enterprise needs to implement access control for subaccounts, you can set the subaccount to call only within the trusted source IP collection. CIDR format supported. Please note that AllowIPs: "*" means to restore to the default unrestricted state, while AllowIPs: "-*" means to allow only 127.0.0.1 calls.
 </div>
 
 ## 16. Access Control: Add / Remove Model whitelist for subaccount
@@ -637,12 +637,12 @@ By default, the source IP is not restricted. If the enterprise needs to implemen
 ```bash
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "gpt-3.5-turbo"}' https://api.proxyxai.com/x-users/child-1
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "gpt-3.5-turbo gpt-4"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyModels": "gpt-3.5-turbo"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyModels": "gpt-3.5-turbo gpt-4"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "-gpt-3.5-turbo"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "-gpt-3.5-turbo gpt-4"}' https://api.proxyxai.com/x-users/child-1
 curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "*"}' https://api.proxyxai.com/x-users/child-1
-curl -X PUT -H "Authorization: Bearer $key" -d '{"DenyModels": "*"}' https://api.proxyxai.com/x-users/child-1
+curl -X PUT -H "Authorization: Bearer $key" -d '{"AllowModels": "-*"}' https://api.proxyxai.com/x-users/child-1
 ```
 
 <div class="infobox">
-By default, there is no restriction on model calls. If an organization needs to apply access control to subaccounts, you can set up a subaccount to call only the allowed set of models. Please note, AllowModels: "*" means to restore to the default unrestricted state, while DenyModels: "*" means to ban all model calls.
+By default, there is no restriction on model calls. If an organization needs to apply access control to subaccounts, you can set up a subaccount to call only the allowed set of models. Please note, AllowModels: "*" means to restore to the default unrestricted state, while AllowModels: "-*" means to ban all model calls.
 </div>
