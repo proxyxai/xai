@@ -3,7 +3,7 @@ title = "𝑷𝒓𝒐𝒙𝒚𝑿𝑨𝑰"
 
 # The homepage contents
 [extra]
-lead = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦<br>Providing a robust foundational support for pioneers in the AI industry"
+lead = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦 𝐸𝑚𝑝𝑜𝑤𝑒𝑟𝑖𝑛𝑔 𝑃𝑖𝑜𝑛𝑒𝑒𝑟𝑠"
 url = "/docs/getting-started/tour/"
 url_button = "Get started"
 
