@@ -9,11 +9,11 @@
 
 {% macro favicons() %}
   <meta name="theme-color" content="{{ config.extra.theme_color | default(value="#fff") }}">
-  {% set apple_image =  resize_image(path="images/logo.png", width=180, height=180)  %}
+  {% set apple_image =  resize_image(path="images/icon.svg", width=180, height=180)  %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ apple_image.url | safe }}">
-  {% set icon32 =  resize_image(path="images/logo.png", width=32, height=32)  %}
+  {% set icon32 =  resize_image(path="images/icon.svg", width=32, height=32)  %}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ icon32.url | safe }}">
-  {% set icon16 =  resize_image(path="images/logo.png", width=16, height=16)  %}
+  {% set icon16 =  resize_image(path="images/icon.svg", width=16, height=16)  %}
   <link rel="icon" type="image/png" sizes="16x16" href="{{ icon16.url | safe }}">
   {% if not config.extra.is_netlify %}
     <link rel="manifest" href="{{ get_url(path="site.webmanifest") | safe }}" crossorigin>
@@ -78,7 +78,7 @@
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:site" content="@{{ config.extra.open.twitter_site }}">
   <meta name="twitter:creator" content="@{{ config.extra.open.twitter_creator }}">
-  
+
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:type" content="{{ type }}">

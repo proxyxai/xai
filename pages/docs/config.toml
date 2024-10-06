@@ -83,7 +83,7 @@ library = "katex" # options: "katex", "mathjax". default is "katex".
 [extra.open]
 enable = true
 # this image will be used as fallback if a page has no image of its own
-image = "images/logo.png"
+image = "images/icon.svg"
 twitter_site = "proxyxai"
 twitter_creator = "proxyxai"
 og_locale = "en_US"
@@ -93,7 +93,7 @@ facebook_author = ""
 ## JSON-LD
 [extra.schema]
 type = "Organization"
-logo = "images/logo.png"
+logo = "images/icon.svg"
 twitter = "https://twitter.com/proxyxai"
 linked_in = ""
 github = "https://github.com/proxyxai/xai"
