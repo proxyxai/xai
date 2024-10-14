@@ -597,7 +597,7 @@ curl -X GET -H "Authorization: Bearer $key" "https://api.proxyxai.com/dashboard/
 ### Request
 
 ```bash
-curl GET -H "Authorization: Bearer $key"  "https://api.proxyxai.com/v1/dashboard/billing/usage?start_date=2023-08-10&end_date=2023-11-18"
+curl GET -H "Authorization: Bearer $key"  "https://api.proxyxai.com/dashboard/billing/usage?start_date=2023-08-10&end_date=2023-11-18"
 ```
 
 ## 14. Set a dedicated billing notification email address / custom account alias for subaccount (can be self-adjusted)
