@@ -21,7 +21,6 @@ top = false
 
 > **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦<br>Providing a robust foundational support for pioneers in the AI industry**
 
-- [Developer Guide](https://proxyxai.com/docs/getting-started/guide/)
 - [User Help](https://proxyxai.com/docs/getting-started/config/)
 - [API Documentation](https://proxyxai.com/docs/api/api/)
 
@@ -40,7 +39,7 @@ The Key Pool incorporates several OpenAI API Keys created by different high-leve
 
 ### Development/Test Key
 
-| Endpoint   | OPENAI_API_BASE_URL            | OPENAI_API_KEY                                                 |
+| Endpoint   | BASE_URL            | API_KEY                                                 |
 | -------- | ------------------------------ | -------------------------------------------------------------- |
 | OpenAI   | api.openai.com                 | [OpenAI API Key](https://platform.openai.com/account/api-keys) |
 | XAI      | api.proxyxai.com               | sk-XvsVUPgxOwi4pwrcsRgUxIde4kd1W8lHcaazpfbqP3Z8CPwI            |
@@ -54,9 +53,7 @@ A special reminder, as AI technology is developing and becoming more widespread 
 
 ### AI Services
 
-- [Assistant-Global-1](https://talk.proxyxai.com)
-- [Assistant-Global-2](https://talk-open.vercel.app)
-- [Assistant-China](https://chat.proxyxai.com)
+- [Assistant-Chat](https://chat.proxyxai.com)
 - [Translation](https://tr.proxyxai.com)
 
 ### Overview
