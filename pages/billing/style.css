@@ -178,6 +178,10 @@ footer i {
 	border: 1px solid #fa5252;
 	background: #ff8787;
 }
+.balance-green {
+	color: green;
+	font-weight: bold;
+}
 @keyframes rotate {
 	100% {
 		transform: rotate(360deg);

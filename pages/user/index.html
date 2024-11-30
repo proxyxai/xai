@@ -2,9 +2,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/svg+xml" href="https://static.proxyxai.com/openai/favicon.svg"/>
-		<link rel="icon" type="image/png" href="https://static.proxyxai.com/openai/favicon.png"/>
-		<link rel="mask-icon" href="https://static.proxyxai.com/openai/mask-icon.svg" color="#000000"/>
+		<link rel="icon" type="image/svg+xml" href="https://static.proxyyai.com/xai-logo.svg"/>
+		<link rel="icon" type="image/png" href="https://static.proxyxapi.cn/xai-logo.png"/>
+		<link rel="mask-icon" href="https://static.proxyyai.com/xai-logo.svg" color="#000000"/>
 		<link rel="stylesheet" href="//static.proxyxai.com/tailwind.min.css">
 		<link rel="stylesheet" href="./style.css">
 		<title>𝑿𝑨𝑰</title>
@@ -54,6 +54,9 @@
 							<input id="tpm" name="tpm" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑻𝑷𝑴 (optional)">
 						</div>
 						<div>
+							<input id="tph" name="tph" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑻𝑷𝑯 (optional)">
+						</div>
+						<div>
 							<input id="tpd" name="tpd" type="number" min="1" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑻𝑷𝑫 (optional)">
 						</div>
 						<div>
@@ -72,6 +75,9 @@
 							<input id="allowLevels" name="allowLevels" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑨𝒍𝒍𝒐𝒘𝑳𝒆𝒗𝒆𝒍𝒔 (optional)">
 						</div>
 						<div>
+							<input id="resources" name="resources" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔 (optional)">
+						</div>
+						<div>
 							<input id="modelMapper" name="modelMapper" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑴𝒐𝒅𝒆𝒍𝑴𝒂𝒑𝒑𝒆𝒓 (optional)">
 						</div>
 						<div>
@@ -79,6 +85,16 @@
 						</div>
 						<div>
 							<input id="billingEmail" name="billingEmail" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑩𝒊𝒍𝒍𝒊𝒏𝒈𝑬𝒎𝒂𝒊𝒍 (optional)">
+						</div>
+						<div>
+							<input id="qrcode" name="qrcode" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="𝑸𝑹𝑪𝒐𝒅𝒆 (optional)">
+						</div>
+						<div>
+							<select id="status" name="status" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+								<option value="">𝑺𝒕𝒂𝒕𝒖𝒔 (optional)</option>
+								<option value="true">True</option>
+								<option value="false">False</option>
+							</select>
 						</div>
 					</div>
 					<div>
@@ -109,7 +125,7 @@
 		<div id="myModal" class="modal">
 			<div id="modalContent" class="modal-content">
 				<div id="secretKeyContainer">
-					<span>SecretKey:</span>
+					<span>𝑺𝒆𝒄𝒓𝒆𝒕𝑲𝒆𝒚:</span>
 					<span id="secretKeyValue"></span>
 					<button id="copySecretKeyButton" class="copy-btn">𝑪𝑶𝑷𝒀</button>
 				</div>

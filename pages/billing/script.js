@@ -40,16 +40,30 @@ async function checkBilling(apiKey, apiUrl) {
 				expiresAt: new Date(credit.expires_at).toLocaleDateString()
 			}));
 		}
-		const creditUsed = "$"+user.credit_used.toFixed(2)+"<br>$"+user.balance.toFixed(2);
+		const creditUsed = "$"+formatNumber(user.credit_used)+"<br><span class='balance-green'>$"+formatNumber(user.balance)+"</span>";
 		const usageRatio = (user.daily_usage.CreditUsed / user.monthly_usage.CreditUsed * 100).toFixed(2);
-		const usage = "$"+user.daily_usage.CreditUsed.toFixed(2)+"<br>$"+user.monthly_usage.CreditUsed.toFixed(2)+"<br>$"+user.hard_limit.toFixed(2)+"<br>(" + usageRatio + "%)";
+		const usage = "$"+formatNumber(user.daily_usage.CreditUsed)+"<br>$"+formatNumber(user.monthly_usage.CreditUsed)+"<br>(" + usageRatio + "%)";
 		const requestsRatio = (user.daily_usage.Requests / user.monthly_usage.Requests * 100).toFixed(2);
 		const requests = user.daily_usage.Requests+"<br>"+user.monthly_usage.Requests+"<br>(" + requestsRatio + "%)";
-		const rpm = user.rpm;
-		return [name, creditBalance, creditUsed, usage, requests, rpm];
+		const limit = formatLimit(user.rpm)+"<br>"+formatLimit(user.tpd);
+		return [name, creditBalance, creditUsed, usage, requests, limit];
 	} catch (error) {
 		return ["Error", null, null, null, null, null, null, null];
 	}
+}
+
+function formatNumber(num) {
+	if (Math.abs(num) >= 100000000) {
+		return num.toExponential(2);
+	}
+	return num.toFixed(2);
+}
+
+function formatLimit(num) {
+	if (Math.abs(num) >= 100000000) {
+		return num.toExponential(2);
+	}
+	return Math.round(num);
 }
 
 function createHTMLCell(htmlContent) {
@@ -77,9 +91,9 @@ function createTableHeader() {
 		{ en: "𝑵𝒂𝒎𝒆", cn: "" },
 		{ en: "𝑪𝒓𝒆𝒅𝒊𝒕 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "Prepaid Card, Balance, Expiry Date" },
 		{ en: "𝑼𝒔𝒆𝒅 / 𝑩𝒂𝒍𝒂𝒏𝒄𝒆", cn: "Total Used / Total Balance" },
-		{ en: "𝑼𝒔𝒂𝒈𝒆", cn: "Today / This Month / Monthly Limit(Today/This Month)" },
+		{ en: "𝑼𝒔𝒂𝒈𝒆", cn: "Today / This Month (Today/This Month)" },
 		{ en: "𝑹𝒆𝒒𝒖𝒆𝒔𝒕𝒔", cn: "Today / This Month (Today/This Month)" },
-		{ en: "𝑹𝑷𝑴", cn: "Rate Limit" }
+		{ en: "𝑹𝒂𝒕𝒆𝑳𝒊𝒎𝒊𝒕", cn: "RPM / TPD" }
 	];
 	headers.forEach(header => {
 		let th = document.createElement("th");
@@ -93,9 +107,13 @@ function createInnerTable(data) {
 	let table = document.createElement("table");
 	data.forEach(item => {
 		let row = document.createElement("tr");
-		Object.values(item).forEach(value => {
+		Object.entries(item).forEach(([key, value]) => {
 			let cell = document.createElement("td");
-			cell.textContent = value;
+			if (key === 'amount' || key === 'balance') {
+				cell.textContent = "$" + formatNumber(parseFloat(value.replace('$', '')));
+			} else {
+				cell.textContent = value;
+			}
 			row.appendChild(cell);
 		});
 		table.appendChild(row);
@@ -153,7 +171,7 @@ async function sendRequest() {
 				cells.push(createHTMLCell(data[2]));
 				cells.push(createHTMLCell(data[3]));
 				cells.push(createHTMLCell(data[4]));
-				cells.push(createCell(data[5]));
+				cells.push(createHTMLCell(data[5]));
 			}
 
 			tableBody.appendChild(createRow(cells));

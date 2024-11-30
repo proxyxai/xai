@@ -277,15 +277,20 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	const rph = document.getElementById('rph').value.trim() ? Number(document.getElementById('rph').value.trim()) : null;
 	const rpd = document.getElementById('rpd').value.trim() ? Number(document.getElementById('rpd').value.trim()) : null;
 	const tpm = document.getElementById('tpm').value.trim() ? Number(document.getElementById('tpm').value.trim()) : null;
+	const tph = document.getElementById('tph').value.trim() ? Number(document.getElementById('tph').value.trim()) : null;
 	const tpd = document.getElementById('tpd').value.trim() ? Number(document.getElementById('tpd').value.trim()) : null;
 	const hardLimit = document.getElementById('hardLimit').value.trim() ? Number(document.getElementById('hardLimit').value.trim()) : null;
 	const childLimit = document.getElementById('childLimit').value.trim() ? Number(document.getElementById('childLimit').value.trim()) : null;
 	const allowIPs = document.getElementById('allowIPs')?.value.trim() || '';
 	const allowModels = document.getElementById('allowModels')?.value.trim() || '';
 	const allowLevels = document.getElementById('allowLevels')?.value.trim() || '';
+	const resources = document.getElementById('resources')?.value.trim() || '';
 	const modelMapper = document.getElementById('modelMapper')?.value.trim() || '';
 	const levelMapper = document.getElementById('levelMapper')?.value.trim() || '';
 	const billingEmail = document.getElementById('billingEmail')?.value.trim() || '';
+	const qrcode = document.getElementById('qrcode')?.value.trim() || '';
+	const statusInput = document.getElementById('status').value.trim().toLowerCase();
+	const status = statusInput === 'true' ? true : (statusInput === 'false' ? false : null);
 	if (!key) {
 		alert('𝑰𝒏𝒗𝒂𝒍𝒊𝒅 𝑨𝑷𝑰 𝑲𝒆𝒚');
 		return;
@@ -328,6 +333,9 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	if (tpm !== null) {
 		requestData.TPM = tpm;
 	}
+	if (tph !== null) {
+		requestData.TPH = tph;
+	}
 	if (tpd !== null) {
 		requestData.TPD = tpd;
 	}
@@ -346,6 +354,9 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	if (allowLevels) {
 		requestData.AllowLevels = allowLevels;
 	}
+	if (resources) {
+		requestData.Resources = resources;
+	}
 	if (modelMapper) {
 		requestData.ModelMapper = modelMapper;
 	}
@@ -354,6 +365,12 @@ document.getElementById('updateButton').addEventListener('click', function() {
 	}
 	if (billingEmail) {
 		requestData.BillingEmail = billingEmail;
+	}
+	if (qrcode) {
+		requestData.QRCode = qrcode;
+	}
+	if (status !== null) {
+		requestData.Status = status;
 	}
 
 	this.disabled = true;
