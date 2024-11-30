@@ -17,8 +17,6 @@ top = false
 <br/>
 <br/>
 
-<img src="https://static.proxyxai.com/openai/openai-logo-horizontal-flat-black.png" width="320"/>
-
 ### XAI
 
 > **𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦<br>Providing a robust foundational support for pioneers in the AI industry**
