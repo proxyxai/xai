@@ -60,7 +60,7 @@ services:
       - network
   proxyxai-postgres:
     container_name: proxyxai-postgres
-    image: postgres:16
+    image: postgres:17
     pull_policy: always
     restart: always
     user: postgres
