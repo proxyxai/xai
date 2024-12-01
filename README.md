@@ -1,5 +1,3 @@
-[ProxyXAI-中文](https://github.com/proxyxai/xai?tab=readme-ov-file#proxyxai-1)
-
 # ProxyXAI
 
 ProxyXAI is designed as a reliable, efficient, and secure XAI API Keys management system, providing users with better XAI API access services. It is a system that consumes XAI API Keys and outputs stable and reliable AI API access services.
