@@ -22,10 +22,10 @@ services:
         # 100次请求/账号,数据落盘Redis,100*10次请求/账号,数据落盘PostgreSQL
       - STATS_INTERVAL=100
         # Mandatory setting: Initial root user; format: root:email:key; note that the key must be 51 characters long, starting with sk-Xvs, and the initial username must be root
-        # 必选设置 初始root用户;格式 root:邮箱:管理Key;请注意管理Key为51个字符,开头必须是 sk-Xvs, 初始用户名必须是 root
+        # 必选设置 初始root用户;格式 root:邮箱:管理Key;请注意管理Key为51个字符,每组内以单冒号为分割符,组外以逗号为分割符, Key 前缀必须是 sk-Xvs, 初始用户名必须是 root
       - INIT_USERS=root:root@proxyxai.com:sk-Xvs9LNx8ImuIn0chuNDdi5wTs5WaoEWNcd87Z62etZZ1bz7z
         # Optional setting: Enter OpenAI API Keys or AnthropicAI API Keys upon startup (can also be entered after startup via the management API), format: sk-xxx::https://api.openai.com,sk-ant-xxx::https://api.anthropic.com
-        # 可选设置 启动即刻录入OpenAI API Keys 或者 AnthropicAI API Keys(也可以启动后,通过管理 API 操作录入),格式 sk-xxx::https://api.openai.com,sk-ant-xxx::https://api.anthropic.com
+        # 可选设置 启动即刻录入OpenAI API Keys 或者 AnthropicAI API Keys(也可以启动后,通过管理 API 操作录入),格式 sk-xxx::https://api.openai.com,sk-ant-xxx::https://api.anthropic.com, 每组内以双冒号为分割符,组外以逗号为分割符
       - INIT_KEYS=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::https://api.openai.com,sk-ant-api93-7ZHL4aOCJSGuiSPQ0a1Fj7I3RHZkXE_9DD_WS7AgnJ7rW4z6uTAUyI3jCX5oXmK68h3ik7UHcWl5768KH1O_ui-_HlrOuAa::https://api.anthropic.com
         # Optional setting: Model mapping, redirect requests from model X to model Y
         # 可选设置 模型映射,将请求的模型X转发请求为模型Y
