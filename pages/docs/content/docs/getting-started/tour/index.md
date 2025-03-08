@@ -46,7 +46,7 @@ The Key Pool incorporates several OpenAI API Keys created by different high-leve
 
 <div class="infobox">
 
-If you are a developer, simply change the API endpoint in the SDK from <b>api.openai.com</b> to <b>api.proxyxai.com</b>, and then set the key to the one provided by XAI. Please note that the above development/test key has model, rate, and access control restrictions, and is only allowed to call gpt-3.5-turbo, and can only be tested on [chat.proxyxai.com](https://chat.proxyxai.com)
+If you are a developer, simply change the API endpoint in the SDK from <b>api.openai.com</b> to <b>api.proxyxai.com</b>, and then set the key to the one provided by XAI. Please note that the above development/test key has model, rate, and access control restrictions, and is only allowed to call `gemini-2.0-flash`, and can only be tested on [chat.proxyxai.com](https://chat.proxyxai.com)
 
 A special reminder, as AI technology is developing and becoming more widespread day by day, the demand for OpenAI services is increasing, and instability in official services is common. If you encounter long-term call failures, please first check the official service status page [status.openai.com](https://status.openai.com)
 </div>
