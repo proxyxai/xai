@@ -16,10 +16,7 @@ top = false
 
 ## Internal Services
 
-- [Assistant - Global-1](https://talk.proxyxai.com)
-- [Assistant - Global-2](https://talk-open.vercel.app)
-- [Assistant - China](https://chat.proxyxai.com)
-- [Translation](https://tr.proxyxai.com)
+- [Assistant](https://chat.proxyxai.com)
 
 ## Third-party Systems
 
