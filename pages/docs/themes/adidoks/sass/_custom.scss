@@ -1,4 +1,6 @@
-.infobox{ 
+@import "../static/css/code-copy.css";
+
+.infobox{
   margin: 1em 0;
   padding: 1.4em;
   border-radius: 4px;
@@ -7,7 +9,8 @@
   background-color: rgb(240,253,244);
   color:rgb(22,101,52 );
 }
-.infobox a { 
+.infobox a {
   color:rgb(4, 52, 22);
   text-decoration: underline;
 }
+

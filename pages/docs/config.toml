@@ -50,6 +50,10 @@ github = "https://github.com/proxyxai/xai"
 twitter = "https://x.com/proxyxai"
 email = "support@proxyxai.com"
 
+extra_js = [
+  "js/code-copy.js"
+]
+
 # If running on netlify.app site, set to true
 is_netlify = true
 

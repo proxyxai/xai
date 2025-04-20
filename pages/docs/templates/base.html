@@ -1,8 +1,8 @@
-{%- import 'macros/head-custom.html' as macros_head -%}
+{%- import 'macros/head.html' as macros_head -%}
 {% import 'macros/math.html' as macros_math -%}
 {% import 'macros/header.html' as macros_header -%}
 {% import 'macros/footer.html' as macros_footer -%}
-{% import 'macros/javascript-custom.html' as macros_js -%}
+{% import 'macros/javascript.html' as macros_js -%}
 {% import 'macros/page-publish-metadata.html' as macros_publish -%}
 {% import 'macros/section-navigation.html' as macros_section_nav -%}
 {% import 'macros/docs-sidebar.html' as macros_sidebar -%}
@@ -42,5 +42,10 @@
   {% endblock footer %}
 
   {{ macros_js::javascript() }}
+{% if config.extra.extra_js %}
+  {% for js in config.extra.extra_js %}
+    <script src="{{ get_url(path=js) | safe }}"></script>
+  {% endfor %}
+{% endif %}
 </body>
 </html>
