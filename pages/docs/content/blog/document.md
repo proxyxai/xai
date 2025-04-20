@@ -4,7 +4,7 @@ description = "Introducing ProxyXAI"
 date = 2025-04-20T09:19:42+00:00
 updated = 2025-04-20T09:19:42+00:00
 draft = false
-template = "blog/document.html"
+template = "blog/page.html"
 
 [taxonomies]
 authors = ["Team ProxyXAI"]
