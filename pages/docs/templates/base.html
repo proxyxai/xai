@@ -42,10 +42,5 @@
   {% endblock footer %}
 
   {{ macros_js::javascript() }}
-{% if config.extra.extra_js %}
-  {% for js in config.extra.extra_js %}
-    <script src="{{ get_url(path=js) | safe }}"></script>
-  {% endfor %}
-{% endif %}
 </body>
 </html>
