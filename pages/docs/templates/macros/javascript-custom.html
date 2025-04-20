@@ -1,0 +1,6 @@
+{% extends "macros/javascript.html" %}
+
+{% macro javascript() %}
+{{ super() }}
+<script src="{{ get_url(path="js/code-copy.js") | safe }}"></script>
+{% endmacro javascript %}

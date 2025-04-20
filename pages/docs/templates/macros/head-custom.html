@@ -1,0 +1,6 @@
+{% extends "macros/head.html" %}
+
+{% macro stylesheet() %}
+{{ super() }}
+<link rel="stylesheet" href="{{ get_url(path="css/code-copy.css") | safe }}">
+{% endmacro stylesheet %}

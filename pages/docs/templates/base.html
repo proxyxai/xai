@@ -1,8 +1,8 @@
-{%- import 'macros/head.html' as macros_head -%}
+{%- import 'macros/head-custom.html' as macros_head -%}
 {% import 'macros/math.html' as macros_math -%}
 {% import 'macros/header.html' as macros_header -%}
 {% import 'macros/footer.html' as macros_footer -%}
-{% import 'macros/javascript.html' as macros_js -%}
+{% import 'macros/javascript-custom.html' as macros_js -%}
 {% import 'macros/page-publish-metadata.html' as macros_publish -%}
 {% import 'macros/section-navigation.html' as macros_section_nav -%}
 {% import 'macros/docs-sidebar.html' as macros_sidebar -%}
@@ -41,6 +41,6 @@
     {{ macros_footer::footer() }}
   {% endblock footer %}
 
-  {{ macros_js::javascript() }}  
+  {{ macros_js::javascript() }}
 </body>
 </html>
