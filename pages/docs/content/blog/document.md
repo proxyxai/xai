@@ -32,8 +32,8 @@ We support parsing for the following 7 document formats:
 
 Our service provides two main API endpoints:
 
-1. `https://api.proxyxai.com/v1/messages` (Production public network, office network calls)
-2. `https://api.proxyxai.com/v1/chat/completions` (Production public network, office network calls)
+1. `https://api.proxyxai.com/v1/messages`
+2. `https://api.proxyxai.com/v1/chat/completions`
 
 ## Usage Examples
 
@@ -46,7 +46,7 @@ Using the `/v1/messages` endpoint to process a single document:
 ```bash
 API_KEY=
 
-curl https://dev-api.proxyxai.com/v1/messages \
+curl https://api.proxyxai.com/v1/messages \
    -H "content-type: application/json" \
    -H "x-api-key: $API_KEY" \
    -H "anthropic-version: 2023-06-01" \
@@ -76,7 +76,7 @@ Using the `/v1/chat/completions` endpoint to process a single document:
 
 ```bash
 API_KEY=
-curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
+curl -X POST "http://api.proxyxai.com/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $API_KEY" \
   -d '{
@@ -109,7 +109,7 @@ Using the `/v1/chat/completions` endpoint to process multiple documents (max 5):
 
 ```bash
 API_KEY=
-curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
+curl -X POST "http://api.proxyxai.com/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $API_KEY" \
   -d '{
@@ -149,7 +149,7 @@ Using the `/v1/messages` endpoint to process multiple documents:
 
 ```bash
 API_KEY=
-curl https://dev-api.proxyxai.com/v1/messages \
+curl https://api.proxyxai.com/v1/messages \
    -H "content-type: application/json" \
    -H "x-api-key: $API_KEY" \
    -H "anthropic-version: 2023-06-01" \
