@@ -44,7 +44,7 @@ Here are several examples of using our document parsing service:
 Using the `/v1/messages` endpoint to process a single document:
 
 ```bash
-API_KEY=sk-Xvs....
+API_KEY=
 
 curl https://dev-api.proxyxai.com/v1/messages \
    -H "content-type: application/json" \
@@ -75,7 +75,7 @@ curl https://dev-api.proxyxai.com/v1/messages \
 Using the `/v1/chat/completions` endpoint to process a single document:
 
 ```bash
-API_KEY=sk-Xvs....
+API_KEY=
 curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $API_KEY" \
@@ -108,7 +108,7 @@ curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
 Using the `/v1/chat/completions` endpoint to process multiple documents (max 5):
 
 ```bash
-API_KEY=sk-Xvs....
+API_KEY=
 curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $API_KEY" \
@@ -148,7 +148,7 @@ curl -X POST "http://dev-api.proxyxai.com/v1/chat/completions" \
 Using the `/v1/messages` endpoint to process multiple documents:
 
 ```bash
-API_KEY=sk-Xvs....
+API_KEY=
 curl https://dev-api.proxyxai.com/v1/messages \
    -H "content-type: application/json" \
    -H "x-api-key: $API_KEY" \
