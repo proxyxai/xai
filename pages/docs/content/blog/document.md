@@ -11,8 +11,6 @@ authors = ["Team ProxyXAI"]
 
 +++
 
-# Document Parsing Service Guide
-
 Our document parsing service leverages the  `claude-3-7-sonnet-latest,deepseek-r1,mistral-large-latest`  model and ProxyXAI to extract and analyze content from various document formats using AI models (including Anthropic Claude series). The service can process single or multiple documents and provide relevant information based on user queries.
 
 ## Supported File Formats
