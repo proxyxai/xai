@@ -11,10 +11,6 @@ authors = ["Team ProxyXAI"]
 
 +++
 
-<center>
-
 **Because of Love**
 
 <img src="https://static.proxyxai.com/red.jpg" alt="love" style="max-width: 100%; height: auto;">
-
-</center>
