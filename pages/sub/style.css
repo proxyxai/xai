@@ -240,6 +240,12 @@ body {
     }
 }
 
+.form-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -309,9 +315,8 @@ textarea.form-input {
 
 .query-actions {
     display: flex;
-    gap: 1rem;
+    justify-content: center;
     margin-top: 1rem;
-    flex-wrap: wrap;
 }
 
 .query-results {
@@ -850,6 +855,17 @@ button:disabled {
     margin-top: 1rem;
 }
 
+/* 更新表单特定样式 */
+#updateTab .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+#updateTab .form-grid.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 /* 响应式设计优化 */
 @media (max-width: 768px) {
     .login-card {
@@ -1018,6 +1034,40 @@ button:disabled {
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
     }
+
+    /* 更新表单移动端优化 */
+    #updateTab .form-grid,
+    #updateTab .form-grid.grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    #updateTab .form-group {
+        grid-column: span 1 !important;
+    }
+
+    /* 确保所有输入框占满宽度 */
+    #updateTab .form-input,
+    #updateTab select.form-input,
+    #updateTab textarea.form-input {
+        width: 100%;
+    }
+
+    /* 优化section标题在移动端的间距 */
+    #updateTab .section-title {
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.9375rem;
+    }
+
+    #updateTab .section-title:first-child {
+        margin-top: 0;
+    }
+
+    /* 更新字段容器的内边距 */
+    #updateTab .update-fields-container {
+        padding: 1rem;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1040,6 +1090,47 @@ button:disabled {
         margin: 0 -1rem;
         padding: 0 1rem;
         overflow-x: auto;
+    }
+}
+
+/* 针对更小屏幕的优化 */
+@media (max-width: 480px) {
+    .form-input {
+        font-size: 16px; /* 防止iOS自动缩放 */
+    }
+
+    #updateTab .content-card {
+        padding: 1rem;
+    }
+
+    #updateTab .form-label {
+        font-size: 0.8125rem;
+    }
+
+    #updateTab .form-input {
+        font-size: 16px; /* 防止iOS缩放 */
+        padding: 0.625rem 0.875rem;
+    }
+
+    #updateTab .btn-warning {
+        width: 100%;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* 确保表单操作按钮区域正确显示 */
+#updateTab .form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+@media (max-width: 768px) {
+    #updateTab .form-actions {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
     }
 }
 
@@ -1245,11 +1336,4 @@ button:disabled {
 #viewTab .form-actions,
 #deleteTab .form-actions {
     justify-content: center;
-}
-
-/* 移动端输入框优化 */
-@media (max-width: 480px) {
-    .form-input {
-        font-size: 16px; /* 防止iOS自动缩放 */
-    }
 }

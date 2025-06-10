@@ -293,20 +293,7 @@ class XAIManager {
     }
 
     validateApiKey(key) {
-        return key && key.length > 10 && (key.startsWith('sk-') || key.startsWith('xai-'));
-    }
-
-    clearQueryInput() {
-        const apiKeyInput = document.getElementById('api-key-input');
-        const resultsDiv = document.getElementById('query-results');
-        const table = document.getElementById('result-table');
-
-        apiKeyInput.value = '';
-        resultsDiv.classList.add('hidden');
-        table.getElementsByTagName('tbody')[0].innerHTML = '';
-        localStorage.removeItem('xai-query-keys');
-
-        this.showNotification('已清空查询内容', 'info');
+        return key && key.length == 51 && key.startsWith('sk-Xvs');
     }
 
     async sendBillingRequest() {
