@@ -32,6 +32,26 @@ services:
       - MODEL_MAPPER=gpt-3.5*=gpt-4o-mini,gpt-4-*-preview=gpt-4-turbo,claude-3-5-sonnet*=claude-3-5-sonnet-latest,gemini-2.0-pro*=gemini-2.0-pro-exp-02-05
     networks:
       - network
+  proxyxai-mail:
+    container_name: proxyxai-mail
+    image: proxyxai/mail
+    pull_policy: always
+    restart: always
+    depends_on:
+      proxyxai-redis:
+        condition: service_started
+    environment:
+      - TZ=Asia/Shanghai
+      - REDIS_ADDR=proxyxai-redis:6379
+      - REDIS_PASS=
+      - EMAIL_SMTP=${EMAIL_SMTP:-smtp.gmail.com}
+      - EMAIL_PORT=${EMAIL_PORT:-465}
+      - EMAIL_AUTH=${EMAIL_AUTH:-xxx@gmail.com}
+      - EMAIL_PASS=${EMAIL_PASS:-xxx}
+      - EMAIL_SENDER=${EMAIL_SENDER:-XAI<xxx@gmail.com>}
+      - EMAIL_TLS=${EMAIL_TLS:-true}
+    networks:
+      - network
   proxyxai-postgres:
     container_name: proxyxai-postgres
     image: postgres:17

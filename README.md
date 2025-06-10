@@ -50,7 +50,7 @@ Depends on the docker environment and docker-compose container management tool.
 We will use [proxyxai.com](https://proxyxai.com) as an example to illustrate the deployment and domain resource allocation structure.
 
 - Deploy api.proxyxai.com, configure an nginx service to associate api.proxyxai.com 80/443 with the API service's 3443 port.
-- Deploy proxyxai.com, configure nginx to associate proxyxai.com requests with the pages/docs static file directory.
+- Deploy sub.proxyxai.com, configure an nginx service to associate sub.proxyxai.com requests with the pages/sub static file directory.
 
 ## Initial Setup
 
@@ -130,7 +130,7 @@ graph TD
 我们以 [proxyxai.com](https://proxyxai.com) 为例说明部署和域名资源分配结构。
 
 - 部署 api.proxyxai.com，nginx 配置一个服务将 api.proxyxai.com 80/443 关联到 API 服务的 3443 端口。
-- 部署 proxyxai.com，nginx 配置 proxyxai.com 请求关联到 pages/docs 静态文件目录。
+- 部署 sub.proxyxai.com，nginx 配置一个服务将 sub.proxyxai.com 请求关联到 pages/sub 静态文件目录。
 
 ## 初始设置
 
