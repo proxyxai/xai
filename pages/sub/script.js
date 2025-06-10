@@ -22,16 +22,12 @@ class XAIManager {
     bindEvents() {
         // 登录事件
         this.bindLoginEvents();
-
         // 选项卡切换
         this.bindTabEvents();
-
         // 表单提交
         this.bindFormEvents();
-
         // 弹窗事件
         this.bindModalEvents();
-
         // API Key 输入框事件
         this.bindApiKeyInputEvents();
     }
@@ -39,12 +35,17 @@ class XAIManager {
     bindApiKeyInputEvents() {
         const apiKeyInput = document.getElementById('api-key-input');
         if (apiKeyInput) {
-            apiKeyInput.addEventListener('input', function() {
-                let rawInput = this.value;
-                let apiKeys = rawInput.match(/sk-Xvs\w+/g);
+            apiKeyInput.addEventListener('input', (e) => {
+                const apiKeys = e.target.value.match(/sk-Xvs\w+/g);
                 if (apiKeys) {
-                    let uniqueApiKeys = [...new Set(apiKeys)];
+                    const uniqueApiKeys = [...new Set(apiKeys)];
                     localStorage.setItem('xai-query-keys', uniqueApiKeys.join(','));
+                }
+            });
+
+            apiKeyInput.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    this.sendBillingRequest();
                 }
             });
         }
@@ -56,6 +57,15 @@ class XAIManager {
 
         loginForm.addEventListener('submit', (e) => this.handleLogin(e));
         logoutButton.addEventListener('click', () => this.handleLogout());
+
+        // 回车键支持
+        const loginKey = document.getElementById('loginKey');
+        loginKey.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                loginForm.dispatchEvent(new Event('submit', { cancelable: true }));
+            }
+        });
     }
 
     bindTabEvents() {
@@ -90,9 +100,14 @@ class XAIManager {
         closeModal.addEventListener('click', () => this.hideModal());
         copyButton.addEventListener('click', () => this.copySecretKey());
 
-        // 点击背景关闭弹窗
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
+                this.hideModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                 this.hideModal();
             }
         });
@@ -110,6 +125,7 @@ class XAIManager {
                     this.currentUser = JSON.parse(savedUser);
                     this.showMainApp();
                     this.loadSavedApiKeys();
+                    this.autoQueryOnLoad();
                     return;
                 }
             } catch (error) {
@@ -121,27 +137,42 @@ class XAIManager {
         this.showLoginPage();
     }
 
+    autoQueryOnLoad() {
+        const queryTab = document.getElementById('queryTab');
+        if (!queryTab.classList.contains('hidden')) {
+            const apiKeyInput = document.getElementById('api-key-input');
+            if (!apiKeyInput.value.trim()) {
+                apiKeyInput.value = this.currentApiKey;
+            }
+            setTimeout(() => this.sendBillingRequest(), 300);
+        }
+    }
+
     loadSavedApiKeys() {
         const savedKeys = localStorage.getItem('xai-query-keys');
-        if (savedKeys) {
-            const apiKeyInput = document.getElementById('api-key-input');
-            if (apiKeyInput) {
-                apiKeyInput.value = savedKeys.replace(/,/g, '\n');
-            }
+        const apiKeyInput = document.getElementById('api-key-input');
+
+        if (apiKeyInput) {
+            apiKeyInput.value = savedKeys ? savedKeys.replace(/,/g, '\n') : this.currentApiKey || '';
         }
     }
 
     async verifyApiKey(apiKey) {
-        const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, {
-            headers: { 'Authorization': `Bearer ${apiKey}` }
-        });
+        try {
+            const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, {
+                headers: { 'Authorization': `Bearer ${apiKey}` }
+            });
 
-        if (response.ok) {
-            const userData = await response.json();
-            if (userData.name) {
-                this.currentUser = userData;
-                return true;
+            if (response.ok) {
+                const userData = await response.json();
+                if (userData.name) {
+                    this.currentUser = userData;
+                    this.isRootUser = userData.name === 'root';
+                    return true;
+                }
             }
+        } catch (error) {
+            console.error('API验证错误:', error);
         }
         return false;
     }
@@ -164,6 +195,7 @@ class XAIManager {
             return;
         }
 
+        const originalHTML = submitButton.innerHTML;
         this.setLoadingState(submitButton, true, '验证中...');
 
         try {
@@ -175,13 +207,15 @@ class XAIManager {
 
                 this.showMainApp();
                 this.showNotification(`欢迎回来，${this.currentUser.name}！`, 'success');
+                setTimeout(() => this.autoQueryOnLoad(), 500);
             } else {
                 throw new Error('API Key 无效或已过期');
             }
         } catch (error) {
             this.showNotification(error.message || '登录失败', 'error');
         } finally {
-            this.setLoadingState(submitButton, false, '登录系统');
+            submitButton.innerHTML = originalHTML;
+            submitButton.disabled = false;
         }
     }
 
@@ -207,95 +241,120 @@ class XAIManager {
         if (this.currentUser) {
             const balance = this.formatBalance(this.currentUser.balance);
             userInfoElement.innerHTML = `
-                <div class="user-name">${this.currentUser.name}</div>
-                <div class="user-balance">余额: ${balance}</div>
+                <div class="user-info-card">
+                    <div class="user-name">${this.currentUser.name}</div>
+                    <div class="user-balance">余额: ${balance}</div>
+                </div>
             `;
         }
     }
 
-    formatBalance(balance) {
-        if (typeof balance !== 'number') return '\$0.00';
+    // 格式化方法合并
+    formatNumber(num, type = 'currency') {
+        if (typeof num !== 'number') return type === 'currency' ? '\$0.00' : '0';
 
-        if (Math.abs(balance) >= 100000000) {
-            return '$' + balance.toExponential(2);
-        }
-        return '$' + balance.toFixed(2);
-    }
-
-    formatNumber(num) {
         if (Math.abs(num) >= 100000000) {
-            return num.toExponential(2);
+            return (type === 'currency' ? '$' : '') + num.toExponential(2);
+        }
+
+        if (type === 'currency') {
+            return '$' + num.toFixed(2);
+        } else if (type === 'limit') {
+            return Math.round(num).toLocaleString();
         }
         return num.toFixed(2);
     }
 
+    formatBalance(balance) {
+        return this.formatNumber(balance, 'currency');
+    }
+
     formatLimit(num) {
-        if (Math.abs(num) >= 100000000) {
-            return num.toExponential(2);
-        }
-        return Math.round(num).toLocaleString();
+        return this.formatNumber(num, 'limit');
     }
 
     switchTab(tabName) {
-        // 更新选项卡状态
         document.querySelectorAll('.tab-button').forEach(button => {
             button.classList.toggle('active', button.dataset.tab === tabName);
         });
 
-        // 切换内容
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.add('hidden');
         });
         document.getElementById(`${tabName}Tab`).classList.remove('hidden');
+
+        if (tabName === 'query') {
+            const apiKeyInput = document.getElementById('api-key-input');
+            if (!apiKeyInput.value.trim() && this.currentApiKey) {
+                apiKeyInput.value = this.currentApiKey;
+            }
+            setTimeout(() => this.sendBillingRequest(), 100);
+        }
     }
 
     validateApiKey(key) {
         return key && key.length > 10 && (key.startsWith('sk-') || key.startsWith('xai-'));
     }
 
-    // 账户查询相关方法
+    clearQueryInput() {
+        const apiKeyInput = document.getElementById('api-key-input');
+        const resultsDiv = document.getElementById('query-results');
+        const table = document.getElementById('result-table');
+
+        apiKeyInput.value = '';
+        resultsDiv.classList.add('hidden');
+        table.getElementsByTagName('tbody')[0].innerHTML = '';
+        localStorage.removeItem('xai-query-keys');
+
+        this.showNotification('已清空查询内容', 'info');
+    }
+
     async sendBillingRequest() {
         const queryButton = document.getElementById("query-button");
-        queryButton.textContent = "查询中...";
-        queryButton.disabled = true;
+        const originalHTML = queryButton.innerHTML;
 
-        let apiKeyInput = document.getElementById("api-key-input");
-        let resultsDiv = document.getElementById("query-results");
-        let table = document.getElementById("result-table");
+        this.setLoadingState(queryButton, true, '查询中...');
 
-        // 清空表格
+        const apiKeyInput = document.getElementById("api-key-input");
+        const resultsDiv = document.getElementById("query-results");
+        const table = document.getElementById("result-table");
+
         table.getElementsByTagName('tbody')[0].innerHTML = "";
 
-        let apiKeys = apiKeyInput.value.match(/sk-Xvs\w+/g);
+        const apiKeys = apiKeyInput.value.match(/sk-Xvs\w+/g);
         if (!apiKeys || apiKeys.length === 0) {
             this.showNotification('请输入有效的 API Key', 'warning');
-            queryButton.textContent = "查询额度";
+            queryButton.innerHTML = originalHTML;
             queryButton.disabled = false;
             return;
         }
 
-        let uniqueApiKeys = [...new Set(apiKeys)];
+        const uniqueApiKeys = [...new Set(apiKeys)];
         resultsDiv.classList.remove('hidden');
 
-        let tableBody = document.querySelector("#result-table tbody");
-        let promises = uniqueApiKeys.map(apiKey => this.checkBilling(apiKey));
+        const resultsCount = document.getElementById('results-count');
+        resultsCount.textContent = `共 ${uniqueApiKeys.length} 个账户`;
 
-        Promise.all(promises).then(results => {
+        const tableBody = document.querySelector("#result-table tbody");
+
+        try {
+            const results = await Promise.all(uniqueApiKeys.map(apiKey => this.checkBilling(apiKey)));
+
             tableBody.appendChild(this.createBillingTableHeader());
             results.forEach((data, i) => {
-                let apiKey = uniqueApiKeys[i].trim();
-                let row = this.createBillingRow(apiKey, data);
+                const apiKey = uniqueApiKeys[i].trim();
+                const row = this.createBillingRow(apiKey, data);
                 tableBody.appendChild(row);
             });
 
-            queryButton.textContent = "查询额度";
-            queryButton.disabled = false;
-        }).catch(error => {
+            this.showNotification(`查询完成，共 ${uniqueApiKeys.length} 个账户`, 'success');
+        } catch (error) {
             this.showNotification('查询失败', 'error');
             console.error(error);
-            queryButton.textContent = "查询额度";
+        } finally {
+            queryButton.innerHTML = originalHTML;
             queryButton.disabled = false;
-        });
+        }
     }
 
     async checkBilling(apiKey) {
@@ -303,10 +362,9 @@ class XAIManager {
             "Authorization": "Bearer " + apiKey,
             "Content-Type": "application/json"
         };
-        const urlUserInfo = `${this.BASE_URL}/dashboard/x-user-info`;
 
         try {
-            let response = await fetch(urlUserInfo, { headers });
+            const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, { headers });
             if (!response.ok) {
                 return ["Error", null, null, null, null, null];
             }
@@ -324,11 +382,11 @@ class XAIManager {
                 }));
             }
 
-            const creditUsed = `$${this.formatNumber(user.credit_used)}<br><span class='balance-value'>$${this.formatNumber(user.balance)}</span>`;
+            const creditUsed = `${this.formatNumber(user.credit_used)}<br><span class='balance-value'>${this.formatNumber(user.balance)}</span>`;
             const usageRatio = user.monthly_usage.CreditUsed > 0
                 ? (user.daily_usage.CreditUsed / user.monthly_usage.CreditUsed * 100).toFixed(2)
                 : '0.00';
-            const usage = `$${this.formatNumber(user.daily_usage.CreditUsed)}<br>$${this.formatNumber(user.monthly_usage.CreditUsed)}<br><span class="usage-ratio">(${usageRatio}%)</span>`;
+            const usage = `${this.formatNumber(user.daily_usage.CreditUsed)}<br>${this.formatNumber(user.monthly_usage.CreditUsed)}<br><span class="usage-ratio">(${usageRatio}%)</span>`;
 
             const requestsRatio = user.monthly_usage.Requests > 0
                 ? (user.daily_usage.Requests / user.monthly_usage.Requests * 100).toFixed(2)
@@ -344,9 +402,9 @@ class XAIManager {
     }
 
     createBillingTableHeader() {
-        let headerRow = document.createElement("tr");
+        const headerRow = document.createElement("tr");
         headerRow.className = "table-header";
-        let headers = [
+        const headers = [
             { en: "API Key", cn: "" },
             { en: "账户信息", cn: "ID / 等级 / 子账户数 / 用户名 / 邮箱 / 创建时间" },
             { en: "充值卡", cn: "金额 / 余额 / 到期时间" },
@@ -356,7 +414,7 @@ class XAIManager {
             { en: "速率限制", cn: "RPM / TPD" }
         ];
         headers.forEach(header => {
-            let th = document.createElement("th");
+            const th = document.createElement("th");
             th.innerHTML = `<div class="th-content">${header.en}</div>${header.cn ? `<div class="th-subtitle">${header.cn}</div>` : ''}`;
             headerRow.appendChild(th);
         });
@@ -364,35 +422,45 @@ class XAIManager {
     }
 
     createBillingRow(apiKey, data) {
-        let row = document.createElement("tr");
+        const row = document.createElement("tr");
         row.className = "table-row";
 
         // API Key 列
-        let apiKeyCell = document.createElement("td");
+        const apiKeyCell = document.createElement("td");
         apiKeyCell.className = "api-key-cell";
-        apiKeyCell.textContent = apiKey.slice(0, 8) + '***' + apiKey.slice(-4);
+        const maskedKey = apiKey.slice(0, 8) + '***' + apiKey.slice(-4);
+        apiKeyCell.innerHTML = `
+            <div class="api-key-display">
+                <span class="masked-key">${maskedKey}</span>
+                <button class="btn-icon-small" onclick="window.xaiManager.copyToClipboard('${apiKey}')">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        `;
         row.appendChild(apiKeyCell);
 
         if (data[0] === "Error") {
-            let errorCell = document.createElement("td");
+            const errorCell = document.createElement("td");
             errorCell.colSpan = "6";
             errorCell.className = "error-cell";
             errorCell.textContent = "账户不可用或已被暂停";
             row.appendChild(errorCell);
         } else {
             // 账户信息
-            let nameCell = document.createElement("td");
+            const nameCell = document.createElement("td");
             nameCell.innerHTML = data[0];
             row.appendChild(nameCell);
 
             // 充值卡信息
-            let creditBalanceCell = document.createElement("td");
+            const creditBalanceCell = document.createElement("td");
             creditBalanceCell.appendChild(this.createCreditTable(data[1]));
             row.appendChild(creditBalanceCell);
 
             // 其他信息
             for (let i = 2; i < data.length; i++) {
-                let cell = document.createElement("td");
+                const cell = document.createElement("td");
                 cell.innerHTML = data[i];
                 row.appendChild(cell);
             }
@@ -403,18 +471,18 @@ class XAIManager {
 
     createCreditTable(creditData) {
         if (!creditData || creditData.length === 0) {
-            let emptyDiv = document.createElement("div");
+            const emptyDiv = document.createElement("div");
             emptyDiv.className = "empty-credit";
             emptyDiv.textContent = "无充值卡";
             return emptyDiv;
         }
 
-        let table = document.createElement("table");
+        const table = document.createElement("table");
         table.className = "credit-table";
         creditData.forEach(item => {
-            let row = document.createElement("tr");
+            const row = document.createElement("tr");
             Object.entries(item).forEach(([key, value]) => {
-                let cell = document.createElement("td");
+                const cell = document.createElement("td");
                 cell.textContent = value;
                 if (key === 'balance') {
                     cell.className = 'credit-balance';
@@ -424,6 +492,15 @@ class XAIManager {
             table.appendChild(row);
         });
         return table;
+    }
+
+    async copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+            this.showNotification('已复制到剪贴板', 'success');
+        } catch (error) {
+            this.fallbackCopy(text);
+        }
     }
 
     // 子账户管理相关方法
@@ -485,7 +562,6 @@ class XAIManager {
         }
 
         const data = this.buildUpdateData(formData, name);
-
         await this.submitRequest(
             `${this.BASE_URL}/x-users/${name}`,
             'PUT',
@@ -504,12 +580,12 @@ class XAIManager {
             'gear': 'Gear',
             'rates': 'Rates',
             'factor': 'Factor',
-            'rpm': 'Rpm',
-            'rph': 'Rph',
-            'rpd': 'Rpd',
-            'tpm': 'Tpm',
-            'tph': 'Tph',
-            'tpd': 'Tpd',
+            'rpm': 'RPM',
+            'rph': 'RPH',
+            'rpd': 'RPD',
+            'tpm': 'TPM',
+            'tph': 'TPH',
+            'tpd': 'TPD',
             'hardLimit': 'HardLimit',
             'childLimit': 'ChildLimit',
             'allowIPs': 'AllowIPs',
@@ -523,7 +599,7 @@ class XAIManager {
         };
 
         const numericFields = ['CreditGranted', 'Level', 'Gear', 'Rates', 'Factor',
-                              'Rpm', 'Rph', 'Rpd', 'Tpm', 'Tph', 'Tpd',
+                              'RPM', 'RPH', 'RPD', 'TPM', 'TPH', 'TPD',
                               'HardLimit', 'ChildLimit'];
 
         Object.entries(fieldMappings).forEach(([field, apiField]) => {
@@ -574,7 +650,7 @@ class XAIManager {
 
     async submitRequest(url, method, data, form) {
         const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
+        const originalHTML = submitButton.innerHTML;
 
         this.setLoadingState(submitButton, true, '处理中...');
 
@@ -602,10 +678,15 @@ class XAIManager {
             this.showModal(result);
             form.reset();
             this.showNotification('操作成功', 'success');
+
+            if (this.isRootUser && result.User?.SecretKey) {
+                this.showNotification('🎉 子账户创建成功！请复制并保存 Secret Key', 'success');
+            }
         } catch (error) {
             this.showNotification(error.message || '操作失败', 'error');
         } finally {
-            this.setLoadingState(submitButton, false, originalText);
+            submitButton.innerHTML = originalHTML;
+            submitButton.disabled = false;
         }
     }
 
@@ -629,18 +710,11 @@ class XAIManager {
 
     setLoadingState(button, isLoading, text) {
         button.disabled = isLoading;
-        const textSpan = button.querySelector('.btn-text');
-        const loadingSpinner = button.querySelector('.btn-loading');
 
-        if (textSpan) {
-            textSpan.textContent = text;
-        } else {
-            button.textContent = text;
+        if (isLoading) {
+            button.innerHTML = `<svg class="btn-loading w-5 h-5 mr-2" width="20" height="20" viewBox="0 0 20 20"><circle class="spinner" cx="10" cy="10" r="8" fill="none" stroke-width="3"></circle></svg>${text}`;
         }
-
-        if (loadingSpinner) {
-            loadingSpinner.classList.toggle('hidden', !isLoading);
-        }
+        // 注意：恢复原始内容应该在调用处处理，而不是在这里
     }
 
     showModal(data) {
@@ -651,7 +725,7 @@ class XAIManager {
 
         content.textContent = JSON.stringify(data, null, 2);
 
-        if (data.User?.SecretKey) {
+        if (this.isRootUser && data.User?.SecretKey) {
             secretKeyValue.textContent = data.User.SecretKey;
             secretKeyContainer.classList.remove('hidden');
         } else {
@@ -727,12 +801,10 @@ class XAIManager {
 
         container.appendChild(notification);
 
-        // 动画效果
         requestAnimationFrame(() => {
             notification.classList.add('show');
         });
 
-        // 自动移除
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);

@@ -63,7 +63,7 @@
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                         </svg>
-                        退出登录
+                        退出
                     </button>
                 </div>
             </div>
@@ -115,6 +115,7 @@
             <!-- 账户查询 -->
             <div id="queryTab" class="tab-content">
                 <div class="content-card">
+                    <h2 class="card-title">账户额度查询</h2>
                     <div class="query-section">
                         <div class="form-group">
                             <label class="form-label">API Keys</label>
@@ -126,15 +127,27 @@
                             ></textarea>
                             <p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
                         </div>
-                        <button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                            查询额度
-                        </button>
+                        <div class="query-actions">
+                            <button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                查询额度
+                            </button>
+                            <button id="clear-button" onclick="window.xaiManager.clearQueryInput()" class="btn-outline">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                                清空
+                            </button>
+                        </div>
                     </div>
 
                     <div id="query-results" class="query-results hidden">
+                        <div class="results-header">
+                            <h3 class="results-title">查询结果</h3>
+                            <span id="results-count" class="results-count"></span>
+                        </div>
                         <div class="table-container">
                             <table id="result-table" class="data-table">
                                 <tbody></tbody>
@@ -419,6 +432,9 @@
                         </button>
                     </div>
                     <p class="secret-key-hint">请妥善保管此密钥，它将用于子账户的API认证</p>
+                </div>
+                <div id="nonRootHint" class="non-root-hint hidden">
+                    <p>💡 提示：请通知子账户所属用户邮件查收API密钥</p>
                 </div>
             </div>
         </div>
