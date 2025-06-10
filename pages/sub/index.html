@@ -1,445 +1,445 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XAI 管理控制台</title>
-    <link rel="icon" type="image/svg+xml" href="https://static.proxyxai.com/xai-logo.svg"/>
-    <link rel="icon" type="image/png" href="https://static.proxyxai.com/xai-logo.png"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-    <!-- 通知容器 -->
-    <div id="notificationContainer"></div>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>XAI 管理控制台</title>
+		<link rel="icon" type="image/svg+xml" href="https://static.proxyxai.com/xai-logo.svg"/>
+		<link rel="icon" type="image/png" href="https://static.proxyxai.com/xai-logo.png"/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+		<!-- 通知容器 -->
+		<div id="notificationContainer"></div>
 
-    <!-- 登录页面 -->
-    <div id="loginPage" class="min-h-screen flex items-center justify-center">
-        <div class="login-card">
-            <div class="login-header">
-                <img src="https://static.proxyxai.com/xai-logo.svg" width="200" class="mx-auto mb-4"/>
-                <h1 class="login-title">𝑿𝑨𝑰 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
-            </div>
+		<!-- 登录页面 -->
+		<div id="loginPage" class="min-h-screen flex items-center justify-center">
+			<div class="login-card">
+				<div class="login-header">
+					<img src="https://static.proxyxai.com/xai-logo.svg" width="200" class="mx-auto mb-4"/>
+					<h1 class="login-title">𝑿𝑨𝑰 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
+				</div>
 
-            <form id="loginForm" class="space-y-6">
-                <div class="form-group">
-                    <input
-                        type="password"
-                        id="loginKey"
-                        class="form-input"
-                        placeholder="请输入您的 API Key"
-                        required
-                    >
-                </div>
+				<form id="loginForm" class="space-y-6">
+					<div class="form-group">
+						<input
+							type="password"
+							id="loginKey"
+							class="form-input"
+							placeholder="请输入您的 API Key"
+							required
+							>
+					</div>
 
-                <button type="submit" id="loginButton" class="btn-primary w-full">
-                    <span class="btn-text">登录</span>
-                    <svg class="btn-loading hidden" width="20" height="20" viewBox="0 0 20 20">
-                        <circle class="spinner" cx="10" cy="10" r="8" fill="none" stroke-width="3"></circle>
-                    </svg>
-                </button>
-            </form>
+						<button type="submit" id="loginButton" class="btn-primary w-full">
+							<span class="btn-text">登录</span>
+							<svg class="btn-loading hidden" width="20" height="20" viewBox="0 0 20 20">
+								<circle class="spinner" cx="10" cy="10" r="8" fill="none" stroke-width="3"></circle>
+							</svg>
+						</button>
+				</form>
 
-            <footer class="text-center mt-8">
-                <small class="text-gray-500">© 2022-2025 <a href="https://proxyxai.com" class="text-primary hover:underline">proxyxai.com</a></small>
-            </footer>
-        </div>
-    </div>
+				<footer class="text-center mt-8">
+					<small class="text-gray-500">© 2022-2025 <a href="https://proxyxai.com" class="text-primary hover:underline">proxyxai.com</a></small>
+				</footer>
+			</div>
+		</div>
 
-    <!-- 主应用界面 -->
-    <div id="mainApp" class="hidden">
-        <!-- 顶部导航 -->
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="navbar-brand">
-                    <img src="https://static.proxyxai.com/xai-logo.svg" width="64" class="mr-3"/>
-                    <div>
-                        <h1 class="navbar-title">𝑿𝑨𝑰 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
-                    </div>
-                </div>
-                <div class="navbar-actions">
-                    <div id="userInfo" class="user-info"></div>
-                    <button id="logoutButton" class="btn-outline-danger">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                        </svg>
-                        退出
-                    </button>
-                </div>
-            </div>
-        </nav>
+		<!-- 主应用界面 -->
+		<div id="mainApp" class="hidden">
+			<!-- 顶部导航 -->
+			<nav class="navbar">
+				<div class="navbar-container">
+					<div class="navbar-brand">
+						<img src="https://static.proxyxai.com/xai-logo.svg" width="64" class="mr-3"/>
+						<div>
+							<h1 class="navbar-title">𝑿𝑨𝑰 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
+						</div>
+					</div>
+					<div class="navbar-actions">
+						<div id="userInfo" class="user-info"></div>
+						<button id="logoutButton" class="btn-outline-danger">
+							<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+							</svg>
+							退出
+						</button>
+					</div>
+				</div>
+			</nav>
 
-        <!-- 主内容区域 -->
-        <div class="main-container">
-            <!-- 选项卡导航 -->
-            <div class="tab-navigation">
-                <button class="tab-button active" data-tab="query">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                    </svg>
-                    账户查询
-                </button>
-                <button class="tab-button" data-tab="create">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    创建子账户
-                </button>
-                <button class="tab-button" data-tab="recharge">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                    子账户充值
-                </button>
-                <button class="tab-button" data-tab="view">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                    </svg>
-                    查看子账户
-                </button>
-                <button class="tab-button" data-tab="update">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                    更新子账户
-                </button>
-                <button class="tab-button" data-tab="delete">
-                    <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                    </svg>
-                    删除子账户
-                </button>
-            </div>
+			<!-- 主内容区域 -->
+			<div class="main-container">
+				<!-- 选项卡导航 -->
+				<div class="tab-navigation">
+					<button class="tab-button active" data-tab="query">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+						</svg>
+						账户查询
+					</button>
+					<button class="tab-button" data-tab="create">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+						</svg>
+						创建子账户
+					</button>
+					<button class="tab-button" data-tab="recharge">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+						</svg>
+						子账户充值
+					</button>
+					<button class="tab-button" data-tab="view">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+						</svg>
+						查看子账户
+					</button>
+					<button class="tab-button" data-tab="update">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+						</svg>
+						更新子账户
+					</button>
+					<button class="tab-button" data-tab="delete">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+						</svg>
+						删除子账户
+					</button>
+				</div>
 
-            <!-- 账户查询 -->
-            <div id="queryTab" class="tab-content">
-                <div class="content-card">
-                    <h2 class="card-title">账户额度查询</h2>
-                    <div class="query-section">
-                        <div class="form-group">
-                            <label class="form-label">API Keys</label>
-                            <textarea
-                                id="api-key-input"
-                                class="form-input query-textarea"
-                                placeholder="请输入 API Key，支持批量查询（多个 key 请换行或用逗号分隔）"
-                                rows="4"
-                            ></textarea>
-                            <p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
-                        </div>
-                        <div class="query-actions">
-                            <button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                                查询额度
-                            </button>
-                            <button id="clear-button" onclick="window.xaiManager.clearQueryInput()" class="btn-outline">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                                清空
-                            </button>
-                        </div>
-                    </div>
+				<!-- 账户查询 -->
+				<div id="queryTab" class="tab-content">
+					<div class="content-card">
+						<h2 class="card-title">账户额度查询</h2>
+						<div class="query-section">
+							<div class="form-group">
+								<label class="form-label">API Keys</label>
+								<textarea
+									id="api-key-input"
+									class="form-input query-textarea"
+									placeholder="请输入 API Key，支持批量查询（多个 key 请换行或用逗号分隔）"
+									rows="4"
+									></textarea>
+								<p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
+							</div>
+							<div class="query-actions">
+								<button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+									</svg>
+									查询额度
+								</button>
+								<button id="clear-button" onclick="window.xaiManager.clearQueryInput()" class="btn-outline">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+									</svg>
+									清空
+								</button>
+							</div>
+						</div>
 
-                    <div id="query-results" class="query-results hidden">
-                        <div class="results-header">
-                            <h3 class="results-title">查询结果</h3>
-                            <span id="results-count" class="results-count"></span>
-                        </div>
-                        <div class="table-container">
-                            <table id="result-table" class="data-table">
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						<div id="query-results" class="query-results hidden">
+							<div class="results-header">
+								<h3 class="results-title">查询结果</h3>
+								<span id="results-count" class="results-count"></span>
+							</div>
+							<div class="table-container">
+								<table id="result-table" class="data-table">
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            <!-- 创建子账户 -->
-            <div id="createTab" class="tab-content hidden">
-                <div class="content-card">
-                    <h2 class="card-title">创建新的子账户</h2>
-                    <form id="createForm" class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label required">用户名</label>
-                            <input name="name" type="text" required class="form-input" placeholder="输入子账户用户名">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label required">邮箱</label>
-                            <input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label required">初始额度</label>
-                            <input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">费率倍数</label>
-                            <input name="rates" type="number" step="0.01" class="form-input" placeholder="留空使用默认费率">
-                        </div>
-                        <div class="form-actions col-span-2">
-                            <button type="submit" class="btn-primary">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
-                                创建子账户
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+				<!-- 创建子账户 -->
+				<div id="createTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title">创建新的子账户</h2>
+						<form id="createForm" class="form-vertical">
+							<div class="form-group">
+								<label class="form-label required">用户名</label>
+								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名">
+							</div>
+							<div class="form-group">
+								<label class="form-label required">邮箱</label>
+								<input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱">
+							</div>
+							<div class="form-group">
+								<label class="form-label required">初始额度</label>
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额">
+							</div>
+							<div class="form-group">
+								<label class="form-label">费率倍数</label>
+								<input name="rates" type="number" step="0.01" class="form-input" placeholder="留空使用默认费率">
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn-primary">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+									</svg>
+									创建子账户
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
-            <!-- 账户充值 -->
-            <div id="rechargeTab" class="tab-content hidden">
-                <div class="content-card">
-                    <h2 class="card-title">为子账户充值</h2>
-                    <form id="rechargeForm" class="form-grid">
-                        <div class="form-group col-span-2">
-                            <label class="form-label required">子账户标识</label>
-                            <input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
-                            <p class="form-hint">支持输入用户名或用户ID进行查询</p>
-                        </div>
-                        <div class="form-group col-span-2">
-                            <label class="form-label required">充值金额</label>
-                            <input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入充值金额">
-                        </div>
-                        <div class="form-actions col-span-2">
-                            <button type="submit" class="btn-success">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                确认充值
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+				<!-- 账户充值 -->
+				<div id="rechargeTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title">为子账户充值</h2>
+						<form id="rechargeForm" class="form-grid">
+							<div class="form-group col-span-2">
+								<label class="form-label required">子账户标识</label>
+								<input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
+								<p class="form-hint">支持输入用户名或用户ID进行查询</p>
+							</div>
+							<div class="form-group col-span-2">
+								<label class="form-label required">充值金额</label>
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入充值金额">
+							</div>
+							<div class="form-actions col-span-2">
+								<button type="submit" class="btn-success">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+									</svg>
+									确认充值
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
-            <!-- 查看子账户 -->
-            <div id="viewTab" class="tab-content hidden">
-                <div class="content-card">
-                    <h2 class="card-title">查看子账户信息</h2>
-                    <form id="viewForm" class="form-grid">
-                        <div class="form-group col-span-2">
-                            <label class="form-label">子账户标识</label>
-                            <input name="name" type="text" class="form-input" placeholder="输入用户名或用户ID，留空查看所有">
-                            <p class="form-hint">留空将显示所有子账户信息</p>
-                        </div>
-                        <div class="form-actions col-span-2">
-                            <button type="submit" class="btn-info">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                                查询信息
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+				<!-- 查看子账户 -->
+				<div id="viewTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title">查看子账户信息</h2>
+						<form id="viewForm" class="form-grid">
+							<div class="form-group col-span-2">
+								<label class="form-label">子账户标识</label>
+								<input name="name" type="text" class="form-input" placeholder="输入用户名或用户ID，留空查看所有">
+								<p class="form-hint">留空将显示所有子账户信息</p>
+							</div>
+							<div class="form-actions col-span-2">
+								<button type="submit" class="btn-info">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+									</svg>
+									查询信息
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
-            <!-- 更新子账户 -->
-            <div id="updateTab" class="tab-content hidden">
-                <div class="content-card">
-                    <h2 class="card-title">更新子账户信息</h2>
-                    <form id="updateForm" class="space-y-6">
-                        <div class="form-group">
-                            <label class="form-label required">子账户标识</label>
-                            <input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
-                            <p class="form-hint">请输入要更新的子账户用户名或用户ID</p>
-                        </div>
+				<!-- 更新子账户 -->
+				<div id="updateTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title">更新子账户信息</h2>
+						<form id="updateForm" class="space-y-6">
+							<div class="form-group">
+								<label class="form-label required">子账户标识</label>
+								<input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
+								<p class="form-hint">请输入要更新的子账户用户名或用户ID</p>
+							</div>
 
-                        <div class="update-fields-container">
-                            <h3 class="section-title">基本信息</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label class="form-label">邮箱</label>
-                                    <input name="email" type="email" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">余额</label>
-                                    <input name="credit" type="number" step="0.01" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">等级</label>
-                                    <input name="level" type="number" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">档位</label>
-                                    <input name="gear" type="number" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">状态</label>
-                                    <select name="status" class="form-input">
-                                        <option value="">不修改</option>
-                                        <option value="true">启用</option>
-                                        <option value="false">禁用</option>
-                                    </select>
-                                </div>
-                            </div>
+							<div class="update-fields-container">
+								<h3 class="section-title">基本信息</h3>
+								<div class="form-grid">
+									<div class="form-group">
+										<label class="form-label">邮箱</label>
+										<input name="email" type="email" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">余额</label>
+										<input name="credit" type="number" step="0.01" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">等级</label>
+										<input name="level" type="number" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">档位</label>
+										<input name="gear" type="number" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">状态</label>
+										<select name="status" class="form-input">
+											<option value="">不修改</option>
+											<option value="true">启用</option>
+											<option value="false">禁用</option>
+										</select>
+									</div>
+								</div>
 
-                            <h3 class="section-title">限额设置</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label class="form-label">费率倍数</label>
-                                    <input name="rates" type="number" step="0.01" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">费率因子</label>
-                                    <input name="factor" type="number" step="0.01" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">额度上限</label>
-                                    <input name="hardLimit" type="number" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">子账户数限制</label>
-                                    <input name="childLimit" type="number" class="form-input">
-                                </div>
-                            </div>
+								<h3 class="section-title">限额设置</h3>
+								<div class="form-grid">
+									<div class="form-group">
+										<label class="form-label">费率倍数</label>
+										<input name="rates" type="number" step="0.01" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">费率因子</label>
+										<input name="factor" type="number" step="0.01" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">额度上限</label>
+										<input name="hardLimit" type="number" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">子账户数限制</label>
+										<input name="childLimit" type="number" class="form-input">
+									</div>
+								</div>
 
-                            <h3 class="section-title">速率限制</h3>
-                            <div class="form-grid grid-cols-3">
-                                <div class="form-group">
-                                    <label class="form-label">RPM</label>
-                                    <input name="rpm" type="number" class="form-input" placeholder="每分钟请求数">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">RPH</label>
-                                    <input name="rph" type="number" class="form-input" placeholder="每小时请求数">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">RPD</label>
-                                    <input name="rpd" type="number" class="form-input" placeholder="每日请求数">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">TPM</label>
-                                    <input name="tpm" type="number" class="form-input" placeholder="每分钟令牌数">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">TPH</label>
-                                    <input name="tph" type="number" class="form-input" placeholder="每小时令牌数">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">TPD</label>
-                                    <input name="tpd" type="number" class="form-input" placeholder="每日令牌数">
-                                </div>
-                            </div>
+								<h3 class="section-title">速率限制</h3>
+								<div class="form-grid grid-cols-3">
+									<div class="form-group">
+										<label class="form-label">RPM</label>
+										<input name="rpm" type="number" class="form-input" placeholder="每分钟请求数">
+									</div>
+									<div class="form-group">
+										<label class="form-label">RPH</label>
+										<input name="rph" type="number" class="form-input" placeholder="每小时请求数">
+									</div>
+									<div class="form-group">
+										<label class="form-label">RPD</label>
+										<input name="rpd" type="number" class="form-input" placeholder="每日请求数">
+									</div>
+									<div class="form-group">
+										<label class="form-label">TPM</label>
+										<input name="tpm" type="number" class="form-input" placeholder="每分钟令牌数">
+									</div>
+									<div class="form-group">
+										<label class="form-label">TPH</label>
+										<input name="tph" type="number" class="form-input" placeholder="每小时令牌数">
+									</div>
+									<div class="form-group">
+										<label class="form-label">TPD</label>
+										<input name="tpd" type="number" class="form-input" placeholder="每日令牌数">
+									</div>
+								</div>
 
-                            <h3 class="section-title">其他属性</h3>
-                            <div class="form-grid">
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">允许的IP</label>
-                                    <input name="allowIPs" type="text" class="form-input" placeholder="多个IP用逗号分隔">
-                                </div>
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">允许的模型</label>
-                                    <input name="allowModels" type="text" class="form-input" placeholder="多个模型用逗号分隔">
-                                </div>
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">允许的等级</label>
-                                    <input name="allowLevels" type="text" class="form-input" placeholder="多个等级用逗号分隔">
-                                </div>
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">资源配置</label>
-                                    <textarea name="resources" class="form-input" rows="3" placeholder="资源配置"></textarea>
-                                </div>
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">模型映射</label>
-                                    <textarea name="modelMapper" class="form-input" rows="3" placeholder="模型映射配置"></textarea>
-                                </div>
-                                <div class="form-group col-span-2">
-                                    <label class="form-label">等级映射</label>
-                                    <textarea name="levelMapper" class="form-input" rows="3" placeholder="等级映射配置"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">账单邮箱</label>
-                                    <input name="billingEmail" type="email" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">二维码URL</label>
-                                    <input name="qrcode" type="text" class="form-input">
-                                </div>
-                            </div>
-                        </div>
+								<h3 class="section-title">其他属性</h3>
+								<div class="form-grid">
+									<div class="form-group col-span-2">
+										<label class="form-label">允许的IP</label>
+										<input name="allowIPs" type="text" class="form-input" placeholder="多个IP用逗号分隔">
+									</div>
+									<div class="form-group col-span-2">
+										<label class="form-label">允许的模型</label>
+										<input name="allowModels" type="text" class="form-input" placeholder="多个模型用逗号分隔">
+									</div>
+									<div class="form-group col-span-2">
+										<label class="form-label">允许的等级</label>
+										<input name="allowLevels" type="text" class="form-input" placeholder="多个等级用逗号分隔">
+									</div>
+									<div class="form-group col-span-2">
+										<label class="form-label">资源配置</label>
+										<textarea name="resources" class="form-input" rows="3" placeholder="资源配置"></textarea>
+									</div>
+									<div class="form-group col-span-2">
+										<label class="form-label">模型映射</label>
+										<textarea name="modelMapper" class="form-input" rows="3" placeholder="模型映射配置"></textarea>
+									</div>
+									<div class="form-group col-span-2">
+										<label class="form-label">等级映射</label>
+										<textarea name="levelMapper" class="form-input" rows="3" placeholder="等级映射配置"></textarea>
+									</div>
+									<div class="form-group">
+										<label class="form-label">账单邮箱</label>
+										<input name="billingEmail" type="email" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">二维码URL</label>
+										<input name="qrcode" type="text" class="form-input">
+									</div>
+								</div>
+							</div>
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn-warning">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                </svg>
-                                更新子账户
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+							<div class="form-actions">
+								<button type="submit" class="btn-warning">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+									</svg>
+									更新子账户
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
 
-            <!-- 删除子账户 -->
-            <div id="deleteTab" class="tab-content hidden">
-                <div class="content-card">
-                    <h2 class="card-title text-red-600">删除子账户</h2>
-                    <div class="alert alert-danger">
-                        <svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                        </svg>
-                        <p>警告：删除操作不可撤销，子账户的所有数据将被永久删除！</p>
-                    </div>
-                    <form id="deleteForm" class="form-grid">
-                        <div class="form-group col-span-2">
-                            <label class="form-label required">子账户标识</label>
-                            <input name="name" type="text" required class="form-input" placeholder="输入要删除的用户名或用户ID">
-                            <p class="form-hint text-red-600">请仔细确认要删除的子账户标识</p>
-                        </div>
-                        <div class="form-actions col-span-2">
-                            <button type="submit" class="btn-danger">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                </svg>
-                                确认删除
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+				<!-- 删除子账户 -->
+				<div id="deleteTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title text-red-600">删除子账户</h2>
+						<div class="alert alert-danger">
+							<svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+							</svg>
+							<p>警告：删除操作不可撤销，子账户的所有数据将被永久删除！</p>
+						</div>
+						<form id="deleteForm" class="form-grid">
+							<div class="form-group col-span-2">
+								<label class="form-label required">子账户标识</label>
+								<input name="name" type="text" required class="form-input" placeholder="输入要删除的用户名或用户ID">
+								<p class="form-hint text-red-600">请仔细确认要删除的子账户标识</p>
+							</div>
+							<div class="form-actions col-span-2">
+								<button type="submit" class="btn-danger">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+									</svg>
+									确认删除
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <!-- 结果弹窗 -->
-    <div id="resultModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">操作结果</h3>
-                <button id="closeModal" class="modal-close">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <pre id="resultContent" class="result-content"></pre>
+		<!-- 结果弹窗 -->
+		<div id="resultModal" class="modal hidden">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">操作结果</h3>
+					<button id="closeModal" class="modal-close">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+						</svg>
+					</button>
+				</div>
+				<div class="modal-body">
+					<pre id="resultContent" class="result-content"></pre>
 
-                <!-- Secret Key 复制区域 -->
-                <div id="secretKeyContainer" class="secret-key-container hidden">
-                    <h4 class="secret-key-title">🔑 Secret Key</h4>
-                    <div class="secret-key-box">
-                        <code id="secretKeyValue" class="secret-key-value"></code>
-                        <button id="copySecretKeyButton" class="btn-copy">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                            </svg>
-                            复制
-                        </button>
-                    </div>
-                    <p class="secret-key-hint">请妥善保管此密钥，它将用于子账户的API认证</p>
-                </div>
-                <div id="nonRootHint" class="non-root-hint hidden">
-                    <p>💡 提示：请通知子账户所属用户邮件查收API密钥</p>
-                </div>
-            </div>
-        </div>
-    </div>
+					<!-- Secret Key 复制区域 -->
+					<div id="secretKeyContainer" class="secret-key-container hidden">
+						<h4 class="secret-key-title">🔑 Secret Key</h4>
+						<div class="secret-key-box">
+							<code id="secretKeyValue" class="secret-key-value"></code>
+							<button id="copySecretKeyButton" class="btn-copy">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+								</svg>
+								复制
+							</button>
+						</div>
+						<p class="secret-key-hint">请妥善保管此密钥，它将用于子账户的API认证</p>
+					</div>
+					<div id="nonRootHint" class="non-root-hint hidden">
+						<p>💡 提示：请通知子账户所属用户邮件查收API密钥</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <script src="script.js"></script>
-</body>
+		<script src="script.js"></script>
+	</body>
 </html>
