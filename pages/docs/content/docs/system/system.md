@@ -16,6 +16,7 @@ top = false
 
 ## Internal Services
 
+- [Manager](https://m.proxyxai.com)
 - [Assistant](https://chat.proxyxai.com)
 
 ## Third-party Systems
