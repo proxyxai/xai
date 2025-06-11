@@ -3,6 +3,9 @@ class XAIManager {
         this.currentApiKey = null;
         this.currentUser = null;
         this.queriedApiKeys = [];
+        this.authCacheKey = 'xai-auth-cache';
+        this.subAccountCacheKey = 'xai-sub-account-cache';
+        this.authCacheDuration = 7 * 24 * 60 * 60 * 1000; // 7天
         this.initializeApp();
     }
 
@@ -20,16 +23,12 @@ class XAIManager {
     }
 
     bindEvents() {
-        // 登录事件
         this.bindLoginEvents();
-        // 选项卡切换
         this.bindTabEvents();
-        // 表单提交
         this.bindFormEvents();
-        // 弹窗事件
         this.bindModalEvents();
-        // API Key 输入框事件
         this.bindApiKeyInputEvents();
+        this.bindSubAccountInputEvents();
     }
 
     bindApiKeyInputEvents() {
@@ -51,6 +50,37 @@ class XAIManager {
         }
     }
 
+    bindSubAccountInputEvents() {
+        // 为子账户标识输入框绑定事件
+        const subAccountInputs = ['rechargeForm', 'viewForm', 'updateForm'].map(id =>
+            document.querySelector(`#${id} input[name="name"]`)
+        ).filter(Boolean);
+
+        subAccountInputs.forEach(input => {
+            // 加载缓存的子账户标识
+            const cachedSubAccount = this.getCachedSubAccount();
+            if (cachedSubAccount) {
+                input.value = cachedSubAccount;
+            }
+
+            // 保存输入的子账户标识
+            input.addEventListener('change', (e) => {
+                const value = e.target.value.trim();
+                if (value) {
+                    this.setCachedSubAccount(value);
+                }
+            });
+        });
+    }
+
+    getCachedSubAccount() {
+        return localStorage.getItem(this.subAccountCacheKey) || '';
+    }
+
+    setCachedSubAccount(value) {
+        localStorage.setItem(this.subAccountCacheKey, value);
+    }
+
     bindLoginEvents() {
         const loginForm = document.getElementById('loginForm');
         const logoutButton = document.getElementById('logoutButton');
@@ -58,7 +88,6 @@ class XAIManager {
         loginForm.addEventListener('submit', (e) => this.handleLogin(e));
         logoutButton.addEventListener('click', () => this.handleLogout());
 
-        // 回车键支持
         const loginKey = document.getElementById('loginKey');
         loginKey.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -113,7 +142,59 @@ class XAIManager {
         });
     }
 
+    // 获取缓存的认证信息
+    getAuthCache() {
+        try {
+            const cached = localStorage.getItem(this.authCacheKey);
+            if (!cached) return null;
+
+            const data = JSON.parse(cached);
+            const now = Date.now();
+
+            // 检查缓存是否过期
+            if (now - data.timestamp > this.authCacheDuration) {
+                localStorage.removeItem(this.authCacheKey);
+                return null;
+            }
+
+            return data;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    // 设置认证缓存
+    setAuthCache(apiKey, userData) {
+        const cacheData = {
+            apiKey,
+            userData,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(this.authCacheKey, JSON.stringify(cacheData));
+    }
+
     async checkAuthentication() {
+        // 先尝试使用缓存快速登录
+        const authCache = this.getAuthCache();
+        if (authCache) {
+            this.currentApiKey = authCache.apiKey;
+            this.currentUser = authCache.userData;
+            this.isRootUser = authCache.userData.name === 'root';
+
+            // 立即显示主界面
+            this.showMainApp();
+            this.loadSavedApiKeys();
+            this.showNotification(`欢迎回来，${this.currentUser.name}！`, 'success');
+
+            // 后台静默更新用户信息
+            this.silentUpdateUserInfo(authCache.apiKey);
+
+            // 延迟执行自动查询
+            setTimeout(() => this.autoQueryOnLoad(), 300);
+            return;
+        }
+
+        // 如果没有缓存，尝试旧的认证方式
         const savedKey = localStorage.getItem('xai-parent-api-key');
         const savedUser = localStorage.getItem('xai-user-info');
 
@@ -123,6 +204,10 @@ class XAIManager {
                 if (isValid) {
                     this.currentApiKey = savedKey;
                     this.currentUser = JSON.parse(savedUser);
+
+                    // 设置新的缓存
+                    this.setAuthCache(savedKey, this.currentUser);
+
                     this.showMainApp();
                     this.loadSavedApiKeys();
                     this.autoQueryOnLoad();
@@ -135,6 +220,31 @@ class XAIManager {
 
         this.clearAuthentication();
         this.showLoginPage();
+    }
+
+    // 后台静默更新用户信息
+    async silentUpdateUserInfo(apiKey) {
+        try {
+            const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, {
+                headers: { 'Authorization': `Bearer ${apiKey}` }
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                if (userData.name) {
+                    this.currentUser = userData;
+                    this.isRootUser = userData.name === 'root';
+
+                    // 更新缓存
+                    this.setAuthCache(apiKey, userData);
+
+                    // 更新显示
+                    this.updateUserInfo();
+                }
+            }
+        } catch (error) {
+            console.error('静默更新用户信息失败:', error);
+        }
     }
 
     autoQueryOnLoad() {
@@ -180,6 +290,7 @@ class XAIManager {
     clearAuthentication() {
         localStorage.removeItem('xai-parent-api-key');
         localStorage.removeItem('xai-user-info');
+        localStorage.removeItem(this.authCacheKey);
         this.currentApiKey = null;
         this.currentUser = null;
     }
@@ -202,8 +313,11 @@ class XAIManager {
             const isValid = await this.verifyApiKey(apiKey);
             if (isValid) {
                 this.currentApiKey = apiKey;
+
+                // 保存认证信息和缓存
                 localStorage.setItem('xai-parent-api-key', apiKey);
                 localStorage.setItem('xai-user-info', JSON.stringify(this.currentUser));
+                this.setAuthCache(apiKey, this.currentUser);
 
                 this.showMainApp();
                 this.showNotification(`欢迎回来，${this.currentUser.name}！`, 'success');
@@ -249,7 +363,6 @@ class XAIManager {
         }
     }
 
-    // 格式化方法合并
     formatNumber(num, type = 'currency') {
         if (typeof num !== 'number') return type === 'currency' ? '\$0.00' : '0';
 
@@ -282,6 +395,14 @@ class XAIManager {
             content.classList.add('hidden');
         });
         document.getElementById(`${tabName}Tab`).classList.remove('hidden');
+
+        // 恢复缓存的子账户标识
+        if (['recharge', 'view', 'update'].includes(tabName)) {
+            const input = document.querySelector(`#${tabName}Form input[name="name"]`);
+            if (input && !input.value) {
+                input.value = this.getCachedSubAccount();
+            }
+        }
 
         if (tabName === 'query') {
             const apiKeyInput = document.getElementById('api-key-input');
@@ -394,7 +515,7 @@ class XAIManager {
         const headers = [
             { en: "API Key", cn: "" },
             { en: "账户信息", cn: "ID / 等级 / 子账户数 / 用户名 / 邮箱 / 创建时间" },
-            { en: "充值卡", cn: "金额 / 余额 / 到期时间" },
+            { en: "充值卡", cn: "卡额 / 余额 / 到期时间" },
             { en: "已用 / 余额", cn: "总消费 / 总余额" },
             { en: "使用量", cn: "今日 / 本月 (占比)" },
             { en: "请求数", cn: "今日 / 本月 (占比)" },
@@ -412,7 +533,6 @@ class XAIManager {
         const row = document.createElement("tr");
         row.className = "table-row";
 
-        // API Key 列
         const apiKeyCell = document.createElement("td");
         apiKeyCell.className = "api-key-cell";
         const maskedKey = apiKey.slice(0, 8) + '***' + apiKey.slice(-4);
@@ -435,17 +555,14 @@ class XAIManager {
             errorCell.textContent = "账户不可用或已被暂停";
             row.appendChild(errorCell);
         } else {
-            // 账户信息
             const nameCell = document.createElement("td");
             nameCell.innerHTML = data[0];
             row.appendChild(nameCell);
 
-            // 充值卡信息
             const creditBalanceCell = document.createElement("td");
             creditBalanceCell.appendChild(this.createCreditTable(data[1]));
             row.appendChild(creditBalanceCell);
 
-            // 其他信息
             for (let i = 2; i < data.length; i++) {
                 const cell = document.createElement("td");
                 cell.innerHTML = data[i];
@@ -490,7 +607,6 @@ class XAIManager {
         }
     }
 
-    // 子账户管理相关方法
     async handleCreate(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -521,6 +637,8 @@ class XAIManager {
             CreditGranted: Number(formData.get('credit'))
         };
 
+        this.setCachedSubAccount(name);
+
         await this.submitRequest(
             `${this.BASE_URL}/x-users/${name}`,
             'PUT',
@@ -533,6 +651,11 @@ class XAIManager {
         e.preventDefault();
         const formData = new FormData(e.target);
         const name = formData.get('name').trim();
+
+        if (name) {
+            this.setCachedSubAccount(name);
+        }
+
         const url = name ? `${this.BASE_URL}/x-dna/${name}` : `${this.BASE_URL}/x-dna`;
 
         await this.submitRequest(url, 'GET', null, e.target);
@@ -547,6 +670,8 @@ class XAIManager {
             this.showNotification('请输入子账户标识', 'error');
             return;
         }
+
+        this.setCachedSubAccount(name);
 
         const data = this.buildUpdateData(formData, name);
         await this.submitRequest(
@@ -585,9 +710,7 @@ class XAIManager {
             'qrcode': 'QRCode'
         };
 
-        const numericFields = ['CreditGranted', 'Level', 'Gear', 'Rates', 'Factor',
-                              'RPM', 'RPH', 'RPD', 'TPM', 'TPH', 'TPD',
-                              'HardLimit', 'ChildLimit'];
+        const numericFields = ['CreditGranted', 'Level', 'Gear', 'Rates', 'Factor', 'RPM', 'RPH', 'RPD', 'TPM', 'TPH', 'TPD', 'HardLimit', 'ChildLimit'];
 
         Object.entries(fieldMappings).forEach(([field, apiField]) => {
             const value = formData.get(field);
@@ -664,6 +787,13 @@ class XAIManager {
             const result = await response.json();
             this.showModal(result);
             form.reset();
+
+            // 恢复缓存的子账户标识（针对充值、查看、更新表单）
+            const nameInput = form.querySelector('input[name="name"]');
+            if (nameInput && ['rechargeForm', 'viewForm', 'updateForm'].includes(form.id)) {
+                nameInput.value = this.getCachedSubAccount();
+            }
+
             this.showNotification('操作成功', 'success');
 
             if (this.isRootUser && result.User?.SecretKey) {
@@ -689,7 +819,6 @@ class XAIManager {
             const errorData = await response.json();
             errorMessage = errorData.message || errorData.error || errorMessage;
         } catch (e) {
-            // 忽略JSON解析错误
         }
 
         throw new Error(errorMessage);
@@ -701,7 +830,6 @@ class XAIManager {
         if (isLoading) {
             button.innerHTML = `<svg class="btn-loading w-5 h-5 mr-2" width="20" height="20" viewBox="0 0 20 20"><circle class="spinner" cx="10" cy="10" r="8" fill="none" stroke-width="3"></circle></svg>${text}`;
         }
-        // 注意：恢复原始内容应该在调用处处理，而不是在这里
     }
 
     showModal(data) {
@@ -748,7 +876,7 @@ class XAIManager {
 
         try {
             document.execCommand('copy');
-            this.showNotification('Secret Key 已复制到剪贴板', 'success');
+            this.showNotification('已复制到剪贴板', 'success');
         } catch (error) {
             this.showNotification('复制失败，请手动复制', 'error');
         }
