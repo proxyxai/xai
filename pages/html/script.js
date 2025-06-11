@@ -333,7 +333,6 @@ class XAIManager {
     handleLogout() {
         this.clearAuthentication();
         this.showLoginPage();
-        this.showNotification('已安全退出系统', 'info');
     }
 
     showLoginPage() {

@@ -89,7 +89,7 @@
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
 						</svg>
-						子账户充值
+						子账户动账
 					</button>
 					<button class="tab-button" data-tab="view">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,14 +159,16 @@
 							<div class="form-group">
 								<label class="form-label required">用户名</label>
 								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名">
+								<small class="form-hint text-red-600">用户名必须唯一，不能与现有账户重复</small>
 							</div>
 							<div class="form-group">
 								<label class="form-label required">邮箱</label>
 								<input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱">
+								<small class="form-hint text-red-600">邮箱地址必须唯一，不能与现有账户重复</small>
 							</div>
 							<div class="form-group">
 								<label class="form-label required">初始额度</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额">
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额,最低充值金额为2">
 							</div>
 							<div class="form-group">
 								<label class="form-label">费率倍数</label>
@@ -184,10 +186,10 @@
 					</div>
 				</div>
 
-				<!-- 账户充值 -->
+				<!-- 账户动账 -->
 				<div id="rechargeTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">为子账户充值</h2>
+						<h2 class="card-title">向子账户充值/退款</h2>
 						<form id="rechargeForm" class="form-grid">
 							<div class="form-group col-span-2">
 								<label class="form-label required">子账户标识</label>
@@ -195,8 +197,8 @@
 								<p class="form-hint">支持输入用户名或用户ID进行查询</p>
 							</div>
 							<div class="form-group col-span-2">
-								<label class="form-label required">充值金额</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入充值金额">
+								<label class="form-label required">金额</label>
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入充值金额,正数为充值,负数为退款">
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-success">
