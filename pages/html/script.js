@@ -184,7 +184,6 @@ class XAIManager {
             // 立即显示主界面
             this.showMainApp();
             this.loadSavedApiKeys();
-            this.showNotification(`欢迎回来，${this.currentUser.name}！`, 'success');
 
             // 后台静默更新用户信息
             this.silentUpdateUserInfo(authCache.apiKey);
@@ -314,13 +313,11 @@ class XAIManager {
             if (isValid) {
                 this.currentApiKey = apiKey;
 
-                // 保存认证信息和缓存
                 localStorage.setItem('xai-parent-api-key', apiKey);
                 localStorage.setItem('xai-user-info', JSON.stringify(this.currentUser));
                 this.setAuthCache(apiKey, this.currentUser);
 
                 this.showMainApp();
-                this.showNotification(`欢迎回来，${this.currentUser.name}！`, 'success');
                 setTimeout(() => this.autoQueryOnLoad(), 500);
             } else {
                 throw new Error('API Key 无效或已过期');
@@ -923,7 +920,7 @@ class XAIManager {
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
-        }, 3000);
+        }, 1500);
     }
 
     getNotificationIcon(type) {
