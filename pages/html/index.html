@@ -73,17 +73,17 @@
 			<div class="main-container">
 				<!-- 选项卡导航 -->
 				<div class="tab-navigation">
-					<button class="tab-button active" data-tab="query">
-						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-						</svg>
-						账户查询
-					</button>
-					<button class="tab-button" data-tab="usage">
+					<button class="tab-button active" data-tab="usage">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
 						</svg>
 						用量统计
+					</button>
+					<button class="tab-button" data-tab="query">
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+						</svg>
+						账户查询
 					</button>
 					<button class="tab-button" data-tab="api">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,47 +124,8 @@
 					</button>
 				</div>
 
-				<!-- 账户查询 -->
-				<div id="queryTab" class="tab-content">
-					<div class="content-card">
-						<h2 class="card-title">账户额度查询</h2>
-						<div class="query-section">
-							<div class="form-group">
-								<label class="form-label">API Keys</label>
-								<textarea
-									id="api-key-input"
-									class="form-input query-textarea"
-									placeholder="请输入 API Key，支持批量查询（多个 key 请换行或用逗号分隔）"
-									rows="4"
-									></textarea>
-								<p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
-							</div>
-							<div class="query-actions">
-								<button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
-									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-									</svg>
-									查询额度
-								</button>
-							</div>
-						</div>
-
-						<div id="query-results" class="query-results hidden">
-							<div class="results-header">
-								<h3 class="results-title">查询结果</h3>
-								<span id="results-count" class="results-count"></span>
-							</div>
-							<div class="table-container">
-								<table id="result-table" class="data-table">
-									<tbody></tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<!-- 用量统计 -->
-				<div id="usageTab" class="tab-content hidden">
+				<div id="usageTab" class="tab-content">
 					<div class="usage-container">
 						<!-- 查询类型选择 -->
 						<div class="usage-type-selector">
@@ -193,7 +154,7 @@
 							<!-- 今日实时控件 -->
 							<div id="todayControls" class="control-section">
 								<div class="control-info">
-									<p class="control-desc">查看今日的实时用量统计，数据每5分钟更新一次</p>
+									<p class="control-desc">今日实时用量统计</p>
 									<button id="queryToday" class="btn-primary">
 										<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
@@ -370,6 +331,45 @@
 					</div>
 				</div>
 
+				<!-- 账户查询 -->
+				<div id="queryTab" class="tab-content hidden">
+					<div class="content-card">
+						<h2 class="card-title">账户额度查询</h2>
+						<div class="query-section">
+							<div class="form-group">
+								<label class="form-label">API Keys</label>
+								<textarea
+									id="api-key-input"
+									class="form-input query-textarea"
+									placeholder="请输入 API Key，支持批量查询（多个 key 请换行或用逗号分隔）"
+									rows="4"
+									></textarea>
+								<p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
+							</div>
+							<div class="query-actions">
+								<button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
+									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+									</svg>
+									查询额度
+								</button>
+							</div>
+						</div>
+
+						<div id="query-results" class="query-results hidden">
+							<div class="results-header">
+								<h3 class="results-title">查询结果</h3>
+								<span id="results-count" class="results-count"></span>
+							</div>
+							<div class="table-container">
+								<table id="result-table" class="data-table">
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<!-- API 说明 -->
 				<div id="apiTab" class="tab-content hidden">
 					<div class="api-docs-container">
@@ -500,7 +500,7 @@ print(message.content)</code></pre>
 						<div class="api-section">
 							<div class="docs-reminder">
 								<h3>📚 更多信息</h3>
-								<p>请查询 <a id="docsLink" href="#" target="_blank" class="api-link"></a> XAI 文档</p>
+								<p>请阅读文档 <a id="docsLink" href="#" target="_blank" class="api-link"></a></p>
 							</div>
 						</div>
 					</div>

@@ -172,17 +172,6 @@ class XAIManager {
 				return;
 			}
 
-			// 验证时间范围不超过1年
-			const start = new Date(startDate);
-			const end = new Date(endDate);
-			const diffTime = Math.abs(end - start);
-			const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-			if (diffDays > 365) {
-				this.showNotification('查询时间范围不能超过1年', 'warning');
-				return;
-			}
-
 			params.append('start', startDate);
 			params.append('end', endDate);
 		}
@@ -790,13 +779,11 @@ class XAIManager {
 	}
 
 	autoQueryOnLoad() {
-		const queryTab = document.getElementById('queryTab');
-		if (!queryTab.classList.contains('hidden')) {
-			const apiKeyInput = document.getElementById('api-key-input');
-			if (!apiKeyInput.value.trim()) {
-				apiKeyInput.value = this.currentApiKey;
-			}
-			setTimeout(() => this.sendBillingRequest(), 300);
+		// 自动查询用量统计
+		const usageTab = document.getElementById('usageTab');
+		if (!usageTab.classList.contains('hidden')) {
+			// 自动查询今日实时用量
+			setTimeout(() => this.queryUsage('today'), 300);
 		}
 	}
 
@@ -945,15 +932,18 @@ class XAIManager {
 			}
 		}
 
-		if (tabName === 'query') {
+		// 切换到各个标签时的自动操作
+		if (tabName === 'usage') {
+			// 切换到用量统计时，自动查询今日数据
+			setTimeout(() => this.queryUsage('today'), 100);
+		} else if (tabName === 'query') {
+			// 切换到账户查询时，自动填充API Key
 			const apiKeyInput = document.getElementById('api-key-input');
 			if (!apiKeyInput.value.trim() && this.currentApiKey) {
 				apiKeyInput.value = this.currentApiKey;
 			}
+			// 自动查询账户额度
 			setTimeout(() => this.sendBillingRequest(), 100);
-		} else if (tabName === 'usage') {
-			// 切换到用量统计时，自动查询今日数据
-			setTimeout(() => this.queryUsage('today'), 100);
 		}
 	}
 
