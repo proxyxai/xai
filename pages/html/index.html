@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>𝐗𝐀𝐈 管理控制台</title>
+		<title>𝐗𝐀𝐈 𝐀𝐏𝐈</title>
 		<link rel="icon" type="image/svg+xml" href="https://static.proxyxai.com/xai-logo.svg"/>
 		<link rel="icon" type="image/png" href="https://static.proxyxai.com/xai-logo.png"/>
 		<link rel="stylesheet" href="tailwind.css">
@@ -18,7 +18,7 @@
 			<div class="login-card">
 				<div class="login-header">
 					<img src="https://static.proxyxai.com/xai-logo.svg" width="200" class="mx-auto mb-4"/>
-					<h1 class="login-title">𝐗𝐀𝐈 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
+					<h1 class="login-title">𝐗𝐀𝐈 𝐀𝐏𝐈</h1>
 				</div>
 
 				<form id="loginForm" class="space-y-6">
@@ -54,7 +54,7 @@
 					<div class="navbar-brand">
 						<img src="https://static.proxyxai.com/xai-logo.svg" width="64" class="mr-3"/>
 						<div>
-							<h1 class="navbar-title">𝐗𝐀𝐈 𝑴𝒂𝒏𝒂𝒈𝒆𝒓</h1>
+							<h1 class="navbar-title">𝐗𝐀𝐈 𝐀𝐏𝐈</h1>
 						</div>
 					</div>
 					<div class="navbar-actions">
@@ -158,7 +158,7 @@
 						<form id="createForm" class="form-vertical">
 							<div class="form-group">
 								<label class="form-label required">用户名</label>
-								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名">
+								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名" minlength="4">
 								<small class="form-hint text-red-600">用户名必须唯一，不能与现有账户重复</small>
 							</div>
 							<div class="form-group">
@@ -189,7 +189,7 @@
 				<!-- 账户动账 -->
 				<div id="rechargeTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">向子账户充值/退款</h2>
+						<h2 class="card-title">向子账户充值/扣款</h2>
 						<form id="rechargeForm" class="form-grid">
 							<div class="form-group col-span-2">
 								<label class="form-label required">子账户标识</label>
@@ -198,7 +198,7 @@
 							</div>
 							<div class="form-group col-span-2">
 								<label class="form-label required">金额</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入充值金额,正数为充值,负数为退款">
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入金额,正数为充值,负数为扣款">
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-success">
