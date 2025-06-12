@@ -1335,3 +1335,798 @@ button:disabled {
 #deleteTab .form-actions {
     justify-content: center;
 }
+
+/* API 文档页面样式 */
+.api-docs-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.api-section {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-100);
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.api-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.api-link-card {
+    background: var(--gray-50);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-200);
+}
+
+.api-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.api-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.providers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.provider-card {
+    background: var(--gray-50);
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.provider-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+.provider-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.provider-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.provider-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.api-note {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+}
+
+.api-note p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.code-example {
+    margin-bottom: 2rem;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.code-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.btn-copy-code {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-copy-code:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    box-shadow: var(--shadow);
+}
+
+.code-block code {
+    display: block;
+    white-space: pre;
+}
+
+.docs-reminder {
+    background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+}
+
+.docs-reminder h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.docs-reminder p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.docs-reminder .api-link {
+    color: white;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.docs-reminder .api-link:hover {
+    color: #f0f9ff;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .api-docs-container {
+        padding: 1rem;
+    }
+
+    .api-section {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .api-section-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .providers-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .provider-card {
+        padding: 1rem;
+    }
+
+    .api-note {
+        padding: 1.25rem;
+        font-size: 0.875rem;
+    }
+
+    .code-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .btn-copy-code {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .code-block {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .docs-reminder {
+        padding: 1.5rem;
+    }
+
+    .docs-reminder h3 {
+        font-size: 1.125rem;
+    }
+
+    .docs-reminder p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .providers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 代码高亮增强 */
+.code-block .api-base-url,
+.code-block .api-base-url-anthropic {
+    color: #fbbf24;
+    font-weight: 500;
+}
+
+/* 用量统计页面样式 */
+.usage-container {
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.usage-type-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+}
+
+.usage-type-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.usage-type-btn:hover {
+    background: var(--gray-50);
+    color: var(--gray-900);
+}
+
+.usage-type-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.usage-type-btn.active:hover {
+    background: var(--primary-hover);
+}
+
+.usage-controls {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    border: 1px solid var(--gray-100);
+}
+
+.control-section {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.control-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.control-desc {
+    color: var(--gray-600);
+    font-size: 0.9375rem;
+}
+
+.date-control {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.date-input {
+    width: 200px;
+}
+
+.range-control {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.date-range-inputs {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.date-range-inputs .form-group {
+    flex: 1;
+}
+
+/* 统计卡片 */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bg-blue-100 {
+    background: #dbeafe;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.bg-green-100 {
+    background: #d1fae5;
+}
+
+.text-green-600 {
+    color: #059669;
+}
+
+.bg-purple-100 {
+    background: #e9d5ff;
+}
+
+.text-purple-600 {
+    color: #9333ea;
+}
+
+.bg-orange-100 {
+    background: #fed7aa;
+}
+
+.text-orange-600 {
+    color: #ea580c;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+/* 使用详情表格 */
+.usage-table-container {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--gray-100);
+}
+
+.table-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.table-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.table-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.sort-select {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-width: 150px;
+}
+
+.usage-table {
+    width: 100%;
+}
+
+.usage-table thead th {
+    background: var(--gray-50);
+    font-weight: 600;
+    color: var(--gray-700);
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.875rem;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.usage-table tbody td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.model-name-cell {
+    font-weight: 500;
+    color: var(--gray-900);
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cost-cell {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.usage-percentage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    min-width: 120px;
+}
+
+.percentage-bar {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    opacity: 0.1;
+    border-radius: 0.25rem;
+    transition: width 0.3s ease;
+}
+
+.percentage-text {
+    position: relative;
+    z-index: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+/* 每日统计表格 */
+.daily-stats-container {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    border: 1px solid var(--gray-100);
+}
+
+.daily-stats-container .table-title {
+    margin-bottom: 1.5rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .usage-type-selector {
+        flex-wrap: wrap;
+    }
+
+    .usage-type-btn {
+        flex: 1;
+        min-width: 120px;
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .usage-controls {
+        padding: 1.5rem;
+    }
+
+    .control-info {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .date-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .date-input {
+        width: 100%;
+    }
+
+    .date-range-inputs {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .usage-table-container {
+        padding: 1.25rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
+    }
+
+    .table-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .usage-table {
+        font-size: 0.75rem;
+    }
+
+    .usage-table thead th,
+    .usage-table tbody td {
+        padding: 0.625rem 0.5rem;
+    }
+
+    .model-name-cell {
+        max-width: 150px;
+    }
+
+    .usage-percentage {
+        min-width: 80px;
+    }
+
+    .percentage-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .usage-controls {
+        padding: 1rem;
+    }
+
+    .usage-type-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .usage-type-btn svg {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .control-desc {
+        font-size: 0.875rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .daily-stats-container {
+        padding: 1rem;
+    }
+}
+
+/* 优化表格在小屏幕上的显示 */
+@media (max-width: 480px) {
+    .usage-table thead th:nth-child(3),
+    .usage-table tbody td:nth-child(3),
+    .usage-table thead th:nth-child(4),
+    .usage-table tbody td:nth-child(4) {
+        display: none;
+    }
+
+    .usage-table {
+        font-size: 0.7rem;
+    }
+
+    .model-name-cell {
+        max-width: 100px;
+        font-size: 0.75rem;
+    }
+}
+
+/* 图表控制按钮 */
+.chart-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.chart-type-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chart-type-btn:hover {
+    background: var(--gray-100);
+    color: var(--gray-900);
+    border-color: var(--gray-300);
+}
+
+.chart-type-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.chart-type-btn.active:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.chart-type-btn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* 图表容器 */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--gray-50);
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-200);
+}
+
+/* 为每日统计表格添加上边距 */
+.daily-stats-container .table-container {
+    margin-top: 2rem;
+}
+
+/* 响应式图表 */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+        padding: 0.75rem;
+    }
+
+    .chart-controls {
+        gap: 0.375rem;
+    }
+
+    .chart-type-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .chart-container {
+        height: 250px;
+        padding: 0.5rem;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .chart-type-btn {
+        flex: 1;
+        min-width: 0;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .chart-type-btn svg {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+}
+
+/* 图表加载动画 */
+.chart-container canvas {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 优化图表工具提示在移动端的显示 */
+@media (max-width: 480px) {
+    .chart-container {
+        height: 200px;
+    }
+}
+
+/* 为图表添加阴影效果 */
+.chart-container:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+}
