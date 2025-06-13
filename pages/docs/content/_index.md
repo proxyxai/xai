@@ -23,7 +23,8 @@ weight = 20
 [[extra.menu.main]]
 name = "𝐗𝐀𝐈"
 section = "xai"
-url = "//m.proxyxai.com"
+url = "https://m.proxyxai.com"
+external = true
 weight = 30
 
 [[extra.list]]
