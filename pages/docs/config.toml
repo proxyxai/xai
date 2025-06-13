@@ -128,10 +128,11 @@ url = "https://github.com/proxyxai/xai"
 post = "v0.1.0"
 weight = 20
 
-[[extra.menu.social]]
+[[extra.menu.main]]
 name = "𝐗𝐀𝐈"
-pre = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>'
-url = "https://m.proxyxai.com"
+section = "xai"
+url = "//m.proxyxai.com"
+pre = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="3" width="20" height="4" rx="1" ry="1"></rect><rect x="2" y="9" width="20" height="4" rx="1" ry="1"></rect><rect x="2" y="15" width="20" height="4" rx="1" ry="1"></rect><line x1="6" y1="5" x2="6.01" y2="5"></line><line x1="6" y1="11" x2="6.01" y2="11"></line><line x1="6" y1="17" x2="6.01" y2="17"></line></svg>'
 weight = 30
 
 # Footer contents
