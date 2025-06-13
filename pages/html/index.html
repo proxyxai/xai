@@ -19,6 +19,7 @@
 				<div class="login-header">
 					<img src="https://static.proxyxai.com/xai-logo.svg" width="200" class="mx-auto mb-4"/>
 					<h1 class="login-title">𝐗𝐀𝐈 𝐀𝐏𝐈</h1>
+					<p class="text-gray-600 text-sm mt-2 mb-6">全息 · 子信息概念设计</p>
 				</div>
 
 				<form id="loginForm" class="space-y-6">
@@ -89,7 +90,7 @@
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
 						</svg>
-						API 说明
+						AI API
 					</button>
 					<button class="tab-button" data-tab="create">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,7 +102,7 @@
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
 						</svg>
-						子账户动账
+						动账子账户
 					</button>
 					<button class="tab-button" data-tab="view">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -370,7 +371,7 @@
 					</div>
 				</div>
 
-				<!-- API 说明 -->
+				<!-- AI API -->
 				<div id="apiTab" class="tab-content hidden">
 					<div class="api-docs-container">
 						<!-- 模型列表 -->
@@ -518,16 +519,12 @@ print(message.content)</code></pre>
 							</div>
 							<div class="form-group">
 								<label class="form-label required">邮箱</label>
-								<input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱">
+								<input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱,接收 API Key">
 								<small class="form-hint text-red-600">邮箱地址必须唯一，不能与现有账户重复</small>
 							</div>
 							<div class="form-group">
 								<label class="form-label required">初始额度</label>
 								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额,最低充值金额为2">
-							</div>
-							<div class="form-group">
-								<label class="form-label">费率倍数</label>
-								<input name="rates" type="number" step="0.01" class="form-input" placeholder="留空使用默认费率">
 							</div>
 							<div class="form-actions">
 								<button type="submit" class="btn-primary">
@@ -608,7 +605,7 @@ print(message.content)</code></pre>
 										<input name="email" type="email" class="form-input">
 									</div>
 									<div class="form-group">
-										<label class="form-label">余额</label>
+										<label class="form-label">金额</label>
 										<input name="credit" type="number" step="0.01" class="form-input">
 									</div>
 									<div class="form-group">
@@ -618,6 +615,14 @@ print(message.content)</code></pre>
 									<div class="form-group">
 										<label class="form-label">档位</label>
 										<input name="gear" type="number" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">费率</label>
+										<input name="rates" type="number" step="0.01" class="form-input">
+									</div>
+									<div class="form-group">
+										<label class="form-label">费率因子</label>
+										<input name="factor" type="number" step="0.01" class="form-input">
 									</div>
 									<div class="form-group">
 										<label class="form-label">状态</label>
@@ -632,19 +637,11 @@ print(message.content)</code></pre>
 								<h3 class="section-title">限额设置</h3>
 								<div class="form-grid">
 									<div class="form-group">
-										<label class="form-label">费率倍数</label>
-										<input name="rates" type="number" step="0.01" class="form-input">
-									</div>
-									<div class="form-group">
-										<label class="form-label">费率因子</label>
-										<input name="factor" type="number" step="0.01" class="form-input">
-									</div>
-									<div class="form-group">
-										<label class="form-label">额度上限</label>
+										<label class="form-label">每月使用额度上限</label>
 										<input name="hardLimit" type="number" class="form-input">
 									</div>
 									<div class="form-group">
-										<label class="form-label">子账户数限制</label>
+										<label class="form-label">子账户数上限</label>
 										<input name="childLimit" type="number" class="form-input">
 									</div>
 								</div>
@@ -677,7 +674,7 @@ print(message.content)</code></pre>
 									</div>
 								</div>
 
-								<h3 class="section-title">其他属性</h3>
+								<h3 class="section-title">管控属性</h3>
 								<div class="form-grid">
 									<div class="form-group col-span-2">
 										<label class="form-label">允许的IP</label>
@@ -697,19 +694,20 @@ print(message.content)</code></pre>
 									</div>
 									<div class="form-group col-span-2">
 										<label class="form-label">模型映射</label>
-										<textarea name="modelMapper" class="form-input" rows="3" placeholder="模型映射配置"></textarea>
+										<textarea name="modelMapper" class="form-input" rows="3" placeholder="模型映射"></textarea>
 									</div>
 									<div class="form-group col-span-2">
-										<label class="form-label">等级映射</label>
-										<textarea name="levelMapper" class="form-input" rows="3" placeholder="等级映射配置"></textarea>
+										<label class="form-label">配置映射</label>
+										<textarea name="levelMapper" class="form-input" rows="3" placeholder="配置映射"></textarea>
 									</div>
 									<div class="form-group">
 										<label class="form-label">账单邮箱</label>
-										<input name="billingEmail" type="email" class="form-input">
+										<input name="billingEmail" type="email" class="form-input" placeholder="用于接收账单通知，可多个子账户共用">
 									</div>
 									<div class="form-group">
 										<label class="form-label">二维码URL</label>
-										<input name="qrcode" type="text" class="form-input">
+										<input name="qrcode" type="text" class="form-input" placeholder="技术支持二维码图片的URL地址">
+									</div>
 									</div>
 								</div>
 							</div>

@@ -374,7 +374,6 @@ class XAIManager {
 				};
 				break;
 			case 'requests':
-				// 兼容新旧字段名称
 				data = sortedData.map(day => day.total_requests || 0);
 				datasetConfig = {
 					label: '每日请求数',
@@ -874,7 +873,6 @@ class XAIManager {
 		document.getElementById('loginPage').classList.add('hidden');
 		document.getElementById('mainApp').classList.remove('hidden');
 		this.updateUserInfo();
-		// 更新API文档链接（以防域名变化）
 		this.updateApiDocLinks();
 	}
 
