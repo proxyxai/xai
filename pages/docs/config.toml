@@ -94,7 +94,7 @@ facebook_author = ""
 [extra.schema]
 type = "Organization"
 logo = "images/icon.svg"
-twitter = "https://twitter.com/proxyxai"
+twitter = "https://x.com/proxyxai"
 linked_in = ""
 github = "https://github.com/proxyxai/xai"
 section = "blog"                           # see config.extra.main~url
@@ -114,6 +114,12 @@ name = "𝑩𝒍𝒐𝒈"
 section = "blog"
 url = "/blog/"
 weight = 20
+
+[[extra.menu.main]]
+name = "𝐗𝐀𝐈"
+section = "xai"
+url = "https://m.proxyxai.com"
+weight = 30
 
 [[extra.menu.social]]
 name = "X"
