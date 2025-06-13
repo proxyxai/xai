@@ -20,6 +20,12 @@ section = "blog"
 url = "/blog/"
 weight = 20
 
+[[extra.menu.main]]
+name = "𝐗𝐀𝐈"
+section = "xai"
+url = "https://m.proxyxai.com"
+weight = 30
+
 [[extra.list]]
 title = "🔋 Seamless Integration"
 content = 'Supports a variety of ecosystem projects compatible with OpenAI'
