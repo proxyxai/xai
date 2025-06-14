@@ -750,7 +750,7 @@ class XAIManager {
 	// 后台静默更新用户信息
 	async silentUpdateUserInfo(apiKey) {
 		try {
-			const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, {
+			const response = await fetch(`${this.BASE_URL}/dashboard/info`, {
 				headers: { 'Authorization': `Bearer ${apiKey}` }
 			});
 
@@ -792,7 +792,7 @@ class XAIManager {
 
 	async verifyApiKey(apiKey) {
 		try {
-			const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, {
+			const response = await fetch(`${this.BASE_URL}/dashboard/info`, {
 				headers: { 'Authorization': `Bearer ${apiKey}` }
 			});
 
@@ -991,7 +991,7 @@ class XAIManager {
 		};
 
 		try {
-			const response = await fetch(`${this.BASE_URL}/dashboard/x-user-info`, { headers });
+			const response = await fetch(`${this.BASE_URL}/dashboard/info`, { headers });
 			if (!response.ok) {
 				return ["Error", null, null, null, null, null];
 			}
