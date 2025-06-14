@@ -512,6 +512,7 @@ print(message.content)</code></pre>
 					<div class="content-card">
 						<h2 class="card-title">创建新的子账户</h2>
 						<form id="createForm" class="form-vertical">
+							<!-- 原有的表单内容保持不变 -->
 							<div class="form-group">
 								<label class="form-label required">用户名</label>
 								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名" minlength="4">
@@ -536,6 +537,53 @@ print(message.content)</code></pre>
 							</div>
 						</form>
 					</div>
+
+					<!-- API 示例代码 -->
+					<div class="api-section mt-6">
+						<h3 class="api-section-title">API 调用示例</h3>
+
+						<!-- cURL 示例 -->
+						<div class="code-example">
+							<div class="code-header">
+								<h4>cURL</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('create', 'curl')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="create-curl-code"><code></code></pre>
+						</div>
+
+						<!-- Python 示例 -->
+						<div class="code-example">
+							<div class="code-header">
+								<h4>Python</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('create', 'python')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="create-python-code"><code></code></pre>
+						</div>
+
+						<!-- JavaScript 示例 -->
+						<div class="code-example">
+							<div class="code-header">
+								<h4>JavaScript</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('create', 'javascript')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="create-javascript-code"><code></code></pre>
+						</div>
+					</div>
 				</div>
 
 				<!-- 账户动账 -->
@@ -543,6 +591,7 @@ print(message.content)</code></pre>
 					<div class="content-card">
 						<h2 class="card-title">向子账户充值/扣款</h2>
 						<form id="rechargeForm" class="form-grid">
+							<!-- 原有表单内容保持不变 -->
 							<div class="form-group col-span-2">
 								<label class="form-label required">子账户标识</label>
 								<input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
@@ -550,7 +599,7 @@ print(message.content)</code></pre>
 							</div>
 							<div class="form-group col-span-2">
 								<label class="form-label required">金额</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入金额,正数为充值,负数为扣款">
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入正数为充值,负数为扣款">
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-success">
@@ -562,6 +611,50 @@ print(message.content)</code></pre>
 							</div>
 						</form>
 					</div>
+
+					<!-- API 示例代码 -->
+					<div class="api-section mt-6">
+						<h3 class="api-section-title">API 调用示例</h3>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>cURL</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('recharge', 'curl')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="recharge-curl-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>Python</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('recharge', 'python')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="recharge-python-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>JavaScript</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('recharge', 'javascript')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="recharge-javascript-code"><code></code></pre>
+						</div>
+					</div>
 				</div>
 
 				<!-- 查看子账户 -->
@@ -569,6 +662,7 @@ print(message.content)</code></pre>
 					<div class="content-card">
 						<h2 class="card-title">查看子账户信息</h2>
 						<form id="viewForm" class="form-grid">
+							<!-- 原有表单内容保持不变 -->
 							<div class="form-group col-span-2">
 								<label class="form-label">子账户标识</label>
 								<input name="name" type="text" class="form-input" placeholder="输入用户名或用户ID，留空查看所有">
@@ -583,6 +677,50 @@ print(message.content)</code></pre>
 								</button>
 							</div>
 						</form>
+					</div>
+
+					<!-- API 示例代码 -->
+					<div class="api-section mt-6">
+						<h3 class="api-section-title">API 调用示例</h3>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>cURL</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('view', 'curl')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="view-curl-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>Python</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('view', 'python')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="view-python-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>JavaScript</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('view', 'javascript')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="view-javascript-code"><code></code></pre>
+						</div>
 					</div>
 				</div>
 
@@ -721,6 +859,49 @@ print(message.content)</code></pre>
 							</div>
 						</form>
 					</div>
+
+					<div class="api-section mt-6">
+						<h3 class="api-section-title">API 调用示例</h3>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>cURL</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('update', 'curl')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="update-curl-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>Python</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('update', 'python')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="update-python-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>JavaScript</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('update', 'javascript')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="update-javascript-code"><code></code></pre>
+						</div>
+					</div>
 				</div>
 
 				<!-- 删除子账户 -->
@@ -748,6 +929,48 @@ print(message.content)</code></pre>
 								</button>
 							</div>
 						</form>
+					</div>
+					<div class="api-section mt-6">
+						<h3 class="api-section-title">API 调用示例</h3>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>cURL</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('delete', 'curl')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="delete-curl-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>Python</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('delete', 'python')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="delete-python-code"><code></code></pre>
+						</div>
+
+						<div class="code-example">
+							<div class="code-header">
+								<h4>JavaScript</h4>
+								<button class="btn-copy-code" onclick="window.xaiManager.copyApiExample('delete', 'javascript')">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+									</svg>
+									复制
+								</button>
+							</div>
+							<pre class="code-block" id="delete-javascript-code"><code></code></pre>
+						</div>
 					</div>
 				</div>
 			</div>

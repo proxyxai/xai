@@ -2130,3 +2130,63 @@ button:disabled {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: box-shadow 0.3s ease;
 }
+
+/* API 示例样式调整 */
+.mt-6 {
+    margin-top: 2.5rem;
+}
+
+/* 子账户页面的API示例样式 */
+#createTab .api-section,
+#rechargeTab .api-section,
+#viewTab .api-section,
+#updateTab .api-section,
+#deleteTab .api-section {
+    background: #f9fafb;
+    border: 1px solid var(--gray-200);
+    margin-top: 2rem;
+}
+
+/* 代码示例标题 */
+.code-example h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+/* 调整移动端的API示例显示 */
+@media (max-width: 768px) {
+    #createTab .api-section,
+    #rechargeTab .api-section,
+    #viewTab .api-section,
+    #updateTab .api-section,
+    #deleteTab .api-section {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .code-example {
+        margin-bottom: 1.5rem;
+    }
+
+    .code-block {
+        font-size: 0.7rem;
+        padding: 1rem;
+    }
+}
+
+/* 确保API示例在所有页面正确显示 */
+.api-section + .api-section {
+    margin-top: 0;
+}
+
+/* 优化代码块的显示 */
+.code-block code {
+    display: block;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+}

@@ -435,13 +435,8 @@ class XAIManager {
 	formatNumber(num, type = 'currency') {
 		if (typeof num !== 'number') return type === 'currency' ? '\$0.00' : '0';
 
-		// 处理非常大的数字
-		if (Math.abs(num) >= 1000000) {
-			const millions = num / 1000000;
-			return type === 'currency' ? `$${millions.toFixed(2)}M` : `${millions.toFixed(2)}M`;
-		} else if (Math.abs(num) >= 1000) {
-			const thousands = num / 1000;
-			return type === 'currency' ? `$${thousands.toFixed(2)}K` : `${thousands.toFixed(2)}K`;
+		if (Math.abs(num) >= 100000000) {
+			return (type === 'currency' ? '$' : '') + num.toExponential(2);
 		}
 
 		if (type === 'currency') {
@@ -874,6 +869,8 @@ class XAIManager {
 		document.getElementById('mainApp').classList.remove('hidden');
 		this.updateUserInfo();
 		this.updateApiDocLinks();
+		// 更新所有API示例代码
+		this.updateAllApiExamples();
 	}
 
 	updateUserInfo() {
@@ -887,21 +884,6 @@ class XAIManager {
 				</div>
 				`;
 		}
-	}
-
-	formatNumber(num, type = 'currency') {
-		if (typeof num !== 'number') return type === 'currency' ? '\$0.00' : '0';
-
-		if (Math.abs(num) >= 100000000) {
-			return (type === 'currency' ? '$' : '') + num.toExponential(2);
-		}
-
-		if (type === 'currency') {
-			return '$' + num.toFixed(2);
-		} else if (type === 'limit') {
-			return Math.round(num).toLocaleString();
-		}
-		return num.toFixed(2);
 	}
 
 	formatBalance(balance) {
@@ -928,6 +910,11 @@ class XAIManager {
 			if (input && !input.value) {
 				input.value = this.getCachedSubAccount();
 			}
+		}
+
+		// 切换标签时更新API示例
+		if (['create', 'recharge', 'view', 'update', 'delete'].includes(tabName)) {
+			this.updateApiExample(tabName);
 		}
 
 		// 切换到各个标签时的自动操作
@@ -1142,14 +1129,13 @@ class XAIManager {
 	// 复制代码块
 	async copyCode(type) {
 		try {
-			// 直接从 DOM 中获取代码内容
 			const codeElement = document.getElementById(`${type}-code`);
 			if (!codeElement) {
 				this.showNotification('代码块未找到', 'error');
 				return;
 			}
 
-			// 获取代码文本内容
+			// 获取纯文本代码
 			const code = codeElement.textContent || codeElement.innerText;
 
 			await navigator.clipboard.writeText(code);
@@ -1162,6 +1148,25 @@ class XAIManager {
 			} else {
 				this.showNotification('复制失败', 'error');
 			}
+		}
+	}
+
+	// 复制API示例代码
+	async copyApiExample(tabName, language) {
+		try {
+			const codeId = `${tabName}-${language}-code`;
+			const codeElement = document.getElementById(codeId);
+
+			if (!codeElement) {
+				this.showNotification('代码未找到', 'error');
+				return;
+			}
+
+			const code = codeElement.textContent || codeElement.innerText;
+			await navigator.clipboard.writeText(code);
+			this.showNotification('API示例已复制到剪贴板', 'success');
+		} catch (error) {
+			this.showNotification('复制失败', 'error');
 		}
 	}
 
@@ -1492,6 +1497,211 @@ class XAIManager {
 			info: '<svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'
 		};
 		return icons[type] || icons.info;
+	}
+
+	// 生成API示例代码
+	generateApiExample(tabName, language = 'curl') {
+		if (!this.currentApiKey) return '';
+
+		const examples = {
+			create: {
+				curl: `curl -X POST '${this.BASE_URL}/x-users' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}' \\
+  -H 'Content-Type: application/json' \\
+  -d '{
+    "Name": "alice123",
+    "Email": "alice@example.com",
+    "CreditGranted": 10.0
+  }'`,
+				python: `import requests
+
+url = "${this.BASE_URL}/x-users"
+headers = {
+    "Authorization": "Bearer ${this.currentApiKey}",
+    "Content-Type": "application/json"
+}
+data = {
+    "Name": "alice123",
+    "Email": "alice@example.com",
+    "CreditGranted": 10.0
+}
+
+response = requests.post(url, json=data, headers=headers)
+print(response.json())`,
+				javascript: `const response = await fetch('${this.BASE_URL}/x-users', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer ${this.currentApiKey}',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        Name: 'alice123',
+        Email: 'alice@example.com',
+        CreditGranted: 10.0
+    })
+});
+
+const result = await response.json();
+console.log(result);`
+			},
+			recharge: {
+				curl: `curl -X PUT '${this.BASE_URL}/x-users/{username}' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}' \\
+  -H 'Content-Type: application/json' \\
+  -d '{
+    "CreditGranted": 20.0
+  }'`,
+				python: `import requests
+
+url = "${this.BASE_URL}/x-users/{username}"
+headers = {
+    "Authorization": "Bearer ${this.currentApiKey}",
+    "Content-Type": "application/json"
+}
+data = {
+    "CreditGranted": 20.0  # 正数为充值，负数为扣款
+}
+
+response = requests.put(url, json=data, headers=headers)
+print(response.json())`,
+				javascript: `const response = await fetch('${this.BASE_URL}/x-users/{username}', {
+    method: 'PUT',
+    headers: {
+        'Authorization': 'Bearer ${this.currentApiKey}',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        CreditGranted: 20.0  // 正数为充值，负数为扣款
+    })
+});
+
+const result = await response.json();
+console.log(result);`
+			},
+			view: {
+				curl: `# 查看特定子账户
+curl -X GET '${this.BASE_URL}/x-dna/{username}' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}'
+
+# 查看所有子账户
+curl -X GET '${this.BASE_URL}/x-dna' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}'`,
+				python: `import requests
+
+# 查看特定子账户
+url = "${this.BASE_URL}/x-dna/{username}"
+headers = {"Authorization": "Bearer ${this.currentApiKey}"}
+response = requests.get(url, headers=headers)
+print(response.json())
+
+# 查看所有子账户
+url = "${this.BASE_URL}/x-dna"
+response = requests.get(url, headers=headers)
+print(response.json())`,
+				javascript: `// 查看特定子账户
+let response = await fetch('${this.BASE_URL}/x-dna/{username}', {
+    headers: {
+        'Authorization': '${this.currentApiKey}'
+    }
+});
+console.log(await response.json());
+
+// 查看所有子账户
+response = await fetch('${this.BASE_URL}/x-dna', {
+    headers: {
+        'Authorization': '${this.currentApiKey}'
+    }
+});
+console.log(await response.json());`
+			},
+			update: {
+				curl: `curl -X PUT '${this.BASE_URL}/x-users/{username}' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}' \\
+  -H 'Content-Type: application/json' \\
+  -d '{
+    "RPM": 1000,
+    "TPD": 5000000,
+    "HardLimit": 100
+  }'`,
+				python: `import requests
+
+url = "${this.BASE_URL}/x-users/{username}"
+headers = {
+    "Authorization": "Bearer ${this.currentApiKey}",
+    "Content-Type": "application/json"
+}
+data = {
+    "RPM": 1000,
+    "TPD": 5000000,
+    "HardLimit": 100
+}
+
+response = requests.put(url, json=data, headers=headers)
+print(response.json())`,
+				javascript: `const response = await fetch('${this.BASE_URL}/x-users/{username}', {
+    method: 'PUT',
+    headers: {
+        'Authorization': 'Bearer ${this.currentApiKey}',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        RPM: 1000,
+        TPD: 5000000,
+        HardLimit: 100
+    })
+});
+
+const result = await response.json();
+console.log(result);`
+			},
+			delete: {
+				curl: `curl -X DELETE '${this.BASE_URL}/x-users/{username}' \\
+  -H 'Authorization: Bearer ${this.currentApiKey}'`,
+				python: `import requests
+
+url = "${this.BASE_URL}/x-users/{username}"
+headers = {"Authorization": "${this.currentApiKey}"}
+
+response = requests.delete(url, headers=headers)
+print(response.json())`,
+				javascript: `const response = await fetch('${this.BASE_URL}/x-users/{username}', {
+    method: 'DELETE',
+    headers: {
+        'Authorization': 'Bearer ${this.currentApiKey}'
+    }
+});
+
+const result = await response.json();
+console.log(result);`
+			}
+		};
+
+		return examples[tabName]?.[language] || '';
+	}
+
+	// 更新API示例
+	updateApiExample(tabName) {
+		const codeElement = document.getElementById(`${tabName}-curl-code`);
+		if (codeElement) {
+			codeElement.textContent = this.generateApiExample(tabName, 'curl');
+		}
+
+		const pythonElement = document.getElementById(`${tabName}-python-code`);
+		if (pythonElement) {
+			pythonElement.textContent = this.generateApiExample(tabName, 'python');
+		}
+
+		const jsElement = document.getElementById(`${tabName}-javascript-code`);
+		if (jsElement) {
+			jsElement.textContent = this.generateApiExample(tabName, 'javascript');
+		}
+	}
+
+	// 更新所有API示例
+	updateAllApiExamples() {
+		['create', 'recharge', 'view', 'update', 'delete'].forEach(tabName => {
+			this.updateApiExample(tabName);
+		});
 	}
 }
 
