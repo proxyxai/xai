@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://proxyxai.com"
 title = "𝐏𝐫𝐨𝐱𝐲𝐗𝐀𝐈"
-description = "𝑋𝐴𝐼 𝐴𝑃𝐼 𝑃𝑟𝑜𝑥𝑦,Providing a robust foundational support for pioneers in the AI industry"
+description = "XAI API Empowering Pioneers"
 
 # The site theme to use.
 theme = "adidoks"
@@ -61,7 +61,7 @@ theme_color = "#fff"
 
 # More about site's title
 title_separator = "|"   # set as |, -, _, etc
-title_addition = "𝑷𝒓𝒐𝒙𝒚𝑿𝑨𝑰"
+title_addition = "𝐗𝐀𝐈"
 
 
 # Set date format in blog publish metadata
