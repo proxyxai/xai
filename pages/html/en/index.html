@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +10,16 @@
 		<link rel="stylesheet" href="/assets/style.css">
 	</head>
 	<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-		<!-- 通知容器 -->
+		<!-- Notification Container -->
 		<div id="notificationContainer"></div>
 
-		<!-- 登录页面 -->
+		<!-- Login Page -->
 		<div id="loginPage" class="min-h-screen flex items-center justify-center">
 			<div class="login-card">
 				<div class="login-header">
 					<img src="/assets/xai-logo.svg" width="200" class="mx-auto mb-4"/>
-					<h1 class="login-title"><a href="/en/" class="text-inherit hover:opacity-80 transition-opacity">𝐗𝐀𝐈 𝐀𝐏𝐈</a></h1>
-					<p class="text-gray-600 text-sm mt-2 mb-6">全息 · 子信息概念设计</p>
+					<h1 class="login-title"><a href="/" class="text-inherit hover:opacity-80 transition-opacity">𝐗𝐀𝐈 𝐀𝐏𝐈</a></h1>
+					<p class="text-gray-600 text-sm mt-2 mb-6">𝐻𝑜𝑙𝑜𝑔𝑟𝑎𝑝ℎ𝑖𝑐 · 𝑆𝑢𝑏-𝑖𝑛𝑓𝑜𝑟𝑚𝑎𝑡𝑖𝑜𝑛 𝐶𝑜𝑛𝑐𝑒𝑝𝑡 𝐷𝑒𝑠𝑖𝑔𝑛</p>
 				</div>
 
 				<form id="loginForm" class="space-y-6">
@@ -28,13 +28,13 @@
 							type="password"
 							id="loginKey"
 							class="form-input"
-							placeholder="请输入您的 API Key"
+							placeholder="Enter your API Key"
 							required
 							>
 					</div>
 
 						<button type="submit" id="loginButton" class="btn-primary w-full">
-							<span class="btn-text">登录</span>
+							<span class="btn-text">Login</span>
 							<svg class="btn-loading hidden" width="20" height="20" viewBox="0 0 20 20">
 								<circle class="spinner" cx="10" cy="10" r="8" fill="none" stroke-width="3"></circle>
 							</svg>
@@ -47,15 +47,15 @@
 			</div>
 		</div>
 
-		<!-- 主应用界面 -->
+		<!-- Main Application UI -->
 		<div id="mainApp" class="hidden">
-			<!-- 顶部导航 -->
+			<!-- Top Navigation -->
 			<nav class="navbar">
 				<div class="navbar-container">
 					<div class="navbar-brand">
 						<a href="https://proxyxai.com"><img src="/assets/xai-logo.svg" width="64" class="mr-3"/></a>
 						<div>
-							<h1 class="navbar-title"><a href="/en/" class="text-inherit hover:opacity-80 transition-opacity">𝐗𝐀𝐈 𝐀𝐏𝐈</a></h1>
+							<h1 class="navbar-title"><a href="/" class="text-inherit hover:opacity-80 transition-opacity">𝐗𝐀𝐈 𝐀𝐏𝐈</a></h1>
 						</div>
 					</div>
 					<div class="navbar-actions">
@@ -64,27 +64,27 @@
 							<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
 							</svg>
-							退出
+							Logout
 						</button>
 					</div>
 				</div>
 			</nav>
 
-			<!-- 主内容区域 -->
+			<!-- Main Content Area -->
 			<div class="main-container">
-				<!-- 选项卡导航 -->
+				<!-- Tab Navigation -->
 				<div class="tab-navigation">
 					<button class="tab-button active" data-tab="usage">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
 						</svg>
-						用量统计
+						Usage Statistics
 					</button>
 					<button class="tab-button" data-tab="query">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
 						</svg>
-						账户查询
+						Account Query
 					</button>
 					<button class="tab-button" data-tab="api">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,99 +96,99 @@
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
 						</svg>
-						创建子账户
+						Create Sub-account
 					</button>
 					<button class="tab-button" data-tab="recharge">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
 						</svg>
-						动账子账户
+						Adjust Sub-account Credit
 					</button>
 					<button class="tab-button" data-tab="view">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
 						</svg>
-						查看子账户
+						View Sub-accounts
 					</button>
 					<button class="tab-button" data-tab="update">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
 						</svg>
-						更新子账户
+						Update Sub-account
 					</button>
 					<button class="tab-button" data-tab="delete">
 						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
 						</svg>
-						删除子账户
+						Delete Sub-account
 					</button>
 				</div>
 
-				<!-- 用量统计 -->
+				<!-- Usage Statistics -->
 				<div id="usageTab" class="tab-content">
 					<div class="usage-container">
-						<!-- 查询类型选择 -->
+						<!-- Query Type Selector -->
 						<div class="usage-type-selector">
 							<button class="usage-type-btn active" data-type="today">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 								</svg>
-								今日实时
+								Today (Real-time)
 							</button>
 							<button class="usage-type-btn" data-type="date">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
 								</svg>
-								指定日期
+								Specific Date
 							</button>
 							<button class="usage-type-btn" data-type="range">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
 								</svg>
-								时间范围
+								Date Range
 							</button>
 						</div>
 
-						<!-- 查询控件区域 -->
+						<!-- Query Controls Area -->
 						<div class="usage-controls">
-							<!-- 今日实时控件 -->
+							<!-- Today Real-time Controls -->
 							<div id="todayControls" class="control-section">
 								<div class="control-info">
-									<p class="control-desc">今日实时用量统计</p>
+									<p class="control-desc">Real-time usage statistics for today</p>
 									<button id="queryToday" class="btn-primary">
 										<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
 										</svg>
-										刷新数据
+										Refresh Data
 									</button>
 								</div>
 							</div>
 
-							<!-- 指定日期控件 -->
+							<!-- Specific Date Controls -->
 							<div id="dateControls" class="control-section hidden">
 								<div class="date-control">
-									<label class="form-label">选择日期</label>
+									<label class="form-label">Select Date</label>
 									<input type="date" id="usageDate" class="form-input date-input" max="">
 									<button id="queryDate" class="btn-primary">
 										<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
 										</svg>
-										查询
+										Query
 									</button>
 								</div>
 							</div>
 
-							<!-- 时间范围控件 -->
+							<!-- Date Range Controls -->
 							<div id="rangeControls" class="control-section hidden">
 								<div class="range-control">
 									<div class="date-range-inputs">
 										<div class="form-group">
-											<label class="form-label">开始日期</label>
+											<label class="form-label">Start Date</label>
 											<input type="date" id="startDate" class="form-input date-input" max="">
 										</div>
 										<div class="form-group">
-											<label class="form-label">结束日期</label>
+											<label class="form-label">End Date</label>
 											<input type="date" id="endDate" class="form-input date-input" max="">
 										</div>
 									</div>
@@ -196,16 +196,16 @@
 										<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
 										</svg>
-										查询
+										Query
 									</button>
-									<p class="form-hint">最多可查询1年内的数据</p>
+									<p class="form-hint">Data available for up to one year.</p>
 								</div>
 							</div>
 						</div>
 
-						<!-- 统计结果区域 -->
+						<!-- Statistics Results Area -->
 						<div id="usageResults" class="usage-results hidden">
-							<!-- 统计卡片 -->
+							<!-- Stats Cards -->
 							<div class="stats-cards">
 								<div class="stat-card">
 									<div class="stat-icon bg-blue-100 text-blue-600">
@@ -214,8 +214,8 @@
 										</svg>
 									</div>
 									<div class="stat-content">
-										<p class="stat-label">总花费</p>
-										<p class="stat-value" id="totalCost">\$0.00</p>
+										<p class="stat-label">Total Cost</p>
+										<p class="stat-value" id="totalCost">\\$0.00</p>
 									</div>
 								</div>
 								<div class="stat-card">
@@ -225,7 +225,7 @@
 										</svg>
 									</div>
 									<div class="stat-content">
-										<p class="stat-label">总请求数</p>
+										<p class="stat-label">Total Requests</p>
 										<p class="stat-value" id="totalRequests">0</p>
 									</div>
 								</div>
@@ -236,7 +236,7 @@
 										</svg>
 									</div>
 									<div class="stat-content">
-										<p class="stat-label">输入 Tokens</p>
+										<p class="stat-label">Input Tokens</p>
 										<p class="stat-value" id="totalPrompt">0</p>
 									</div>
 								</div>
@@ -247,21 +247,21 @@
 										</svg>
 									</div>
 									<div class="stat-content">
-										<p class="stat-label">输出 Tokens</p>
+										<p class="stat-label">Output Tokens</p>
 										<p class="stat-value" id="totalCompletion">0</p>
 									</div>
 								</div>
 							</div>
 
-							<!-- 模型使用详情表格 -->
+							<!-- Model Usage Details Table -->
 							<div class="usage-table-container">
 								<div class="table-header-row">
-									<h3 class="table-title">模型使用详情</h3>
+									<h3 class="table-title">Model Usage Details</h3>
 									<div class="table-actions">
 										<select id="sortBy" class="form-input sort-select">
-											<option value="cost">按花费排序</option>
-											<option value="requests">按请求数排序</option>
-											<option value="name">按模型名称</option>
+											<option value="cost">Sort by Cost</option>
+											<option value="requests">Sort by Requests</option>
+											<option value="name">Sort by Model Name</option>
 										</select>
 									</div>
 								</div>
@@ -269,12 +269,12 @@
 									<table id="usageTable" class="data-table usage-table">
 										<thead>
 											<tr>
-												<th>模型</th>
-												<th>请求数</th>
-												<th>输入 Tokens</th>
-												<th>输出 Tokens</th>
-												<th>花费</th>
-												<th>占比</th>
+												<th>Model</th>
+												<th>Requests</th>
+												<th>Input Tokens</th>
+												<th>Output Tokens</th>
+												<th>Cost</th>
+												<th>Percentage</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -282,46 +282,46 @@
 								</div>
 							</div>
 
-							<!-- 按日期的使用统计（仅在时间范围查询时显示） -->
+							<!-- Daily Usage Statistics (only for date range query) -->
 							<div id="dailyStats" class="daily-stats-container hidden">
-								<h3 class="table-title">每日使用统计</h3>
+								<h3 class="table-title">Daily Usage Statistics</h3>
 
-								<!-- 图表切换按钮 -->
+								<!-- Chart Type Toggle -->
 								<div class="chart-controls">
 									<button class="chart-type-btn active" data-metric="cost">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 										</svg>
-										花费趋势
+										Cost Trend
 									</button>
 									<button class="chart-type-btn" data-metric="requests">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
 										</svg>
-										请求数趋势
+										Request Trend
 									</button>
 									<button class="chart-type-btn" data-metric="tokens">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
 										</svg>
-										Token 使用量
+										Token Usage
 									</button>
 								</div>
 
-								<!-- 图表容器 -->
+								<!-- Chart Container -->
 								<div class="chart-container">
 									<canvas id="usageChart"></canvas>
 								</div>
 
-								<!-- 数据表格 -->
+								<!-- Data Table -->
 								<div class="table-container">
 									<table id="dailyTable" class="data-table">
 										<thead>
 											<tr>
-												<th>日期</th>
-												<th>请求数</th>
-												<th>花费</th>
-												<th>主要模型</th>
+												<th>Date</th>
+												<th>Requests</th>
+												<th>Cost</th>
+												<th>Top Model</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -332,34 +332,34 @@
 					</div>
 				</div>
 
-				<!-- 账户查询 -->
+				<!-- Account Query -->
 				<div id="queryTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">账户额度查询</h2>
+						<h2 class="card-title">Account Credit Query</h2>
 						<div class="query-section">
 							<div class="form-group">
 								<label class="form-label">API Keys</label>
 								<textarea
 									id="api-key-input"
 									class="form-input query-textarea"
-									placeholder="请输入 API Key，支持批量查询（多个 key 请换行或用逗号分隔）"
+									placeholder="Enter API Key(s). Batch query is supported (use new lines or commas to separate multiple keys)."
 									rows="4"
 									></textarea>
-								<p class="form-hint">支持格式：sk-Xvs... 开头的 API Key</p>
+								<p class="form-hint">Supported format: API Keys starting with sk-Xvs...</p>
 							</div>
 							<div class="query-actions">
 								<button id="query-button" onclick="window.xaiManager.sendBillingRequest()" class="btn-primary">
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
 									</svg>
-									查询额度
+									Query Credit
 								</button>
 							</div>
 						</div>
 
 						<div id="query-results" class="query-results hidden">
 							<div class="results-header">
-								<h3 class="results-title">查询结果</h3>
+								<h3 class="results-title">Query Results</h3>
 								<span id="results-count" class="results-count"></span>
 							</div>
 							<div class="table-container">
@@ -374,17 +374,17 @@
 				<!-- AI API -->
 				<div id="apiTab" class="tab-content hidden">
 					<div class="api-docs-container">
-						<!-- 模型列表 -->
+						<!-- Model List -->
 						<div class="api-section">
-							<h2 class="api-section-title">XAI 模型列表</h2>
+							<h2 class="api-section-title">XAI Model List</h2>
 							<div class="api-link-card">
-								<p>请访问 <a id="modelsLink" href="#" target="_blank" class="api-link"></a> 查看所有支持的模型</p>
+								<p>Please visit <a id="modelsLink" href="#" target="_blank" class="api-link"></a> to see all supported models</p>
 							</div>
 						</div>
 
-						<!-- 支持的服务提供商 -->
+						<!-- Supported Service Providers -->
 						<div class="api-section">
-							<h2 class="api-section-title">🌐 支持的 AI 服务提供商</h2>
+							<h2 class="api-section-title">🌐 Supported AI Service Providers</h2>
 							<div class="providers-grid">
 								<div class="provider-card">
 									<h3>OpenAI</h3>
@@ -424,23 +424,23 @@
 								</div>
 							</div>
 							<div class="api-note">
-								<p>✨ XAI 平台全面支持上述所有 AI 服务提供商的模型。通过单一 API 密钥，您可以无缝调用以上任意服务商的 AI 模型，实现灵活高效的人工智能应用开发。</p>
+								<p>✨ The XAI platform fully supports models from all the AI service providers listed above. With a single API key, you can seamlessly call any of their AI models, enabling flexible and efficient AI application development.</p>
 							</div>
 						</div>
 
-						<!-- SDK 示例代码 -->
+						<!-- SDK Code Examples -->
 						<div class="api-section">
-							<h2 class="api-section-title">💻 SDK 示例代码</h2>
+							<h2 class="api-section-title">💻 SDK Code Examples</h2>
 
 							<!-- OpenAI SDK -->
 							<div class="code-example">
 								<div class="code-header">
-									<h3>OpenAI SDK 示例</h3>
+									<h3>OpenAI SDK Example</h3>
 									<button class="btn-copy-code" onclick="window.xaiManager.copyCode('openai')">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 										</svg>
-										复制
+										Copy
 									</button>
 								</div>
 								<pre class="code-block" id="openai-code"><code>import os
@@ -466,12 +466,12 @@ print(completion.choices[0].message)</code></pre>
 							<!-- Anthropic SDK -->
 							<div class="code-example">
 								<div class="code-header">
-									<h3>Anthropic SDK 示例</h3>
+									<h3>Anthropic SDK Example</h3>
 									<button class="btn-copy-code" onclick="window.xaiManager.copyCode('anthropic')">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 										</svg>
-										复制
+										Copy
 									</button>
 								</div>
 								<pre class="code-block" id="anthropic-code"><code>import os
@@ -497,52 +497,51 @@ print(message.content)</code></pre>
 							</div>
 						</div>
 
-						<!-- 官方文档提示 -->
+						<!-- Official Docs Hint -->
 						<div class="api-section">
 							<div class="docs-reminder">
-								<h3>📚 更多信息</h3>
-								<p>请阅读文档 <a id="docsLink" href="#" target="_blank" class="api-link"></a></p>
+								<h3>📚 More Information</h3>
+								<p>Please read the documentation at <a id="docsLink" href="#" target="_blank" class="api-link"></a></p>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- 创建子账户 -->
+				<!-- Create Sub-account -->
 				<div id="createTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">创建新的子账户</h2>
+						<h2 class="card-title">Create a New Sub-account</h2>
 						<form id="createForm" class="form-vertical">
-							<!-- 原有的表单内容保持不变 -->
 							<div class="form-group">
-								<label class="form-label required">用户名</label>
-								<input name="name" type="text" required class="form-input" placeholder="输入子账户用户名" minlength="4">
-								<small class="form-hint text-red-600">用户名必须唯一，不能与现有账户重复</small>
+								<label class="form-label required">Username</label>
+								<input name="name" type="text" required class="form-input" placeholder="Enter sub-account username" minlength="4">
+								<small class="form-hint text-red-600">Username must be unique and cannot match an existing account.</small>
 							</div>
 							<div class="form-group">
-								<label class="form-label required">邮箱</label>
-								<input name="email" type="email" required class="form-input" placeholder="输入子账户邮箱,接收 API Key">
-								<small class="form-hint text-red-600">邮箱地址必须唯一，不能与现有账户重复</small>
+								<label class="form-label required">Email</label>
+								<input name="email" type="email" required class="form-input" placeholder="Enter sub-account email to receive the API Key.">
+								<small class="form-hint text-red-600">Email address must be unique and cannot match an existing account.</small>
 							</div>
 							<div class="form-group">
-								<label class="form-label required">初始额度</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入初始充值金额,最低充值金额为2">
+								<label class="form-label required">Initial Credit</label>
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="Enter the initial credit amount. Minimum is 2.">
 							</div>
 							<div class="form-actions">
 								<button type="submit" class="btn-primary">
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
 									</svg>
-									创建子账户
+									Create Sub-account
 								</button>
 							</div>
 						</form>
 					</div>
 
-					<!-- API 示例代码 -->
+					<!-- API Example Code -->
 					<div class="api-section mt-6">
-						<h3 class="api-section-title">API 调用示例</h3>
+						<h3 class="api-section-title">API Call Example</h3>
 
-						<!-- cURL 示例 -->
+						<!-- cURL Example -->
 						<div class="code-example">
 							<div class="code-header">
 								<h4>cURL</h4>
@@ -550,13 +549,13 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="create-curl-code"><code></code></pre>
 						</div>
 
-						<!-- Python 示例 -->
+						<!-- Python Example -->
 						<div class="code-example">
 							<div class="code-header">
 								<h4>Python</h4>
@@ -564,13 +563,13 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="create-python-code"><code></code></pre>
 						</div>
 
-						<!-- JavaScript 示例 -->
+						<!-- JavaScript Example -->
 						<div class="code-example">
 							<div class="code-header">
 								<h4>JavaScript</h4>
@@ -578,7 +577,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="create-javascript-code"><code></code></pre>
@@ -586,35 +585,34 @@ print(message.content)</code></pre>
 					</div>
 				</div>
 
-				<!-- 账户动账 -->
+				<!-- Adjust Sub-account Credit -->
 				<div id="rechargeTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">向子账户充值/扣款</h2>
+						<h2 class="card-title">Add/Deduct Credit for Sub-account</h2>
 						<form id="rechargeForm" class="form-grid">
-							<!-- 原有表单内容保持不变 -->
 							<div class="form-group col-span-2">
-								<label class="form-label required">子账户标识</label>
-								<input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
-								<p class="form-hint">支持输入用户名或用户ID进行查询</p>
+								<label class="form-label required">Sub-account Identifier</label>
+								<input name="name" type="text" required class="form-input" placeholder="Enter username or user ID">
+								<p class="form-hint">You can use either the username or user ID.</p>
 							</div>
 							<div class="form-group col-span-2">
-								<label class="form-label required">金额</label>
-								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="输入正数为充值,负数为扣款">
+								<label class="form-label required">Amount</label>
+								<input name="credit" type="number" step="0.01" required class="form-input" placeholder="Enter a positive number to add credit, a negative number to deduct.">
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-success">
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 									</svg>
-									确认动账
+									Confirm Transaction
 								</button>
 							</div>
 						</form>
 					</div>
 
-					<!-- API 示例代码 -->
+					<!-- API Example Code -->
 					<div class="api-section mt-6">
-						<h3 class="api-section-title">API 调用示例</h3>
+						<h3 class="api-section-title">API Call Example</h3>
 
 						<div class="code-example">
 							<div class="code-header">
@@ -623,7 +621,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="recharge-curl-code"><code></code></pre>
@@ -636,7 +634,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="recharge-python-code"><code></code></pre>
@@ -649,7 +647,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="recharge-javascript-code"><code></code></pre>
@@ -657,31 +655,30 @@ print(message.content)</code></pre>
 					</div>
 				</div>
 
-				<!-- 查看子账户 -->
+				<!-- View Sub-accounts -->
 				<div id="viewTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">查看子账户信息</h2>
+						<h2 class="card-title">View Sub-account Information</h2>
 						<form id="viewForm" class="form-grid">
-							<!-- 原有表单内容保持不变 -->
 							<div class="form-group col-span-2">
-								<label class="form-label">子账户标识</label>
-								<input name="name" type="text" class="form-input" placeholder="输入用户名或用户ID，留空查看所有">
-								<p class="form-hint">留空查询将显示所有子账户信息</p>
+								<label class="form-label">Sub-account Identifier</label>
+								<input name="name" type="text" class="form-input" placeholder="Enter username or user ID. Leave blank to view all.">
+								<p class="form-hint">Leaving this blank will display all sub-account information.</p>
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-info">
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
 									</svg>
-									查询信息
+									Query Information
 								</button>
 							</div>
 						</form>
 					</div>
 
-					<!-- API 示例代码 -->
+					<!-- API Example Code -->
 					<div class="api-section mt-6">
-						<h3 class="api-section-title">API 调用示例</h3>
+						<h3 class="api-section-title">API Call Example</h3>
 
 						<div class="code-example">
 							<div class="code-header">
@@ -690,7 +687,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="view-curl-code"><code></code></pre>
@@ -703,7 +700,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="view-python-code"><code></code></pre>
@@ -716,7 +713,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="view-javascript-code"><code></code></pre>
@@ -724,127 +721,127 @@ print(message.content)</code></pre>
 					</div>
 				</div>
 
-				<!-- 更新子账户 -->
+				<!-- Update Sub-account -->
 				<div id="updateTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title">更新子账户信息</h2>
+						<h2 class="card-title">Update Sub-account Information</h2>
 						<form id="updateForm" class="form-vertical">
 							<div class="form-group">
-								<label class="form-label required">子账户标识</label>
-								<input name="name" type="text" required class="form-input" placeholder="输入用户名或用户ID">
-								<p class="form-hint">请输入要更新的子账户用户名或用户ID</p>
+								<label class="form-label required">Sub-account Identifier</label>
+								<input name="name" type="text" required class="form-input" placeholder="Enter username or user ID">
+								<p class="form-hint">Enter the username or user ID of the sub-account to update.</p>
 							</div>
 
 							<div class="update-fields-container">
-								<h3 class="section-title">基本信息</h3>
+								<h3 class="section-title">Basic Information</h3>
 								<div class="form-grid">
 									<div class="form-group">
-										<label class="form-label">邮箱</label>
+										<label class="form-label">Email</label>
 										<input name="email" type="email" class="form-input">
 									</div>
 									<div class="form-group">
-										<label class="form-label">费率</label>
+										<label class="form-label">Rates</label>
 										<input name="rates" type="number" step="0.01" class="form-input">
 									</div>
 									<div class="form-group root-only">
-										<label class="form-label">档位</label>
+										<label class="form-label">Tier</label>
 										<input name="gear" type="number" class="form-input">
 									</div>
 									<div class="form-group root-only">
-										<label class="form-label">等级</label>
+										<label class="form-label">Level</label>
 										<input name="level" type="number" class="form-input">
 									</div>
 									<div class="form-group root-only">
-										<label class="form-label">角色</label>
+										<label class="form-label">Role</label>
 										<input name="role" type="number" class="form-input">
 									</div>
 									<div class="form-group root-only">
-										<label class="form-label">费率因子</label>
+										<label class="form-label">Rate Factor</label>
 										<input name="factor" type="number" step="0.01" class="form-input">
 									</div>
 									<div class="form-group">
-										<label class="form-label">状态</label>
+										<label class="form-label">Status</label>
 										<select name="status" class="form-input">
-											<option value="">不修改</option>
-											<option value="true">启用</option>
-											<option value="false">禁用</option>
+											<option value="">No Change</option>
+											<option value="true">Enabled</option>
+											<option value="false">Disabled</option>
 										</select>
 									</div>
 								</div>
 
-								<h3 class="section-title">限额设置</h3>
+								<h3 class="section-title">Limit Settings</h3>
 								<div class="form-grid">
 									<div class="form-group">
-										<label class="form-label">每月使用额度上限</label>
+										<label class="form-label">Monthly Usage Hard Limit</label>
 										<input name="hardLimit" type="number" class="form-input">
 									</div>
 									<div class="form-group">
-										<label class="form-label">子账户数上限</label>
+										<label class="form-label">Sub-account Limit</label>
 										<input name="childLimit" type="number" class="form-input">
 									</div>
 								</div>
 
-								<h3 class="section-title">速率限制</h3>
+								<h3 class="section-title">Rate Limits</h3>
 								<div class="form-grid grid-cols-3">
 									<div class="form-group">
 										<label class="form-label">RPM</label>
-										<input name="rpm" type="number" class="form-input" placeholder="每分钟请求数">
+										<input name="rpm" type="number" class="form-input" placeholder="Requests Per Minute">
 									</div>
 									<div class="form-group">
 										<label class="form-label">RPH</label>
-										<input name="rph" type="number" class="form-input" placeholder="每小时请求数">
+										<input name="rph" type="number" class="form-input" placeholder="Requests Per Hour">
 									</div>
 									<div class="form-group">
 										<label class="form-label">RPD</label>
-										<input name="rpd" type="number" class="form-input" placeholder="每日请求数">
+										<input name="rpd" type="number" class="form-input" placeholder="Requests Per Day">
 									</div>
 									<div class="form-group">
 										<label class="form-label">TPM</label>
-										<input name="tpm" type="number" class="form-input" placeholder="每分钟令牌数">
+										<input name="tpm" type="number" class="form-input" placeholder="Tokens Per Minute">
 									</div>
 									<div class="form-group">
 										<label class="form-label">TPH</label>
-										<input name="tph" type="number" class="form-input" placeholder="每小时令牌数">
+										<input name="tph" type="number" class="form-input" placeholder="Tokens Per Hour">
 									</div>
 									<div class="form-group">
 										<label class="form-label">TPD</label>
-										<input name="tpd" type="number" class="form-input" placeholder="每日令牌数">
+										<input name="tpd" type="number" class="form-input" placeholder="Tokens Per Day">
 									</div>
 								</div>
 
-								<h3 class="section-title">管控属性</h3>
+								<h3 class="section-title">Control Properties</h3>
 								<div class="form-grid">
 									<div class="form-group col-span-2">
-										<label class="form-label">允许的IP</label>
-										<input name="allowIPs" type="text" class="form-input" placeholder="多个IP用逗号分隔(支持 CIDR 网段配置)">
+										<label class="form-label">Allowed IPs</label>
+										<input name="allowIPs" type="text" class="form-input" placeholder="Separate multiple IPs with commas (CIDR notation supported).">
 									</div>
 									<div class="form-group col-span-2">
-										<label class="form-label">允许的模型</label>
-										<input name="allowModels" type="text" class="form-input" placeholder="多个模型用逗号分隔(支持通配符号*,比如gpt*,claude*)">
+										<label class="form-label">Allowed Models</label>
+										<input name="allowModels" type="text" class="form-input" placeholder="Separate multiple models with commas (wildcards like gpt* or claude* are supported).">
 									</div>
 									<div class="form-group col-span-2 root-only">
-										<label class="form-label">允许的级别</label>
-										<input name="allowLevels" type="text" class="form-input" placeholder="多个级别用逗号分隔">
+										<label class="form-label">Allowed Levels</label>
+										<input name="allowLevels" type="text" class="form-input" placeholder="Separate multiple levels with commas.">
 									</div>
 									<div class="form-group col-span-2">
-										<label class="form-label">允许的资源</label>
+										<label class="form-label">Allowed Resources</label>
 										<textarea name="resources" class="form-input" rows="3" placeholder="/v1/chat/completions,/v1/messages,/v1/embeddings"></textarea>
 									</div>
 									<div class="form-group col-span-2">
-										<label class="form-label">模型映射</label>
-										<textarea name="modelMapper" class="form-input" rows="3" placeholder="模型映射(gpt-3.5*=gpt-4o-mini,gpt-4=gpt-4o)"></textarea>
+										<label class="form-label">Model Mapping</label>
+										<textarea name="modelMapper" class="form-input" rows="3" placeholder="Model Mapping (e.g., gpt-3.5*=gpt-4o-mini, gpt-4=gpt-4o)"></textarea>
 									</div>
 									<div class="form-group col-span-2 root-only">
-										<label class="form-label">级别映射</label>
-										<textarea name="levelMapper" class="form-input" rows="3" placeholder="级别映射"></textarea>
+										<label class="form-label">Level Mapping</label>
+										<textarea name="levelMapper" class="form-input" rows="3" placeholder="Level Mapping"></textarea>
 									</div>
 									<div class="form-group">
-										<label class="form-label">账单邮箱</label>
-										<input name="billingEmail" type="email" class="form-input" placeholder="用于接收账单通知，可多个子账户共用">
+										<label class="form-label">Billing Email</label>
+										<input name="billingEmail" type="email" class="form-input" placeholder="Used for receiving billing notifications, can be shared by multiple sub-accounts.">
 									</div>
 									<div class="form-group">
-										<label class="form-label">二维码URL</label>
-										<input name="qrcode" type="text" class="form-input" placeholder="技术支持二维码图片的URL地址">
+										<label class="form-label">QR Code URL</label>
+										<input name="qrcode" type="text" class="form-input" placeholder="URL for the technical support QR code image.">
 									</div>
 								</div>
 							</div>
@@ -854,14 +851,14 @@ print(message.content)</code></pre>
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
 									</svg>
-									更新子账户
+									Update Sub-account
 								</button>
 							</div>
 						</form>
 					</div>
 
 					<div class="api-section mt-6">
-						<h3 class="api-section-title">API 调用示例</h3>
+						<h3 class="api-section-title">API Call Example</h3>
 
 						<div class="code-example">
 							<div class="code-header">
@@ -870,7 +867,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="update-curl-code"><code></code></pre>
@@ -883,7 +880,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="update-python-code"><code></code></pre>
@@ -896,7 +893,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="update-javascript-code"><code></code></pre>
@@ -904,34 +901,34 @@ print(message.content)</code></pre>
 					</div>
 				</div>
 
-				<!-- 删除子账户 -->
+				<!-- Delete Sub-account -->
 				<div id="deleteTab" class="tab-content hidden">
 					<div class="content-card">
-						<h2 class="card-title text-red-600">删除子账户</h2>
+						<h2 class="card-title text-red-600">Delete Sub-account</h2>
 						<div class="alert alert-danger">
 							<svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
 							</svg>
-							<p>删除操作不可撤销，子账户 API Key 将即刻失效</p>
+							<p>This action is irreversible. The sub-account's API Key will be immediately invalidated.</p>
 						</div>
 						<form id="deleteForm" class="form-grid">
 							<div class="form-group col-span-2">
-								<label class="form-label required">子账户标识</label>
-								<input name="name" type="text" required class="form-input" placeholder="输入要删除的用户名或用户ID">
-								<p class="form-hint text-red-600">请仔细确认要删除的子账户标识</p>
+								<label class="form-label required">Sub-account Identifier</label>
+								<input name="name" type="text" required class="form-input" placeholder="Enter the username or user ID of the account to be deleted.">
+								<p class="form-hint text-red-600">Please carefully confirm the identifier of the sub-account you wish to delete.</p>
 							</div>
 							<div class="form-actions col-span-2">
 								<button type="submit" class="btn-danger">
 									<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
 									</svg>
-									确认删除
+									Confirm Deletion
 								</button>
 							</div>
 						</form>
 					</div>
 					<div class="api-section mt-6">
-						<h3 class="api-section-title">API 调用示例</h3>
+						<h3 class="api-section-title">API Call Example</h3>
 
 						<div class="code-example">
 							<div class="code-header">
@@ -940,7 +937,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="delete-curl-code"><code></code></pre>
@@ -953,7 +950,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="delete-python-code"><code></code></pre>
@@ -966,7 +963,7 @@ print(message.content)</code></pre>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 									</svg>
-									复制
+									Copy
 								</button>
 							</div>
 							<pre class="code-block" id="delete-javascript-code"><code></code></pre>
@@ -976,11 +973,11 @@ print(message.content)</code></pre>
 			</div>
 		</div>
 
-		<!-- 结果弹窗 -->
+		<!-- Result Modal -->
 		<div id="resultModal" class="modal hidden">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title">操作结果</h3>
+					<h3 class="modal-title">Operation Result</h3>
 					<button id="closeModal" class="modal-close">
 						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -990,7 +987,7 @@ print(message.content)</code></pre>
 				<div class="modal-body">
 					<pre id="resultContent" class="result-content"></pre>
 
-					<!-- Secret Key 复制区域 -->
+					<!-- Secret Key Copy Area -->
 					<div id="secretKeyContainer" class="secret-key-container hidden">
 						<h4 class="secret-key-title">🔑 Secret Key</h4>
 						<div class="secret-key-box">
@@ -999,13 +996,13 @@ print(message.content)</code></pre>
 								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
 								</svg>
-								复制
+								Copy
 							</button>
 						</div>
-						<p class="secret-key-hint">请妥善保管此密钥，它将用于子账户的API认证</p>
+						<p class="secret-key-hint">Please store this key securely. It is used for the sub-account's API authentication.</p>
 					</div>
 					<div id="nonRootHint" class="non-root-hint hidden">
-						<p>💡 提示：请通知子账户所属用户邮件查收API密钥</p>
+						<p>💡 Hint: Please notify the sub-account user to check their email for the API key.</p>
 					</div>
 				</div>
 			</div>

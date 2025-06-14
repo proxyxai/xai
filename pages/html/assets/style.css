@@ -2190,3 +2190,25 @@ button:disabled {
     white-space: pre;
     word-wrap: normal;
 }
+
+/* Root用户专属字段控制 */
+.root-only {
+    display: none !important;
+}
+
+body.is-root-user .root-only {
+    display: flex !important;
+}
+
+/* 响应式网格布局调整 */
+@media (min-width: 768px) {
+    body:not(.is-root-user) #updateTab .form-grid {
+        /* 非root用户时调整网格布局 */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    body:not(.is-root-user) #updateTab .form-grid.grid-cols-3 {
+        /* 速率限制部分在非root用户时改为2列 */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -7,7 +7,7 @@ class XAIManager {
 		this.queriedApiKeys = [];
 		this.authCacheKey = 'xai-auth-cache';
 		this.subAccountCacheKey = 'xai-sub-account-cache';
-		this.authCacheDuration = 30 * 24 * 60 * 60 * 1000; // 30天
+		this.authCacheDuration = 30 * 24 * 60 * 60 * 1000;
 		this.usageData = null;
 		this.initializeApp();
 	}
@@ -24,27 +24,22 @@ class XAIManager {
 		const domainParts = this.currentDomain.split('.');
 		this.mainDomain = domainParts.slice(-2).join('.');
 		this.BASE_URL = `https://api.${this.mainDomain}`;
-
-		// 初始化API说明页面的链接
 		this.updateApiDocLinks();
 	}
 
 	updateApiDocLinks() {
-		// 更新模型列表链接
 		const modelsLink = document.getElementById('modelsLink');
 		if (modelsLink) {
 			modelsLink.href = `https://api.${this.mainDomain}/v1/models`;
 			modelsLink.textContent = `https://api.${this.mainDomain}/v1/models`;
 		}
 
-		// 更新官方文档链接
 		const docsLink = document.getElementById('docsLink');
 		if (docsLink) {
 			docsLink.href = `https://docs.${this.mainDomain}`;
 			docsLink.textContent = `https://docs.${this.mainDomain}`;
 		}
 
-		// 更新代码示例中的API URL
 		const apiBaseUrls = document.querySelectorAll('.api-base-url');
 		apiBaseUrls.forEach(el => {
 			el.textContent = `https://api.${this.mainDomain}/v1`;
@@ -57,18 +52,15 @@ class XAIManager {
 	}
 
 	setupDateInputs() {
-		// 设置日期输入的最大值为今天
 		const today = new Date().toISOString().split('T')[0];
 		const dateInputs = document.querySelectorAll('input[type="date"]');
 		dateInputs.forEach(input => {
 			input.max = today;
 		});
 
-		// 设置默认值
 		document.getElementById('usageDate').value = today;
 		document.getElementById('endDate').value = today;
 
-		// 设置开始日期为7天前
 		const sevenDaysAgo = new Date();
 		sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 		document.getElementById('startDate').value = sevenDaysAgo.toISOString().split('T')[0];
@@ -85,24 +77,19 @@ class XAIManager {
 	}
 
 	bindUsageEvents() {
-		// 绑定用量类型切换事件
 		const usageTypeBtns = document.querySelectorAll('.usage-type-btn');
 		usageTypeBtns.forEach(btn => {
 			btn.addEventListener('click', () => this.switchUsageType(btn.dataset.type));
 		});
 
-		// 绑定查询按钮事件
 		document.getElementById('queryToday').addEventListener('click', () => this.queryUsage('today'));
 		document.getElementById('queryDate').addEventListener('click', () => this.queryUsage('date'));
 		document.getElementById('queryRange').addEventListener('click', () => this.queryUsage('range'));
 
-		// 绑定排序选择事件
 		document.getElementById('sortBy').addEventListener('change', (e) => this.sortUsageTable(e.target.value));
 
-		// 绑定图表类型切换事件
 		document.querySelectorAll('.chart-type-btn').forEach(btn => { btn.addEventListener('click', () => this.switchChartType(btn.dataset.metric)); });
 
-		// 绑定日期范围验证
 		document.getElementById('startDate').addEventListener('change', (e) => {
 			const endDate = document.getElementById('endDate');
 			if (endDate.value && e.target.value > endDate.value) {
@@ -118,35 +105,29 @@ class XAIManager {
 		});
 	}
 
-	// 添加切换图表类型的方法
 	switchChartType(metric) {
 		this.currentMetric = metric;
 
-		// 更新按钮状态
 		document.querySelectorAll('.chart-type-btn').forEach(btn => {
 			btn.classList.toggle('active', btn.dataset.metric === metric);
 		});
 
-		// 重新绘制图表
 		if (this.usageData && this.usageData.daily_costs) {
 			this.updateChart(this.usageData.daily_costs);
 		}
 	}
 
 	switchUsageType(type) {
-		// 更新按钮状态
 		document.querySelectorAll('.usage-type-btn').forEach(btn => {
 			btn.classList.toggle('active', btn.dataset.type === type);
 		});
 
-		// 切换控件显示
 		document.querySelectorAll('.control-section').forEach(section => {
 			section.classList.add('hidden');
 		});
 
 		document.getElementById(`${type}Controls`).classList.remove('hidden');
 
-		// 如果是今日实时，立即查询
 		if (type === 'today') {
 			this.queryUsage('today');
 		}
@@ -159,7 +140,7 @@ class XAIManager {
 		if (type === 'date') {
 			const date = document.getElementById('usageDate').value;
 			if (!date) {
-				this.showNotification('请选择日期', 'warning');
+				this.showNotification('Please select a date', 'warning');
 				return;
 			}
 			params.append('date', date);
@@ -168,7 +149,7 @@ class XAIManager {
 			const endDate = document.getElementById('endDate').value;
 
 			if (!startDate || !endDate) {
-				this.showNotification('请选择开始和结束日期', 'warning');
+				this.showNotification('Please select a start and end date', 'warning');
 				return;
 			}
 
@@ -180,13 +161,12 @@ class XAIManager {
 			url += '?' + params.toString();
 		}
 
-		// 获取查询按钮
 		const queryButton = type === 'today' ? document.getElementById('queryToday') :
 			type === 'date' ? document.getElementById('queryDate') :
 			document.getElementById('queryRange');
 
 		const originalHTML = queryButton.innerHTML;
-		this.setLoadingState(queryButton, true, '查询中...');
+		this.setLoadingState(queryButton, true, 'Querying...');
 
 		try {
 			const response = await fetch(url, {
@@ -196,16 +176,16 @@ class XAIManager {
 			});
 
 			if (!response.ok) {
-				throw new Error(`查询失败 (${response.status})`);
+				throw new Error(`Query failed (${response.status})`);
 			}
 
 			const data = await response.json();
 			this.usageData = data;
 			this.displayUsageResults(data, type);
 
-			this.showNotification('查询成功', 'success');
+			this.showNotification('Query successful', 'success');
 		} catch (error) {
-			this.showNotification(error.message || '查询失败', 'error');
+			this.showNotification(error.message || 'Query failed', 'error');
 			console.error('Usage query error:', error);
 		} finally {
 			queryButton.innerHTML = originalHTML;
@@ -217,17 +197,14 @@ class XAIManager {
 		const resultsDiv = document.getElementById('usageResults');
 		resultsDiv.classList.remove('hidden');
 
-		// 更新统计卡片
 		document.getElementById('totalCost').textContent = this.formatNumber(data.total_credit_used || 0, 'currency');
 		document.getElementById('totalRequests').textContent = (data.total_requests || 0).toLocaleString();
 		document.getElementById('totalPrompt').textContent = (data.total_prompt || 0).toLocaleString();
 		document.getElementById('totalCompletion').textContent = (data.total_completion || 0).toLocaleString();
 
-		// 处理模型使用数据
 		const modelUsage = this.processModelUsage(data.usage_summary || {});
 		this.displayModelUsageTable(modelUsage);
 
-		// 如果是时间范围查询，显示每日统计和图表
 		if (queryType === 'range' && data.daily_costs && data.daily_costs.length > 1) {
 			this.displayDailyStats(data.daily_costs);
 			this.initChart();
@@ -239,15 +216,12 @@ class XAIManager {
 		}
 	}
 
-	// 初始化图表
 	initChart() {
 		const ctx = document.getElementById('usageChart');
 		if (!ctx) return;
 
-		// 如果图表已存在，先销毁
 		this.destroyChart();
 
-		// 创建新图表
 		this.usageChart = new Chart(ctx, {
 			type: 'line',
 			data: {
@@ -297,9 +271,9 @@ class XAIManager {
 
 								switch(metric) {
 									case 'cost':
-										return `花费: ${this.formatNumber(value, 'currency')}`;
+										return `Cost: ${this.formatNumber(value, 'currency')}`;
 									case 'requests':
-										return `请求数: ${value.toLocaleString()}`;
+										return `Requests: ${value.toLocaleString()}`;
 									case 'tokens':
 										return `Tokens: ${value.toLocaleString()}`;
 									default:
@@ -350,10 +324,8 @@ class XAIManager {
 	updateChart(dailyCosts) {
 		if (!this.usageChart) return;
 
-		// 按日期排序
 		const sortedData = [...dailyCosts].sort((a, b) => new Date(a.date) - new Date(b.date));
 
-		// 提取数据
 		const labels = sortedData.map(day => {
 			const date = new Date(day.date);
 			return `${date.getMonth() + 1}/${date.getDate()}`;
@@ -366,7 +338,7 @@ class XAIManager {
 			case 'cost':
 				data = sortedData.map(day => day.total_credit_used || 0);
 				datasetConfig = {
-					label: '每日花费',
+					label: 'Daily Cost',
 					borderColor: '#6366f1',
 					backgroundColor: 'rgba(99, 102, 241, 0.1)',
 					pointBackgroundColor: '#6366f1',
@@ -376,7 +348,7 @@ class XAIManager {
 			case 'requests':
 				data = sortedData.map(day => day.total_requests || 0);
 				datasetConfig = {
-					label: '每日请求数',
+					label: 'Daily Requests',
 					borderColor: '#10b981',
 					backgroundColor: 'rgba(16, 185, 129, 0.1)',
 					pointBackgroundColor: '#10b981',
@@ -385,12 +357,10 @@ class XAIManager {
 				break;
 			case 'tokens':
 				data = sortedData.map(day => {
-					// 优先使用汇总数据
 					if (day.total_prompt !== undefined && day.total_completion !== undefined) {
 						return day.total_prompt + day.total_completion;
 					}
 
-					// 如果没有汇总数据，从 line_items 计算
 					let totalTokens = 0;
 					if (day.line_items && day.line_items.length > 0) {
 						day.line_items.forEach(item => {
@@ -402,7 +372,7 @@ class XAIManager {
 					return totalTokens;
 				});
 				datasetConfig = {
-					label: '每日 Token 使用量',
+					label: 'Daily Token Usage',
 					borderColor: '#f59e0b',
 					backgroundColor: 'rgba(245, 158, 11, 0.1)',
 					pointBackgroundColor: '#f59e0b',
@@ -411,7 +381,6 @@ class XAIManager {
 				break;
 		}
 
-		// 更新图表
 		this.usageChart.data.labels = labels;
 		this.usageChart.data.datasets[0] = {
 			...this.usageChart.data.datasets[0],
@@ -419,11 +388,9 @@ class XAIManager {
 			data: data
 		};
 
-		// 添加平滑动画
 		this.usageChart.update('active');
 	}
 
-	// 销毁图表
 	destroyChart() {
 		if (this.usageChart) {
 			this.usageChart.destroy();
@@ -431,16 +398,15 @@ class XAIManager {
 		}
 	}
 
-	// 在 formatNumber 方法中添加对大数字的处理
 	formatNumber(num, type = 'currency') {
-		if (typeof num !== 'number') return type === 'currency' ? '\$0.00' : '0';
+		if (typeof num !== 'number') return type === 'currency' ? '\\$0.00' : '0';
 
 		if (Math.abs(num) >= 100000000) {
-			return (type === 'currency' ? '$' : '') + num.toExponential(2);
+			return (type === 'currency' ? '\$' : '') + num.toExponential(2);
 		}
 
 		if (type === 'currency') {
-			return '$' + num.toFixed(2);
+			return '\$' + num.toFixed(2);
 		} else if (type === 'limit') {
 			return Math.round(num).toLocaleString();
 		}
@@ -475,7 +441,6 @@ class XAIManager {
 			const row = document.createElement('tr');
 			row.className = 'table-row';
 
-			// 处理模型名称，如果太长则截断
 			const displayName = model.name.length > 40 ?
 				model.name.substring(0, 37) + '...' :
 				model.name;
@@ -523,14 +488,12 @@ class XAIManager {
 		const tbody = document.querySelector('#dailyTable tbody');
 		tbody.innerHTML = '';
 
-		// 按日期倒序排列
 		const sortedDays = [...dailyCosts].sort((a, b) => b.timestamp - a.timestamp);
 
 		sortedDays.forEach(day => {
 			const row = document.createElement('tr');
 			row.className = 'table-row';
 
-			// 找出当天使用最多的模型（基于花费）
 			let topModel = '';
 			let maxCost = 0;
 
@@ -577,19 +540,16 @@ class XAIManager {
 	}
 
 	bindSubAccountInputEvents() {
-		// 为子账户标识输入框绑定事件
 		const subAccountInputs = ['rechargeForm', 'viewForm', 'updateForm'].map(id =>
 			document.querySelector(`#${id} input[name="name"]`)
 		).filter(Boolean);
 
 		subAccountInputs.forEach(input => {
-			// 加载缓存的子账户标识
 			const cachedSubAccount = this.getCachedSubAccount();
 			if (cachedSubAccount) {
 				input.value = cachedSubAccount;
 			}
 
-			// 保存输入的子账户标识
 			input.addEventListener('change', (e) => {
 				const value = e.target.value.trim();
 				if (value) {
@@ -668,7 +628,6 @@ class XAIManager {
 		});
 	}
 
-	// 获取缓存的认证信息
 	getAuthCache() {
 		try {
 			const cached = localStorage.getItem(this.authCacheKey);
@@ -677,7 +636,6 @@ class XAIManager {
 			const data = JSON.parse(cached);
 			const now = Date.now();
 
-			// 检查缓存是否过期
 			if (now - data.timestamp > this.authCacheDuration) {
 				localStorage.removeItem(this.authCacheKey);
 				return null;
@@ -689,7 +647,6 @@ class XAIManager {
 		}
 	}
 
-	// 设置认证缓存
 	setAuthCache(apiKey, userData) {
 		const cacheData = {
 			apiKey,
@@ -700,26 +657,21 @@ class XAIManager {
 	}
 
 	async checkAuthentication() {
-		// 先尝试使用缓存快速登录
 		const authCache = this.getAuthCache();
 		if (authCache) {
 			this.currentApiKey = authCache.apiKey;
 			this.currentUser = authCache.userData;
 			this.isRootUser = authCache.userData.name === 'root';
 
-			// 立即显示主界面
 			this.showMainApp();
 			this.loadSavedApiKeys();
 
-			// 后台静默更新用户信息
 			this.silentUpdateUserInfo(authCache.apiKey);
 
-			// 延迟执行自动查询
 			setTimeout(() => this.autoQueryOnLoad(), 300);
 			return;
 		}
 
-		// 如果没有缓存，尝试旧的认证方式
 		const savedKey = localStorage.getItem('xai-parent-api-key');
 		const savedUser = localStorage.getItem('xai-user-info');
 
@@ -730,7 +682,6 @@ class XAIManager {
 					this.currentApiKey = savedKey;
 					this.currentUser = JSON.parse(savedUser);
 
-					// 设置新的缓存
 					this.setAuthCache(savedKey, this.currentUser);
 
 					this.showMainApp();
@@ -739,7 +690,7 @@ class XAIManager {
 					return;
 				}
 			} catch (error) {
-				console.error('验证失败:', error);
+				console.error('Validation failed:', error);
 			}
 		}
 
@@ -747,7 +698,6 @@ class XAIManager {
 		this.showLoginPage();
 	}
 
-	// 后台静默更新用户信息
 	async silentUpdateUserInfo(apiKey) {
 		try {
 			const response = await fetch(`${this.BASE_URL}/dashboard/info`, {
@@ -760,24 +710,19 @@ class XAIManager {
 					this.currentUser = userData;
 					this.isRootUser = userData.name === 'root';
 
-					// 更新缓存
 					this.setAuthCache(apiKey, userData);
-					// 更新显示
 					this.updateUserInfo();
-					// 更新用户权限显示
 					this.updateUserPermissions();
 				}
 			}
 		} catch (error) {
-			console.error('静默更新用户信息失败:', error);
+			console.error('Silent user info update failed:', error);
 		}
 	}
 
 	autoQueryOnLoad() {
-		// 自动查询用量统计
 		const usageTab = document.getElementById('usageTab');
 		if (!usageTab.classList.contains('hidden')) {
-			// 自动查询今日实时用量
 			setTimeout(() => this.queryUsage('today'), 300);
 		}
 	}
@@ -806,7 +751,7 @@ class XAIManager {
 				}
 			}
 		} catch (error) {
-			console.error('API验证错误:', error);
+			console.error('API validation error:', error);
 		}
 		return false;
 	}
@@ -826,12 +771,12 @@ class XAIManager {
 		const apiKey = form.loginKey.value.trim();
 
 		if (!this.validateApiKey(apiKey)) {
-			this.showNotification('API Key 格式不正确', 'error');
+			this.showNotification('Invalid API Key format', 'error');
 			return;
 		}
 
 		const originalHTML = submitButton.innerHTML;
-		this.setLoadingState(submitButton, true, '验证中...');
+		this.setLoadingState(submitButton, true, 'Verifying...');
 
 		try {
 			const isValid = await this.verifyApiKey(apiKey);
@@ -845,10 +790,10 @@ class XAIManager {
 				this.showMainApp();
 				setTimeout(() => this.autoQueryOnLoad(), 500);
 			} else {
-				throw new Error('API Key 无效或已过期');
+				throw new Error('API Key is invalid or has expired');
 			}
 		} catch (error) {
-			this.showNotification(error.message || '登录失败', 'error');
+			this.showNotification(error.message || 'Login failed', 'error');
 		} finally {
 			submitButton.innerHTML = originalHTML;
 			submitButton.disabled = false;
@@ -891,7 +836,7 @@ class XAIManager {
 			userInfoElement.innerHTML = `
 				<div class="user-info-card">
 				<div class="user-name">${this.currentUser.name}</div>
-				<div class="user-balance">余额: ${balance}</div>
+				<div class="user-balance">Balance: ${balance}</div>
 				</div>
 				`;
 		}
@@ -915,7 +860,6 @@ class XAIManager {
 		});
 		document.getElementById(`${tabName}Tab`).classList.remove('hidden');
 
-		// 恢复缓存的子账户标识
 		if (['recharge', 'view', 'update'].includes(tabName)) {
 			const input = document.querySelector(`#${tabName}Form input[name="name"]`);
 			if (input && !input.value) {
@@ -923,22 +867,17 @@ class XAIManager {
 			}
 		}
 
-		// 切换标签时更新API示例
 		if (['create', 'recharge', 'view', 'update', 'delete'].includes(tabName)) {
 			this.updateApiExample(tabName);
 		}
 
-		// 切换到各个标签时的自动操作
 		if (tabName === 'usage') {
-			// 切换到用量统计时，自动查询今日数据
 			setTimeout(() => this.queryUsage('today'), 100);
 		} else if (tabName === 'query') {
-			// 切换到账户查询时，自动填充API Key
 			const apiKeyInput = document.getElementById('api-key-input');
 			if (!apiKeyInput.value.trim() && this.currentApiKey) {
 				apiKeyInput.value = this.currentApiKey;
 			}
-			// 自动查询账户额度
 			setTimeout(() => this.sendBillingRequest(), 100);
 		}
 	}
@@ -951,7 +890,7 @@ class XAIManager {
 		const queryButton = document.getElementById("query-button");
 		const originalHTML = queryButton.innerHTML;
 
-		this.setLoadingState(queryButton, true, '查询中...');
+		this.setLoadingState(queryButton, true, 'Querying...');
 
 		const apiKeyInput = document.getElementById("api-key-input");
 		const resultsDiv = document.getElementById("query-results");
@@ -961,7 +900,7 @@ class XAIManager {
 
 		const apiKeys = apiKeyInput.value.match(/sk-Xvs\w+/g);
 		if (!apiKeys || apiKeys.length === 0) {
-			this.showNotification('请输入有效的 API Key', 'warning');
+			this.showNotification('Please enter a valid API Key', 'warning');
 			queryButton.innerHTML = originalHTML;
 			queryButton.disabled = false;
 			return;
@@ -971,7 +910,7 @@ class XAIManager {
 		resultsDiv.classList.remove('hidden');
 
 		const resultsCount = document.getElementById('results-count');
-		resultsCount.textContent = `共 ${uniqueApiKeys.length} 个账户`;
+		resultsCount.textContent = `Total: ${uniqueApiKeys.length} accounts`;
 
 		const tableBody = document.querySelector("#result-table tbody");
 
@@ -985,9 +924,9 @@ class XAIManager {
 				tableBody.appendChild(row);
 			});
 
-			this.showNotification(`查询完成，共 ${uniqueApiKeys.length} 个账户`, 'success');
+			this.showNotification(`Query complete. Found ${uniqueApiKeys.length} accounts.`, 'success');
 		} catch (error) {
-			this.showNotification('查询失败', 'error');
+			this.showNotification('Query failed', 'error');
 			console.error(error);
 		} finally {
 			queryButton.innerHTML = originalHTML;
@@ -1014,17 +953,17 @@ class XAIManager {
 			let creditBalance = [];
 			if (user.credit_balance && Array.isArray(user.credit_balance)) {
 				creditBalance = user.credit_balance.map(credit => ({
-					amount: this.formatNumber(credit.amount),
-					balance: this.formatNumber(credit.balance),
+					amount: this.formatNumber(credit.amount, 'currency'),
+					balance: this.formatNumber(credit.balance, 'currency'),
 					expiresAt: new Date(credit.expires_at).toLocaleDateString()
 				}));
 			}
 
-			const creditUsed = `${this.formatNumber(user.credit_used)}<br><span class='balance-value'>${this.formatNumber(user.balance)}</span>`;
+			const creditUsed = `${this.formatNumber(user.credit_used, 'currency')}<br><span class='balance-value'>${this.formatNumber(user.balance, 'currency')}</span>`;
 			const usageRatio = user.monthly_usage.CreditUsed > 0
 				? (user.daily_usage.CreditUsed / user.monthly_usage.CreditUsed * 100).toFixed(2)
 				: '0.00';
-			const usage = `${this.formatNumber(user.daily_usage.CreditUsed)}<br>${this.formatNumber(user.monthly_usage.CreditUsed)}<br><span class="usage-ratio">(${usageRatio}%)</span>`;
+			const usage = `${this.formatNumber(user.daily_usage.CreditUsed, 'currency')}<br>${this.formatNumber(user.monthly_usage.CreditUsed, 'currency')}<br><span class="usage-ratio">(${usageRatio}%)</span>`;
 
 			const requestsRatio = user.monthly_usage.Requests > 0
 				? (user.daily_usage.Requests / user.monthly_usage.Requests * 100).toFixed(2)
@@ -1044,12 +983,12 @@ class XAIManager {
 		headerRow.className = "table-header";
 		const headers = [
 			{ en: "API Key", cn: "" },
-			{ en: "账户信息", cn: "ID / 等级 / 子账户数 / 用户名 / 邮箱 / 创建时间" },
-			{ en: "充值卡", cn: "卡额 / 余额 / 到期时间" },
-			{ en: "已用 / 余额", cn: "总消费 / 总余额" },
-			{ en: "使用量", cn: "今日 / 本月 (占比)" },
-			{ en: "请求数", cn: "今日 / 本月 (占比)" },
-			{ en: "速率限制", cn: "RPM / TPD" }
+			{ en: "Account Info", cn: "ID / Level / Sub-accounts / Username / Email / Created At" },
+			{ en: "Credit Vouchers", cn: "Amount / Balance / Expires At" },
+			{ en: "Used / Balance", cn: "Total Spent / Total Balance" },
+			{ en: "Consumption", cn: "Today / This Month (Ratio)" },
+			{ en: "Requests", cn: "Today / This Month (Ratio)" },
+			{ en: "Rate Limit", cn: "RPM / TPD" }
 		];
 		headers.forEach(header => {
 			const th = document.createElement("th");
@@ -1082,7 +1021,7 @@ class XAIManager {
 			const errorCell = document.createElement("td");
 			errorCell.colSpan = "6";
 			errorCell.className = "error-cell";
-			errorCell.textContent = "账户不可用或已被暂停";
+			errorCell.textContent = "Account is unavailable or has been suspended.";
 			row.appendChild(errorCell);
 		} else {
 			const nameCell = document.createElement("td");
@@ -1107,7 +1046,7 @@ class XAIManager {
 		if (!creditData || creditData.length === 0) {
 			const emptyDiv = document.createElement("div");
 			emptyDiv.className = "empty-credit";
-			emptyDiv.textContent = "无充值卡";
+			emptyDiv.textContent = "No credit vouchers";
 			return emptyDiv;
 		}
 
@@ -1131,53 +1070,50 @@ class XAIManager {
 	async copyToClipboard(text) {
 		try {
 			await navigator.clipboard.writeText(text);
-			this.showNotification('已复制到剪贴板', 'success');
+			this.showNotification('Copied to clipboard', 'success');
 		} catch (error) {
 			this.fallbackCopy(text);
 		}
 	}
 
-	// 复制代码块
 	async copyCode(type) {
 		try {
 			const codeElement = document.getElementById(`${type}-code`);
 			if (!codeElement) {
-				this.showNotification('代码块未找到', 'error');
+				this.showNotification('Code block not found', 'error');
 				return;
 			}
 
-			// 获取纯文本代码
 			const code = codeElement.textContent || codeElement.innerText;
 
 			await navigator.clipboard.writeText(code);
-			this.showNotification('代码已复制到剪贴板', 'success');
+			this.showNotification('Code copied to clipboard', 'success');
 		} catch (error) {
 			const codeElement = document.getElementById(`${type}-code`);
 			if (codeElement) {
 				const code = codeElement.textContent || codeElement.innerText;
 				this.fallbackCopy(code);
 			} else {
-				this.showNotification('复制失败', 'error');
+				this.showNotification('Copy failed', 'error');
 			}
 		}
 	}
 
-	// 复制API示例代码
 	async copyApiExample(tabName, language) {
 		try {
 			const codeId = `${tabName}-${language}-code`;
 			const codeElement = document.getElementById(codeId);
 
 			if (!codeElement) {
-				this.showNotification('代码未找到', 'error');
+				this.showNotification('Code not found', 'error');
 				return;
 			}
 
 			const code = codeElement.textContent || codeElement.innerText;
 			await navigator.clipboard.writeText(code);
-			this.showNotification('API示例已复制到剪贴板', 'success');
+			this.showNotification('API example copied to clipboard', 'success');
 		} catch (error) {
-			this.showNotification('复制失败', 'error');
+			this.showNotification('Copy failed', 'error');
 		}
 	}
 
@@ -1241,7 +1177,7 @@ class XAIManager {
 		const name = formData.get('name').trim();
 
 		if (!name) {
-			this.showNotification('请输入子账户标识', 'error');
+			this.showNotification('Please enter a sub-account identifier', 'error');
 			return;
 		}
 
@@ -1310,13 +1246,13 @@ class XAIManager {
 		const name = formData.get('name').trim();
 
 		if (!name) {
-			this.showNotification('请输入子账户标识', 'error');
+			this.showNotification('Please enter a sub-account identifier', 'error');
 			return;
 		}
 
 		const confirmed = await this.showConfirmDialog(
-			'确认删除',
-			`确定要删除子账户 "${name}" 吗？此操作不可撤销！`
+			'Confirm Deletion',
+			`Are you sure you want to delete the sub-account "${name}"? This action cannot be undone!`
 		);
 
 		if (confirmed) {
@@ -1337,7 +1273,7 @@ class XAIManager {
 		const submitButton = form.querySelector('button[type="submit"]');
 		const originalHTML = submitButton.innerHTML;
 
-		this.setLoadingState(submitButton, true, '处理中...');
+		this.setLoadingState(submitButton, true, 'Processing...');
 
 		try {
 			const options = {
@@ -1363,19 +1299,18 @@ class XAIManager {
 			this.showModal(result);
 			form.reset();
 
-			// 恢复缓存的子账户标识（针对充值、查看、更新表单）
 			const nameInput = form.querySelector('input[name="name"]');
 			if (nameInput && ['rechargeForm', 'viewForm', 'updateForm'].includes(form.id)) {
 				nameInput.value = this.getCachedSubAccount();
 			}
 
-			this.showNotification('操作成功', 'success');
+			this.showNotification('Operation successful', 'success');
 
 			if (this.isRootUser && result.User?.SecretKey) {
-				this.showNotification('🎉 子账户创建成功！请复制并保存 Secret Key', 'success');
+				this.showNotification('🎉 Sub-account created successfully! Please copy and save the Secret Key.', 'success');
 			}
 		} catch (error) {
-			this.showNotification(error.message || '操作失败', 'error');
+			this.showNotification(error.message || 'Operation failed', 'error');
 		} finally {
 			submitButton.innerHTML = originalHTML;
 			submitButton.disabled = false;
@@ -1384,12 +1319,12 @@ class XAIManager {
 
 	async handleErrorResponse(response) {
 		if (response.status === 401) {
-			this.showNotification('登录已过期，请重新登录', 'warning');
+			this.showNotification('Session expired. Please log in again.', 'warning');
 			this.handleLogout();
 			return;
 		}
 
-		let errorMessage = `请求失败 (${response.status})`;
+		let errorMessage = `Request failed (${response.status})`;
 		try {
 			const errorData = await response.json();
 			errorMessage = errorData.message || errorData.error || errorMessage;
@@ -1434,7 +1369,7 @@ class XAIManager {
 
 		try {
 			await navigator.clipboard.writeText(secretKey);
-			this.showNotification('Secret Key 已复制到剪贴板', 'success');
+			this.showNotification('Secret Key copied to clipboard', 'success');
 		} catch (error) {
 			this.fallbackCopy(secretKey);
 		}
@@ -1451,9 +1386,9 @@ class XAIManager {
 
 		try {
 			document.execCommand('copy');
-			this.showNotification('已复制到剪贴板', 'success');
+			this.showNotification('Copied to clipboard', 'success');
 		} catch (error) {
-			this.showNotification('复制失败，请手动复制', 'error');
+			this.showNotification('Copy failed. Please copy manually.', 'error');
 		}
 
 		document.body.removeChild(textarea);
@@ -1511,7 +1446,6 @@ class XAIManager {
 		return icons[type] || icons.info;
 	}
 
-	// 生成API示例代码
 	generateApiExample(tabName, language = 'curl') {
 		if (!this.currentApiKey) return '';
 
@@ -1571,7 +1505,7 @@ headers = {
     "Content-Type": "application/json"
 }
 data = {
-    "CreditGranted": 20.0  # 正数为充值，负数为扣款
+    "CreditGranted": 20.0  # Positive to add credit, negative to deduct
 }
 
 response = requests.put(url, json=data, headers=headers)
@@ -1583,7 +1517,7 @@ print(response.json())`,
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        CreditGranted: 20.0  // 正数为充值，负数为扣款
+        CreditGranted: 20.0  // Positive to add credit, negative to deduct
     })
 });
 
@@ -1591,26 +1525,26 @@ const result = await response.json();
 console.log(result);`
 			},
 			view: {
-				curl: `# 查看特定子账户
+				curl: `# View a specific sub-account
 curl -X GET '${this.BASE_URL}/x-dna/{username}' \\
   -H 'Authorization: Bearer ${this.currentApiKey}'
 
-# 查看所有子账户
+# View all sub-accounts
 curl -X GET '${this.BASE_URL}/x-dna' \\
   -H 'Authorization: Bearer ${this.currentApiKey}'`,
 				python: `import requests
 
-# 查看特定子账户
+# View a specific sub-account
 url = "${this.BASE_URL}/x-dna/{username}"
 headers = {"Authorization": "Bearer ${this.currentApiKey}"}
 response = requests.get(url, headers=headers)
 print(response.json())
 
-# 查看所有子账户
+# View all sub-accounts
 url = "${this.BASE_URL}/x-dna"
 response = requests.get(url, headers=headers)
 print(response.json())`,
-				javascript: `// 查看特定子账户
+				javascript: `// View a specific sub-account
 let response = await fetch('${this.BASE_URL}/x-dna/{username}', {
     headers: {
         'Authorization': '${this.currentApiKey}'
@@ -1618,7 +1552,7 @@ let response = await fetch('${this.BASE_URL}/x-dna/{username}', {
 });
 console.log(await response.json());
 
-// 查看所有子账户
+// View all sub-accounts
 response = await fetch('${this.BASE_URL}/x-dna', {
     headers: {
         'Authorization': '${this.currentApiKey}'
@@ -1691,7 +1625,6 @@ console.log(result);`
 		return examples[tabName]?.[language] || '';
 	}
 
-	// 更新API示例
 	updateApiExample(tabName) {
 		const codeElement = document.getElementById(`${tabName}-curl-code`);
 		if (codeElement) {
@@ -1709,7 +1642,6 @@ console.log(result);`
 		}
 	}
 
-	// 更新所有API示例
 	updateAllApiExamples() {
 		['create', 'recharge', 'view', 'update', 'delete'].forEach(tabName => {
 			this.updateApiExample(tabName);
@@ -1717,7 +1649,6 @@ console.log(result);`
 	}
 }
 
-// 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
 	window.xaiManager = new XAIManager();
 });
