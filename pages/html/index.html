@@ -455,8 +455,8 @@ client = OpenAI(
 completion = client.chat.completions.create(
     model="gpt-4o",
     messages=[
-        {"role": "system", "content": "You are AI"},
-        {"role": "user", "content": "What is the meaning of life, the universe, and everything?"},
+	{"role": "system", "content": "You are AI"},
+	{"role": "user", "content": "What is the meaning of life, the universe, and everything?"},
     ],
 )
 
@@ -487,10 +487,10 @@ message = client.messages.create(
     max_tokens=128,
     system="You are AI.",
     messages=[
-        {
-            "role": "user",
-            "content": "What is the meaning of life, the universe, and everything?",
-        },
+	{
+	    "role": "user",
+	    "content": "What is the meaning of life, the universe, and everything?",
+	},
     ],
 )
 print(message.content)</code></pre>
@@ -708,7 +708,6 @@ print(message.content)</code></pre>
 										<label class="form-label">二维码URL</label>
 										<input name="qrcode" type="text" class="form-input" placeholder="技术支持二维码图片的URL地址">
 									</div>
-									</div>
 								</div>
 							</div>
 
@@ -732,7 +731,7 @@ print(message.content)</code></pre>
 							<svg class="alert-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
 							</svg>
-							<p>警告：删除操作不可撤销，子账户的所有数据将被永久删除！</p>
+							<p>删除操作不可撤销，子账户 API Key 将即刻失效</p>
 						</div>
 						<form id="deleteForm" class="form-grid">
 							<div class="form-group col-span-2">
