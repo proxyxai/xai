@@ -1,5 +1,5 @@
 +++
-title = "𝑷𝒓𝒐𝒙𝒚𝑿𝑨𝑰"
+title = "𝐏𝐫𝐨𝐱𝐲𝐗𝐀𝐈"
 
 # The homepage contents
 [extra]
