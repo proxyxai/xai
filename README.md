@@ -23,7 +23,7 @@ graph TD
 
 ## License Agreement
 
-The system is open for deployment. Users need to retain the signature `Powered by ProxyXAI` at the bottom of the official service page, and link to [ProxyXAI](https://proxyxai.com). If you do not want to keep the signature, you need to obtain our authorization.
+The system is open for deployment, but users must retain the official footer link [proxyxai.com](https://proxyxai.com).
 
 ## Resource Dependencies
 
@@ -103,7 +103,7 @@ graph TD
 
 ## 授权协议
 
-系统开放部署,使用者需要在官方服务页面底部保留署名 `Powered by ProxyXAI` 同时指向链接 [ProxyXAI](https://proxyxai.com)。
+系统开放部署,使用者需要保留页脚官方链接 [proxyxai.com](https://proxyxai.com)。
 
 ## 资源依赖
 
