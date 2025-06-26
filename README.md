@@ -72,9 +72,9 @@ By default, the docker-compose.yml file sets XAI_BASE to api.openai.com. Therefo
 
 ## Special Thanks
 
-[openai.com](https://openai.com)
+[OpenAI](https://openai.com)
 
-[anthropic.com](https://www.anthropic.com)
+[Anthropic](https://www.anthropic.com)
 
 ---
 
@@ -147,6 +147,6 @@ graph TD
 
 ## 鸣谢
 
-[openai.com](https://openai.com)
+[OpenAI](https://openai.com)
 
-[anthropic.com](https://www.anthropic.com)
+[Anthropic](https://www.anthropic.com)
