@@ -7,7 +7,7 @@ ProxyXAI is designed as a reliable, efficient, and secure XAI API Keys managemen
 ```mermaid
 graph TD
     A(Client)
-    A -- Use virtual Key provided by Proxy to make requests --> B(Proxy)
+    A -- Use virtual Key provided by Proxy to make requests --> B(XAI Gateway)
     B -- Poll an XAI API Key from the Key pool --> C(XAI API Key)
     C -- Request --> D(XAI API)
     D -- Return 5xx error --> E[Proxy discards error and retries]
