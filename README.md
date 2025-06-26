@@ -1,6 +1,6 @@
 # ProxyXAI
 
-ProxyXAI is designed as a reliable, efficient, and secure XAI API Keys management system, providing users with better XAI API access services. It is a system that consumes XAI API Keys and outputs stable and reliable AI API access services.
+ProxyXAI is an AI API Gateway service that provides unified access to multiple AI providers (OpenAI, Anthropic, etc.) with enhanced features like load balancing, rate limiting, usage tracking, and subaccount management.
 
 ## Implementation Principle
 
@@ -80,7 +80,7 @@ By default, the docker-compose.yml file sets XAI_BASE to api.openai.com. Therefo
 
 # ProxyXAI
 
-ProxyXAI 是一个可靠、高效且安全的 XAI API Keys 管理系统，为用户提供更好的 XAI API 接入服务。它是一个消耗 XAI API Keys 的系统，输出稳定可靠的 AI API 接入服务, 并且拥有强大的多租户能力, 管理员可以方便的控制子账号的使用额度, 调用速率, 调用模型权限, 调用来源IP白名单等。
+ProxyXAI 是一个 AI API Gateway，提供对多个 AI 提供商（OpenAI、Anthropic 等）的统一访问，并具备负载均衡、速率限制、使用情况跟踪和子账户管理等增强功能。
 
 ## 实现原理
 
