@@ -87,10 +87,10 @@ ProxyXAI 是一个可靠、高效且安全的 XAI API Keys 管理系统，为用
 ```mermaid
 graph TD
     A(客户端)
-    A -- 使用愚公代理分发的虚拟Key进行请求 --> B(愚公代理)
+    A -- 使用愚公网关分发的虚拟Key进行请求 --> B(愚公网关)
     B -- 从Key池中轮询获取一个 XAI API Key --> C(XAI API Key)
     C -- 请求 --> D(XAI API)
-    D -- 返回5xx错误 --> E[愚公代理丢弃错误并重试]
+    D -- 返回5xx错误 --> E[愚公网关丢弃错误并重试]
     E -- 重试 --> B
     D -- 正常响应 --> F[返回给客户端]
     style A fill:#58C1B2
