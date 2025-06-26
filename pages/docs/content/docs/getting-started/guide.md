@@ -12,8 +12,6 @@ toc = true
 top = false
 +++
 
-# Quick Start Guide
-
 Get started with XAI in minutes. This guide covers account setup, API integration, and best practices.
 
 ## Prerequisites
