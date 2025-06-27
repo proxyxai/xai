@@ -1,14 +1,14 @@
 # The URL the site will be built for
 base_url = "https://proxyxai.com"
 title = "𝐏𝐫𝐨𝐱𝐲𝐗𝐀𝐈"
-description = "XAI API Empowering Pioneers"
+description = "为 AI 行业的先驱者提供坚如磐石的基础设施支撑"
 
 # The site theme to use.
 theme = "adidoks"
 
 # The default language; used in feeds and search index
 # Note: the search index doesn't support Chinese/Japanese/Korean Languages
-default_language = "en"
+default_language = "zh"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -147,3 +147,21 @@ weight = 10
 name = "Terms of Service"
 url = "/tos/"
 weight = 20
+
+# 多语言配置
+[languages]
+
+# 中文配置
+[languages.zh]
+title = "ProxyXAI"
+description = "为 AI 行业的先驱者提供坚如磐石的基础设施支撑"
+# 中文是默认语言，所以没有 path
+
+# 英文配置
+[languages.en]
+title = "ProxyXAI"
+description = "XAI API Empowering Pioneers"
+# 英文版的路径，最终会生成在 /en/ 目录下
+path = "en"
+# 如果需要，可以为英文版也建立搜索索引
+build_search_index = true
