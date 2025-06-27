@@ -1,12 +1,6 @@
 # 站点 URL
 base_url = "https://proxyxai.com"
 
-# 站点标题
-title = "𝐏𝐫𝐨𝐱𝐲𝐗𝐀𝐈"
-
-# 站点描述
-description = "为 AI 行业的先驱者提供坚如磐石的基础设施支撑"
-
 # 使用的主题
 theme = "adidoks"
 
